@@ -24,8 +24,8 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Pedido {
 
-	@EqualsAndHashCode.Include
 	@Id
+	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

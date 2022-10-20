@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.fa2bio.core.validation.Groups;
 
 import lombok.Data;
@@ -23,9 +22,9 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Cozinha {
 
-	@NotNull(groups = Groups.CozinhaId.class)
-	@EqualsAndHashCode.Include
 	@Id
+	@EqualsAndHashCode.Include
+	@NotNull(groups = Groups.CozinhaId.class)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -33,7 +32,6 @@ public class Cozinha {
 	@Column(nullable = false)
 	private String nome;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "cozinha")
 	private List<Restaurante> restaurantes = new ArrayList<>();
 	

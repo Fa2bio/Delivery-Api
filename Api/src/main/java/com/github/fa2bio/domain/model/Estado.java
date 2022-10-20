@@ -18,9 +18,9 @@ import lombok.EqualsAndHashCode;
 @Entity
 public class Estado {
 
-	@NotNull(groups = Groups.EstadoId.class)
-	@EqualsAndHashCode.Include
 	@Id
+	@EqualsAndHashCode.Include
+	@NotNull(groups = Groups.EstadoId.class)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
