@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
+import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.Cozinha;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.repository.RestauranteRepository;
@@ -16,15 +17,21 @@ public class CadastroRestauranteService {
 	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
-	private CadastroCozinhaService cadastroCozinha;
+	private CadastroCozinhaService cadastroCozinhaService;
+	
+	@Autowired
+	private CadastroCidadeService cadastroCidadeService;
 	
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
 		Long cozinhaId = restaurante.getCozinha().getId();
+		Long cidadeId = restaurante.getEndereco().getCidade().getId();
 		
-		Cozinha cozinha = cadastroCozinha.buscarOuFalhar(cozinhaId);
+		Cozinha cozinha = cadastroCozinhaService.buscarOuFalhar(cozinhaId);
+		Cidade cidade = cadastroCidadeService.buscarOuFalhar(cidadeId);
 		
 		restaurante.setCozinha(cozinha);
+		restaurante.getEndereco().setCidade(cidade);
 		
 		return restauranteRepository.save(restaurante);
 	}
@@ -34,4 +41,15 @@ public class CadastroRestauranteService {
 			.orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
 	}
 	
+	@Transactional
+	public void ativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+		restauranteAtual.ativar();
+	}
+	
+	@Transactional
+	public void inativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
+		restauranteAtual.inativar();
+	}
 }

@@ -9,6 +9,11 @@ public class ModelMapperConfig {
 
 	@Bean
 	public ModelMapper modelMapper() {
-		return new ModelMapper();
+		var modelMapper = new ModelMapper();
+		
+		//var usuarioToUsuarioModelTypeMap = modelMapper.createTypeMap(Usuario.class, UsuarioModel.class);
+
+		
+		return modelMapper;
 	}
 }
