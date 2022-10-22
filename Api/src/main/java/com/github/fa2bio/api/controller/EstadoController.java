@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.fa2bio.api.assembler.EstadoModelAssembler;
-import com.github.fa2bio.api.assembler.EstadoModelDisassembler;
+import com.github.fa2bio.api.assembler.EstadoInputDisassembler;
 import com.github.fa2bio.api.model.EstadoModel;
 import com.github.fa2bio.api.model.input.EstadoInput;
 import com.github.fa2bio.domain.model.Estado;
@@ -38,7 +38,7 @@ public class EstadoController {
 	private EstadoModelAssembler estadoModelAssembler;
 	
 	@Autowired
-	private EstadoModelDisassembler estadoModelDisassembler;
+	private EstadoInputDisassembler estadoInputDisassembler;
 	
 	@GetMapping
 	public List<EstadoModel> listar() {
@@ -54,7 +54,7 @@ public class EstadoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public EstadoModel adicionar(@RequestBody @Valid EstadoInput estadoInput) {
-		Estado estado = estadoModelDisassembler.toDomainObject(estadoInput);
+		Estado estado = estadoInputDisassembler.toDomainObject(estadoInput);
 		return estadoModelAssembler.toModel(cadastroEstado.salvar(estado));
 	}
 	
@@ -63,7 +63,7 @@ public class EstadoController {
 			@RequestBody @Valid EstadoInput estadoInput) {
 		Estado estadoAtual = cadastroEstado.buscarOuFalhar(estadoId);
 		
-		estadoModelDisassembler.copyToDomainObject(estadoInput, estadoAtual);
+		estadoInputDisassembler.copyToDomainObject(estadoInput, estadoAtual);
 		
 		return estadoModelAssembler.toModel(cadastroEstado.salvar(estadoAtual));
 	}

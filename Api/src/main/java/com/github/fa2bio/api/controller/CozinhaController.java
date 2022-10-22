@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.fa2bio.api.assembler.CozinhaModelAssembler;
-import com.github.fa2bio.api.assembler.CozinhaModelDisassembler;
+import com.github.fa2bio.api.assembler.CozinhaInputDisassembler;
 import com.github.fa2bio.api.model.CozinhaModel;
 import com.github.fa2bio.api.model.input.CozinhaInput;
 import com.github.fa2bio.domain.model.Cozinha;
@@ -38,7 +38,7 @@ public class CozinhaController {
 	private CozinhaModelAssembler cozinhaModelAssembler;
 	
 	@Autowired
-	private CozinhaModelDisassembler cozinhaModelDisassembler;
+	private CozinhaInputDisassembler cozinhaInputDisassembler;
 	
 	@GetMapping
 	public List<CozinhaModel> listar() {
@@ -54,7 +54,7 @@ public class CozinhaController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CozinhaModel adicionar(@RequestBody @Valid CozinhaInput cozinhaInput) {
-		Cozinha cozinha = cozinhaModelDisassembler.toDomainObject(cozinhaInput);
+		Cozinha cozinha = cozinhaInputDisassembler.toDomainObject(cozinhaInput);
 		return cozinhaModelAssembler.toModel(cadastroCozinha.salvar(cozinha));
 	}
 	
@@ -62,7 +62,7 @@ public class CozinhaController {
 	public CozinhaModel atualizar(@PathVariable Long cozinhaId, @RequestBody @Valid CozinhaInput cozinhaInput) {
 		Cozinha cozinhaAtual = cadastroCozinha.buscarOuFalhar(cozinhaId);
 		
-		cozinhaModelDisassembler.copyToDomainObject(cozinhaInput, cozinhaAtual);
+		cozinhaInputDisassembler.copyToDomainObject(cozinhaInput, cozinhaAtual);
 		
 		return cozinhaModelAssembler.toModel(cadastroCozinha.salvar(cozinhaAtual));
 	}

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.fa2bio.api.assembler.CidadeModelAssembler;
-import com.github.fa2bio.api.assembler.CidadeModelDisassembler;
+import com.github.fa2bio.api.assembler.CidadeInputDisassembler;
 import com.github.fa2bio.api.model.CidadeModel;
 import com.github.fa2bio.api.model.input.CidadeInput;
 import com.github.fa2bio.domain.exception.EstadoNaoEncontradoException;
@@ -40,7 +40,7 @@ public class CidadeController {
 	private CidadeModelAssembler cidadeModelAssembler;
 	
 	@Autowired
-	private CidadeModelDisassembler cidadeModelDisassembler;
+	private CidadeInputDisassembler cidadeInputDisassembler;
 	
 	@GetMapping
 	public List<CidadeModel> listar() {
@@ -58,7 +58,7 @@ public class CidadeController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public CidadeModel adicionar(@RequestBody @Valid CidadeInput cidadeInput) {
 		try {
-			Cidade cidade = cidadeModelDisassembler.toDomainObject(cidadeInput);
+			Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
 			return cidadeModelAssembler.toModel(cadastroCidade.salvar(cidade));
 		} catch (EstadoNaoEncontradoException e) {
 			throw new NegocioException(e.getMessage(), e);
@@ -71,7 +71,7 @@ public class CidadeController {
 		try {
 			Cidade cidadeAtual = cadastroCidade.buscarOuFalhar(cidadeId);
 			
-			cidadeModelDisassembler.copyToDomainObject(cidadeInput, cidadeAtual);
+			cidadeInputDisassembler.copyToDomainObject(cidadeInput, cidadeAtual);
 			
 			return cidadeModelAssembler.toModel(cadastroCidade.salvar(cidadeAtual));
 		} catch (EstadoNaoEncontradoException e) {
