@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.model.FormaPagamento;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.repository.RestauranteRepository;
 
@@ -22,6 +23,9 @@ public class CadastroRestauranteService {
 	@Autowired
 	private CadastroCidadeService cadastroCidadeService;
 	
+	@Autowired
+	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
+	
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {
 		Long cozinhaId = restaurante.getCozinha().getId();
@@ -36,11 +40,6 @@ public class CadastroRestauranteService {
 		return restauranteRepository.save(restaurante);
 	}
 	
-	public Restaurante buscarOuFalhar(Long restauranteId) {
-		return restauranteRepository.findById(restauranteId)
-			.orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
-	}
-	
 	@Transactional
 	public void ativar (Long restauranteId) {
 		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
@@ -52,4 +51,28 @@ public class CadastroRestauranteService {
 		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		restauranteAtual.inativar();
 	}
+	
+	public Restaurante buscarOuFalhar(Long restauranteId) {
+		return restauranteRepository.findById(restauranteId)
+			.orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
+	}
+	
+	@Transactional
+	public void associarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
+		
+		restaurante.associarFormaPagamento(formaPagamento);
+	
+	}
+	
+	@Transactional
+	public void desassociarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
+		
+		restaurante.desassociarFormaPagamento(formaPagamento);
+	
+	}
+
 }
