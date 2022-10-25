@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.exception.NegocioException;
 import com.github.fa2bio.domain.exception.UsuarioNaoEncontradoException;
+import com.github.fa2bio.domain.model.Grupo;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.UsuarioRepository;
 
@@ -22,6 +23,9 @@ public class CadastroUsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private CadastroGrupoService cadastroGrupoService;
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
@@ -46,6 +50,22 @@ public class CadastroUsuarioService {
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(String.format(MSG_USUARIO_EM_USO, usuarioId));
 		}
+		
+	}
+	
+	@Transactional
+	public void associar(Long usuarioId, Long grupoId) {
+		Usuario usuario = buscarOuFalhar(usuarioId);
+		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
+		usuario.associar(grupo);
+		
+	}
+	
+	@Transactional
+	public void deassociar(Long usuarioId, Long grupoId) {
+		Usuario usuario = buscarOuFalhar(usuarioId);
+		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
+		usuario.deassociar(grupo);
 		
 	}
 	
