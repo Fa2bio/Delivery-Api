@@ -21,7 +21,6 @@ public class ItemPedido {
 	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private BigDecimal precoUnitario;
 	private BigDecimal precoTotal;
 	private Integer quantidade;
