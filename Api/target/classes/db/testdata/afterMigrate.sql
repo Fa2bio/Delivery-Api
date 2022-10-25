@@ -58,16 +58,16 @@ insert into forma_pagamento (id, descricao) values (3, 'Dinheiro');
 insert into permissao (id, nome, descricao) values (1, 'CONSULTAR_COZINHAS', 'Permite consultar cozinhas');
 insert into permissao (id, nome, descricao) values (2, 'EDITAR_COZINHAS', 'Permite editar cozinhas');
 
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Whopper', 'Delicioso hamburguer com carne bovina e salda', 78.90, 1, 1);
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Big King', 'Delicioso haburguer duplo com carne bovina e molho especial', 110, 1, 1);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Whopper', 'Delicioso hamburguer com carne bovina e salda', 28.90, 1, 1);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Big King', 'Delicioso haburguer duplo com carne bovina e molho especial', 25.9, 1, 1);
 
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Big Mac', 'Delicioso haburguer duplo com carne bovina e molho especial Big Mac', 87.20, 1, 2);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Big Mac', 'Delicioso haburguer duplo com carne bovina e molho especial Big Mac', 37.20, 1, 2);
 
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Brasileirinho', 'Arroz, feijão e file à cavalo', 21, 1, 3);
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Frango ao molho', 'Cubos de frango preparados com molho curry e especiarias', 43, 1, 3);
 
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bib esfiha clássica', 'Deliciosa esfiha de carne, calabresa ou queijo', 79, 1, 4);
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Pastel de Belem', 'Delicioso doce portugues feito com a nata do leite', 89, 1, 4);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bib esfiha clássica', 'Deliciosa esfiha de carne, calabresa ou queijo', 0.99, 1, 4);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Pastel de Belem', 'Delicioso doce portugues feito com a nata do leite', 2.89, 1, 4);
 
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Sanduíche X-Tudo', 'Sandubão com muito queijo, hamburger bovino, bacon, ovo, salada e maionese', 19, 1, 5);
 
