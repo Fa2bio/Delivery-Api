@@ -6,5 +6,5 @@ import com.github.fa2bio.domain.model.Permissao;
 
 @Repository
 public interface PermissaoRepository extends CustomJpaRepository<Permissao, Long> {
-
+	
 }
