@@ -2,6 +2,7 @@ package com.github.fa2bio.api.exceptionhandler;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -49,7 +50,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	    
 	    BindingResult bindingResult = ex.getBindingResult();
 	    
-	    List<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
+	    Set<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
 	    		.map(objectError -> {
 	    			String message = messageSource.getMessage(objectError, LocaleContextHolder.getLocale());
 	    			
@@ -64,7 +65,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	    				.userMessage(message)
 	    				.build();
 	    		})
-	    		.collect(Collectors.toList());
+	    		.collect(Collectors.toSet());
 	    
 	    Problem problem = createProblemBuilder(status, problemType, detail)
 	        .userMessage(detail)
