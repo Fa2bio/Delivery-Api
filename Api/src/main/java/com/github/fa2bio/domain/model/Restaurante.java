@@ -2,9 +2,7 @@ package com.github.fa2bio.domain.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -52,6 +50,8 @@ public class Restaurante {
 	
 	private Boolean ativo = Boolean.TRUE;
 	
+	private Boolean aberto = Boolean.TRUE;
+	
 	@CreationTimestamp
 	@Column(nullable = false, columnDefinition = "datetime")
 	private OffsetDateTime dataCadastro;
@@ -66,8 +66,14 @@ public class Restaurante {
 			inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
 	private Set<FormaPagamento> formasPagamento = new HashSet<>();
 	
+	@ManyToMany
+	@JoinTable(name = "restaurante_usuario",
+			joinColumns = @JoinColumn(name = "restaurante_id"),
+			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+	private Set<Usuario> usuarios = new HashSet<>();
+	
 	@OneToMany(mappedBy = "restaurante")
-	private List<Produto> produtos = new ArrayList<>();
+	private Set<Produto> produtos = new HashSet<>();
 	
 	public void ativar() {
 		setAtivo(true);
@@ -75,6 +81,14 @@ public class Restaurante {
 	
 	public void inativar() {
 		setAtivo(false);
+	}
+	
+	public void abrir() {
+		setAberto(true);
+	}
+	
+	public void fechar() {
+		setAberto(false);
 	}
 	
 	public boolean associarFormaPagamento(FormaPagamento formaPagamento) {
@@ -85,4 +99,11 @@ public class Restaurante {
 		return getFormasPagamento().remove(formaPagamento);
 	}
 	
+	public boolean associarUsuario(Usuario usuario) {
+		return getUsuarios().add(usuario);
+	}
+	
+	public boolean desassociarUsuario(Usuario usuario) {
+		return getUsuarios().remove(usuario);
+	}
 }
