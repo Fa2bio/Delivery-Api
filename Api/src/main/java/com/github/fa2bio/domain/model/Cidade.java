@@ -7,10 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
-
-import com.github.fa2bio.core.validation.Groups;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,7 +26,7 @@ public class Cidade {
 	
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	@ConvertGroup(from = Default.class, to = Groups.EstadoId.class)
+
 	private Estado estado;
 
 }
