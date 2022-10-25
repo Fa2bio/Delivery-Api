@@ -1,4 +1,4 @@
-package com.github.fa2bio.domain.model;
+ package com.github.fa2bio.domain.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +39,8 @@ public class Pedido {
 	@Embedded
 	private Endereco enderecoEntrega;
 	
-	private StatusPedido status;
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status = StatusPedido.CRIADO;
 	
 	@CreationTimestamp
 	private OffsetDateTime dataCriacao;
@@ -44,7 +48,7 @@ public class Pedido {
 	private OffsetDateTime dataCancelamento;
 	private OffsetDateTime dataEntrega;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
 	private FormaPagamento formaPagamento;
 	
