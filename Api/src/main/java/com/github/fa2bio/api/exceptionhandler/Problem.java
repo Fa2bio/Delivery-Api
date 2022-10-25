@@ -1,7 +1,8 @@
 package com.github.fa2bio.api.exceptionhandler;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,7 +13,7 @@ import lombok.Getter;
 @JsonInclude(Include.NON_NULL)
 @Getter
 @Builder
-public class Problem {
+public class Problem{
 
 	private Integer status;
 	private LocalDateTime timestamp;
@@ -20,7 +21,7 @@ public class Problem {
 	private String title;
 	private String detail;
 	private String userMessage;
-	private List<Object> objects;
+	private Set<Object> objects;
 	
 	@Getter
 	@Builder
@@ -29,6 +30,22 @@ public class Problem {
 		private String name;
 		private String userMessage;
 		
+		@Override
+		public int hashCode() {
+			return Objects.hash(name, userMessage);
+		}
+		@Override
+		public boolean equals(java.lang.Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Object other = (Object) obj;
+			return Objects.equals(name, other.name) && Objects.equals(userMessage, other.userMessage);
+		}
+
 	}
-	
+
 }
