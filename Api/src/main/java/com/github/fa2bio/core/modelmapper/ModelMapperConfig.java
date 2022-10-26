@@ -26,8 +26,9 @@ public class ModelMapperConfig {
 //				(enderecoSrc -> enderecoSrc.getCidade().getEstado().getNome(),
 //				(enderecoModelDest, value) -> enderecoModelDest.getCidade().setNomeEstado(value));
 		
-		modelMapper.createTypeMap(ItemPedidoInput.class, ItemPedido.class)
-		.addMappings(mapper -> mapper.skip(ItemPedido::setId));
+//		modelMapper.createTypeMap(ItemPedidoInput.class, ItemPedido.class)
+//		.addMappings(mapper -> mapper.skip(ItemPedido::setId));
+		
 		return modelMapper;
 	}
 }
