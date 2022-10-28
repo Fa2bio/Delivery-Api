@@ -11,5 +11,9 @@ public class FormaPagamentoNaoEncontradaException extends EntidadeNaoEncontradaE
 	public FormaPagamentoNaoEncontradaException(Long id) {
 		this(String.format("Não existe uma forma de pagamento com código %d", id));
 	}
+	
+	public FormaPagamentoNaoEncontradaException(Long id, Long restauranteID) {
+		this(String.format("Não existe uma forma de pagamento com código %d para o restaurante com código %d", id, restauranteID));
+	}
 
 }
