@@ -20,7 +20,10 @@ import com.github.fa2bio.api.assembler.PedidoResumoModelAssembler;
 import com.github.fa2bio.api.model.PedidoModel;
 import com.github.fa2bio.api.model.PedidoResumoModel;
 import com.github.fa2bio.api.model.input.PedidoInput;
+import com.github.fa2bio.domain.exception.EntidadeNaoEncontradaException;
+import com.github.fa2bio.domain.exception.NegocioException;
 import com.github.fa2bio.domain.model.Pedido;
+import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.PedidoRepository;
 import com.github.fa2bio.domain.service.EmissaoPedidoService;
 
@@ -60,7 +63,14 @@ public class PedidoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public PedidoModel adicionar(@RequestBody @Valid PedidoInput pedidoInput) {
-		Pedido pedido = pedidoInputDisassembler.toDomainObject(pedidoInput);
+		try {
+			Pedido pedido = pedidoInputDisassembler.toDomainObject(pedidoInput);
+			pedido.setCliente(new Usuario());
+			pedido.getCliente().setId(1L);
+			return pedidoModelAssembler.toModel(emissaoPedidoService.emitir(pedido));
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(),e);
+		}
 	}
 	
 }
