@@ -34,7 +34,7 @@ public class Pedido {
 	private Long id;
 	
 	private BigDecimal subtotal;
-	private BigDecimal taxaFrete;
+	private BigDecimal taxaFrete; 
 	private BigDecimal valorTotal;
 
 	@Embedded
@@ -63,5 +63,14 @@ public class Pedido {
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
+	
+	public void calcularTotal() {
+		double valor = 0;
+		for (ItemPedido itemPedido : itens) {
+			valor += itemPedido.getPrecoTotal().doubleValue();
+		}
+		this.subtotal = new BigDecimal(valor);
+		this.valorTotal = new BigDecimal(valor+this.taxaFrete.doubleValue());
+	}
 
 }
