@@ -23,11 +23,13 @@ alter table cozinha auto_increment = 1;
 alter table estado auto_increment = 1;
 alter table forma_pagamento auto_increment = 1;
 alter table grupo auto_increment = 1;
+alter table pedido auto_increment = 1;
+alter table item_pedido auto_increment = 1;
 alter table permissao auto_increment = 1;
 alter table produto auto_increment = 1;
-alter table pedido auto_increment = 1;
 alter table restaurante auto_increment = 1;
 alter table usuario auto_increment = 1;
+
 
 insert into cozinha (id, nome) values (1, 'Tailandesa');
 insert into cozinha (id, nome) values (2, 'Indiana');
@@ -96,17 +98,17 @@ values (1, 1, 1, 1, 1, '38400-000', 'Rua Floriano Peixoto', '500', 'Apto 801', '
         'CRIADO', utc_timestamp, 298.90, 10, 308.90);
 
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
-values (1, 1, 1, 1, 78.9, 78.9, null);
+values (1, 1, 1, 1, 28.9, 28.9, null);
 
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
-values (2, 1, 2, 2, 110, 220, 'Com mais queijo, por favor');
-
+values (2, 1, 2, 2, 25.9, 51.8, 'Com mais queijo, por favor');
 
 insert into pedido (id, restaurante_id, usuario_cliente_id, forma_pagamento_id, endereco_cidade_id, endereco_cep, 
                     endereco_logradouro, endereco_numero, endereco_complemento, endereco_bairro,
 	                status, data_criacao, subtotal, taxa_frete, valor_total)
 values (2, 4, 1, 2, 1, '38400-111', 'Rua Acre', '300', 'Casa 2', 'Centro',
         'CRIADO', utc_timestamp, 79, 0, 79);
-
+        
 insert into item_pedido (id, pedido_id, produto_id, quantidade, preco_unitario, preco_total, observacao)
-values (3, 2, 6, 1, 79, 79, 'Ao ponto');
+values (3, 2, 6, 1, 0.99, 0.99, 'Ao ponto');
+        
