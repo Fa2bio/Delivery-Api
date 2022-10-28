@@ -15,15 +15,15 @@ public class PedidoInput {
 	
 	@Valid
 	@NotNull
-	private RestauranteIdInput restauranteIdInput;
+	private RestauranteIdInput restaurante;
 	
 	@Valid
 	@NotNull
-	private FormaPagamentoIdInput formaPagamentoIdInput;
+	private FormaPagamentoIdInput formaPagamento;
 	
 	@Valid
 	@NotNull
-	private EnderecoInput enderecoInput;
+	private EnderecoInput enderecoEntrega;
 	
 	@Valid
 	@NotNull
