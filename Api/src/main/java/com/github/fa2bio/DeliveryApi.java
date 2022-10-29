@@ -16,5 +16,4 @@ public class DeliveryApi {
 		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		SpringApplication.run(DeliveryApi.class, args);
 	}
-
 }
