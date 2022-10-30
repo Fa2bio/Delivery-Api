@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.github.fa2bio.api.assembler.RestauranteInputDisassembler;
 import com.github.fa2bio.api.assembler.RestauranteModelAssembler;
 import com.github.fa2bio.api.model.RestauranteModel;
 import com.github.fa2bio.api.model.input.RestauranteInput;
+import com.github.fa2bio.api.model.view.RestauranteView;
 import com.github.fa2bio.domain.exception.CidadeNaoEncontradaException;
 import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
 import com.github.fa2bio.domain.exception.NegocioException;
@@ -44,9 +46,17 @@ public class RestauranteController {
 	@Autowired
 	private RestauranteInputDisassembler restauranteInputDisassembler;
 
+	
 	@GetMapping
+	@JsonView(RestauranteView.Resumo.class)
 	public List<RestauranteModel> listar() {
 		return restauranteModelAssembler.toCollectionModel(restauranteRepository.findAll());
+	}
+	
+	@GetMapping(params="projecao=apenas-nome")
+	@JsonView(RestauranteView.ApenasNome.class)
+	public List<RestauranteModel> listarApenasNome() {
+		return listar();
 	}
 	
 	@GetMapping("/{restauranteId}")
