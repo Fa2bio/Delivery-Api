@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import com.github.fa2bio.api.model.ProdutoModel;
 import com.github.fa2bio.api.model.input.ProdutoInput;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.repository.ProdutoRepository;
 import com.github.fa2bio.domain.service.CadastroProdutoService;
 import com.github.fa2bio.domain.service.CadastroRestauranteService;
 
@@ -35,15 +37,24 @@ public class RestauranteProdutosController {
 	private CadastroProdutoService cadastroProdutoService;
 	
 	@Autowired
+	private ProdutoRepository produtoRepository;
+	
+	@Autowired
 	private ProdutoModelAssembler produtoModelAssembler;
 	
 	@Autowired
 	private ProdutoInputDisassembler produtoInputDisassembler;
 
 	@GetMapping
-	public List<ProdutoModel> listar(@PathVariable Long restauranteId) {
+	public List<ProdutoModel> listar(@PathVariable Long restauranteId, 
+			@RequestParam(required = false) boolean incluirInativos) {
 		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
-		return produtoModelAssembler.toCollectionModel(restaurante.getProdutos());
+		List<Produto> todosProdutos = null;
+		
+		if(incluirInativos) todosProdutos = produtoRepository.findTodosByRestaurante(restaurante);
+		else todosProdutos = produtoRepository.findAtivosByRestaurante(restaurante);
+		
+		return produtoModelAssembler.toCollectionModel(todosProdutos);
 	}
 	
 	@GetMapping("/{produtoId}")
