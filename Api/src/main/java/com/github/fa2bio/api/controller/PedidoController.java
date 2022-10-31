@@ -52,7 +52,7 @@ public class PedidoController {
 	private PedidoInputDisassembler pedidoInputDisassembler;
 	
 	@GetMapping
-	public MappingJacksonValue listar(@RequestParam (required = false) String campos) {
+	public MappingJacksonValue listar(@RequestParam (required = false) String fields) {
 		List<Pedido> pedidos = pedidoRepository.findAll();
 		List<PedidoResumoModel> pedidosModel = pedidoResumoModelAssembler.toCollectionModel(pedidos);
 		
@@ -61,8 +61,8 @@ public class PedidoController {
 		SimpleFilterProvider filterProvider = new SimpleFilterProvider();
 		filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.serializeAll());
 		
-		if(StringUtils.isNotBlank(campos)) {
-			filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.filterOutAllExcept(campos.split(",")));
+		if(StringUtils.isNotBlank(fields)) {
+			filterProvider.addFilter("pedidoFilter", SimpleBeanPropertyFilter.filterOutAllExcept(fields.split(",")));
 		}
 		
 		pedidosWrapper.setFilters(filterProvider);
