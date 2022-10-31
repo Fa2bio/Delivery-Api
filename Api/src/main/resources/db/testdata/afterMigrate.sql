@@ -69,7 +69,7 @@ insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bra
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Frango ao molho', 'Cubos de frango preparados com molho curry e especiarias', 43, 1, 3);
 
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Bib esfiha clássica', 'Deliciosa esfiha de carne, calabresa ou queijo', 0.99, 1, 4);
-insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Pastel de Belem', 'Delicioso doce portugues feito com a nata do leite', 2.89, 1, 4);
+insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Pastel de Belem', 'Delicioso doce portugues feito com a nata do leite', 2.89, 0, 4);
 
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Sanduíche X-Tudo', 'Sandubão com muito queijo, hamburger bovino, bacon, ovo, salada e maionese', 19, 1, 5);
 
