@@ -22,7 +22,6 @@ import com.github.fa2bio.api.model.UsuarioModel;
 import com.github.fa2bio.api.model.input.SenhaInput;
 import com.github.fa2bio.api.model.input.UsuarioInput;
 import com.github.fa2bio.api.model.input.UsuarioInputComSenha;
-import com.github.fa2bio.domain.exception.NegocioException;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.UsuarioRepository;
 import com.github.fa2bio.domain.service.CadastroUsuarioService;
@@ -64,18 +63,15 @@ public class UsuarioController {
 	@PutMapping("/{usuarioId}")
 	public UsuarioModel atualizar(@PathVariable Long usuarioId, @RequestBody @Valid UsuarioInput usuarioInput) {
 
-		Usuario usuarioAtual = cadastroUsuarioService.buscarOuFalhar(usuarioId);
+		Usuario usuarioAtual = cadastroUsuarioService.buscarOuFalhar(usuarioId);	
 		usuarioInputDisassembler.copyToDomainObject(usuarioInput, usuarioAtual);
 		return usuarioModelAssembler.toModel(cadastroUsuarioService.salvar(usuarioAtual));
 	}
 	
 	@PutMapping("/{usuarioId}-atualizarSenha")
-	public UsuarioModel atualizarComSenha(@PathVariable Long usuarioId, @RequestBody @Valid SenhaInput senhaInput) {
-		Usuario usuarioAtual = cadastroUsuarioService.buscarOuFalhar(usuarioId);
-		if(senhaInput.getSenhaAtual().equalsIgnoreCase(usuarioAtual.getSenha())) {
-			usuarioAtual.setSenha(senhaInput.getSenhaNova());
-			return usuarioModelAssembler.toModel(cadastroUsuarioService.salvar(usuarioAtual));
-		}else	throw new NegocioException("Senha incorreta");
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void alterarSenha(@PathVariable Long usuarioId, @RequestBody @Valid SenhaInput senhaInput) {
+		cadastroUsuarioService.alterarSenha(usuarioId, senhaInput.getSenhaAtual(), senhaInput.getNovaSenha());
 	}
 	
 	@DeleteMapping("/{usuarioId}")
