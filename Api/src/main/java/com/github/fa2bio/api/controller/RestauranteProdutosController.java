@@ -69,7 +69,6 @@ public class RestauranteProdutosController {
 		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
 		Produto produto = produtoInputDisassembler.toDomainObject(produtoInput);
 		produto.setRestaurante(restaurante);
-		restaurante.getProdutos().add(produto);
 		return produtoModelAssembler.toModel(cadastroProdutoService.salvar(produto));
 	}
 	
