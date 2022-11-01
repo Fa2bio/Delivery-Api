@@ -28,7 +28,7 @@ public class GrupoPermissaoController {
 	private PermissaoModelAssembler permissaoModelAssembler;
 	
 	@GetMapping("/permissoes")
-	public List<PermissaoModel> lista(@PathVariable Long grupoId){
+	public List<PermissaoModel> listar(@PathVariable Long grupoId){
 		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId); 
 		return permissaoModelAssembler.toCollectionModel(grupo.getPermissoes());
 	}
@@ -36,12 +36,12 @@ public class GrupoPermissaoController {
 	@PutMapping("/permissoes/{permissaoId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void associar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
-		cadastroGrupoService.associar(grupoId, permissaoId);
+		cadastroGrupoService.associarPermissao(grupoId, permissaoId);
 	}
 	
 	@DeleteMapping("/permissoes/{permissaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void desassociar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
-		cadastroGrupoService.desassociar(grupoId, permissaoId);
+		cadastroGrupoService.desassociarPermissao(grupoId, permissaoId);
 	}
 }
