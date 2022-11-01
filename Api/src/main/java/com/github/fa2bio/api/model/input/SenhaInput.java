@@ -13,5 +13,5 @@ public class SenhaInput {
 	private String senhaAtual;
 	
 	@NotBlank
-	private String senhaNova;
+	private String novaSenha;
 }
