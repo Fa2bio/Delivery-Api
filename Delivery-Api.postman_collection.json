@@ -861,12 +861,12 @@
 			"name": "Pedidos",
 			"item": [
 				{
-					"name": "Pedidos - Listar",
+					"name": "Pedidos - Listar com Fields",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos",
+							"raw": "http://localhost:8080/pedidos?fields=codigo,valorTotal",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -874,6 +874,42 @@
 							"port": "8080",
 							"path": [
 								"pedidos"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "codigo,valorTotal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pedidos - Listar com Filtro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos?clienteId=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "2"
+								},
+								{
+									"key": "restauranteId",
+									"value": "1",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -886,7 +922,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \"restaurante\": {\r\n        \"restauranteId\": 4\r\n    },\r\n    \"formaPagamento\": {\r\n        \"id\": 2\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-111\",\r\n        \"logradouro\": \"Rua Acre\",\r\n        \"numero\": \"300\",\r\n        \"complemento\": \"Casa 2\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"produtoId\": 6,\r\n            \"quantidade\": 5,\r\n            \"observacao\": \"Ao ponto\"\r\n        },\r\n        {\r\n            \"produtoId\": 7,\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
+							"raw": "{   \r\n    \"restaurante\": {\r\n        \"id\": 4\r\n    },\r\n    \"formaPagamento\": {\r\n        \"id\": 2\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-111\",\r\n        \"logradouro\": \"Rua Acre\",\r\n        \"numero\": \"300\",\r\n        \"complemento\": \"Casa 2\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"produtoId\": 6,\r\n            \"quantidade\": 5,\r\n            \"observacao\": \"Ao ponto\"\r\n        },\r\n        {\r\n            \"produtoId\": 7,\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1321,7 +1357,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurantes/4/produtos",
+							"raw": "http://localhost:8080/restaurantes/4/produtos?incluirInativos=true",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1331,6 +1367,12 @@
 								"restaurantes",
 								"4",
 								"produtos"
+							],
+							"query": [
+								{
+									"key": "incluirInativos",
+									"value": "true"
+								}
 							]
 						}
 					},
