@@ -68,7 +68,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cidades/1",
+							"raw": "http://localhost:8080/cidades/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -76,7 +76,7 @@
 							"port": "8080",
 							"path": [
 								"cidades",
-								"1"
+								"6"
 							]
 						}
 					},
@@ -197,44 +197,6 @@
 					"response": []
 				},
 				{
-					"name": "Cozinhas - Buscar Por Nome",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cozinhas/por-nome?nome=tailandesa",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cozinhas",
-								"por-nome"
-							],
-							"query": [
-								{
-									"key": "nome",
-									"value": "tailandesa"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Cozinhas - Atualizar",
 					"request": {
 						"method": "PUT",
@@ -278,7 +240,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/1",
+							"raw": "http://localhost:8080/cozinhas/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -286,7 +248,7 @@
 							"port": "8080",
 							"path": [
 								"cozinhas",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -422,7 +384,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados/5",
+							"raw": "http://localhost:8080/estados/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -430,7 +392,7 @@
 							"port": "8080",
 							"path": [
 								"estados",
-								"5"
+								"4"
 							]
 						}
 					},
@@ -578,7 +540,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Etherium\"\r\n}",
+							"raw": "{\r\n    \"descricao\": \"Ethereum\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -663,7 +625,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/grupos/1",
+							"raw": "http://localhost:8080/grupos/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -671,7 +633,7 @@
 							"port": "8080",
 							"path": [
 								"grupos",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -684,7 +646,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Estagiario\"\r\n}",
+							"raw": "{\r\n    \"nome\": \"Estagiário\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -826,34 +788,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Grupos - Adicionar",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Visitante\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/grupos",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -891,7 +825,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?clienteId=2",
+							"raw": "http://localhost:8080/pedidos?clienteId=2&restauranteId=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -907,8 +841,7 @@
 								},
 								{
 									"key": "restauranteId",
-									"value": "1",
-									"disabled": true
+									"value": "1"
 								}
 							]
 						}
