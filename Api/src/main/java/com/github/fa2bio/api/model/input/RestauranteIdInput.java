@@ -10,5 +10,5 @@ import lombok.Setter;
 public class RestauranteIdInput {
 
 	@NotNull
-	private Long restauranteId;
+	private Long id;
 }
