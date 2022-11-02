@@ -3,14 +3,11 @@
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@JsonFilter("pedidoFilter")
 public class PedidoResumoModel {
 	
 	private String codigo;
@@ -19,6 +16,6 @@ public class PedidoResumoModel {
 	private BigDecimal valorTotal;
 	private String Status;
 	private OffsetDateTime dataCriacao;
-	private RestauranteResumoModel restauranteResumoModel;
-	private UsuarioModel usuarioModel;
+	private RestauranteResumoModel restaurante;
+	private UsuarioModel Cliente;
 }
