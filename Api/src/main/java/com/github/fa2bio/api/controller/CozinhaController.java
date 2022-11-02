@@ -5,6 +5,10 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.api.assembler.CozinhaModelAssembler;
 import com.github.fa2bio.api.assembler.CozinhaInputDisassembler;
+import com.github.fa2bio.api.assembler.CozinhaModelAssembler;
 import com.github.fa2bio.api.model.CozinhaModel;
 import com.github.fa2bio.api.model.input.CozinhaInput;
 import com.github.fa2bio.domain.model.Cozinha;
@@ -41,8 +45,16 @@ public class CozinhaController {
 	private CozinhaInputDisassembler cozinhaInputDisassembler;
 	
 	@GetMapping
-	public List<CozinhaModel> listar() {
-		return cozinhaModelAssembler.toCollectionModel(cozinhaRepository.findAll());
+	public Page<CozinhaModel> listar(@PageableDefault(size = 10) Pageable pegeable) {
+		Page<Cozinha> cozinhasPage = cozinhaRepository.findAll(pegeable);
+	
+		List<CozinhaModel> cozinhasModel = cozinhaModelAssembler
+				.toCollectionModel(cozinhasPage.getContent());
+		
+		Page<CozinhaModel> cozinhasModelPage = new PageImpl<>(cozinhasModel, pegeable,
+				cozinhasPage.getTotalElements());
+		
+		return cozinhasModelPage;
 	}
 	
 	@GetMapping("/{cozinhaId}")
