@@ -28,10 +28,10 @@ import com.github.fa2bio.api.model.input.PedidoInput;
 import com.github.fa2bio.core.data.PageableTranslator;
 import com.github.fa2bio.domain.exception.EntidadeNaoEncontradaException;
 import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.filter.PedidoFilter;
 import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.PedidoRepository;
-import com.github.fa2bio.domain.repository.filter.PedidoFilter;
 import com.github.fa2bio.domain.service.EmissaoPedidoService;
 import com.github.fa2bio.infrastructure.repository.spec.PedidoSpecs;
 
