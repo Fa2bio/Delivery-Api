@@ -2,7 +2,9 @@ package com.github.fa2bio.domain.model;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -16,7 +18,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -37,7 +38,6 @@ public class Restaurante {
 	@Column(nullable = false)
 	private String nome;
 	
-	@PositiveOrZero
 	@Column(name = "taxa_frete", nullable = false)
 	private BigDecimal taxaFrete;
 	
@@ -67,13 +67,13 @@ public class Restaurante {
 	private Set<FormaPagamento> formasPagamento = new HashSet<>();
 	
 	@ManyToMany
-	@JoinTable(name = "restaurante_usuario",
+	@JoinTable(name = "restaurante_usuario_responsavel",
 			joinColumns = @JoinColumn(name = "restaurante_id"),
 			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-	private Set<Usuario> usuarios = new HashSet<>();
+	private Set<Usuario> responsaveis = new HashSet<>();
 	
 	@OneToMany(mappedBy = "restaurante")
-	private Set<Produto> produtos = new HashSet<>();
+	private List<Produto> produtos = new ArrayList<>();
 	
 	public void ativar() {
 		setAtivo(true);
@@ -91,19 +91,27 @@ public class Restaurante {
 		setAberto(false);
 	}
 	
-	public boolean associarFormaPagamento(FormaPagamento formaPagamento) {
+	public boolean adicionarFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormasPagamento().add(formaPagamento);
 	}
 	
-	public boolean desassociarFormaPagamento(FormaPagamento formaPagamento) {
+	public boolean removerFormaPagamento(FormaPagamento formaPagamento) {
 		return getFormasPagamento().remove(formaPagamento);
 	}
 	
-	public boolean associarUsuario(Usuario usuario) {
-		return getUsuarios().add(usuario);
+	public boolean aceitaFormaPagamento(FormaPagamento formaPagamento) {
+		return getFormasPagamento().contains(formaPagamento);
 	}
 	
-	public boolean desassociarUsuario(Usuario usuario) {
-		return getUsuarios().remove(usuario);
+	public boolean naoAceitaFormaPagamento(FormaPagamento formaPagamento) {
+		return !aceitaFormaPagamento(formaPagamento);
+	}
+	
+	public boolean adicionarResponsavel(Usuario usuario) {
+		return getResponsaveis().add(usuario);
+	}
+	
+	public boolean removerResponsavel(Usuario usuario) {
+		return getResponsaveis().remove(usuario);
 	}
 }
