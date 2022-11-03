@@ -42,17 +42,17 @@ public class CadastroGrupoService {
 	}
 	
 	@Transactional
-	public void associar(Long grupoId, Long permissaoId) {
+	public void associarPermissao(Long grupoId, Long permissaoId) {
 		Grupo grupo = buscarOuFalhar(grupoId);
 		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
-		grupo.associar(permissao);
+		grupo.adicionarPermissao(permissao);
 	}
 	
 	@Transactional
-	public void desassociar(Long grupoId, Long permissaoId) {
+	public void desassociarPermissao(Long grupoId, Long permissaoId) {
 		Grupo grupo = buscarOuFalhar(grupoId);
 		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
-		grupo.desassociar(permissao);
+		grupo.removerPermissao(permissao);
 	}
 	
 	public Grupo buscarOuFalhar(Long grupoId) {
