@@ -70,13 +70,14 @@ public class Pedido {
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
 	
-	public void calcularTotal() {
-		double valor = 0;
-		for (ItemPedido itemPedido : itens) {
-			valor += itemPedido.getPrecoTotal().doubleValue();
-		}
-		this.subtotal = new BigDecimal(valor);
-		this.valorTotal = new BigDecimal(valor+this.taxaFrete.doubleValue());
+	public void calcularValorTotal() {
+		getItens().forEach(ItemPedido::calcularPrecoTotal);
+		
+		this.subtotal = getItens().stream()
+			.map(item -> item.getPrecoTotal())
+			.reduce(BigDecimal.ZERO, BigDecimal::add);
+		
+		this.valorTotal = this.subtotal.add(this.taxaFrete);
 	}
 
 	public void confirmar() {
