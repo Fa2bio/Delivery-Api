@@ -57,7 +57,7 @@ public class CadastroUsuarioService {
 	public void associar(Long usuarioId, Long grupoId) {
 		Usuario usuario = buscarOuFalhar(usuarioId);
 		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
-		usuario.associar(grupo);
+		usuario.adicionarGrupo(grupo);
 		
 	}
 	
@@ -65,12 +65,17 @@ public class CadastroUsuarioService {
 	public void deassociar(Long usuarioId, Long grupoId) {
 		Usuario usuario = buscarOuFalhar(usuarioId);
 		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
-		usuario.deassociar(grupo);
+		usuario.removerGrupo(grupo);
 		
 	}
 	
 	public Usuario buscarOuFalhar(Long usuarioId) {
 		return usuarioRepository.findById(usuarioId)
 			.orElseThrow(() -> new UsuarioNaoEncontradoException(usuarioId));
+	}
+
+	public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
+		// TODO Auto-generated method stub
+		
 	}
 }
