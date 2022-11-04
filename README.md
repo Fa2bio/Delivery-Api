@@ -51,9 +51,10 @@ After meeting the requirements and installation, run the main method as a spring
 
 ## <a name="general-usage"></a>General Usage
 
-In addition to CRUD, it is possible to generate a pdf sales report generated with Jasper Reports
-
 ### CRUD
+
+* After you add the requests to your Postman client, you'll have access to the following API features
+
 <table border="1">
    <thead>
    <tr>
@@ -71,13 +72,11 @@ In addition to CRUD, it is possible to generate a pdf sales report generated wit
        <th>Restaurantes-Usuarios</th>
        <th>Usuarios</th>
        <th>Usuarios-Grupos</th>
-       <th>Estatisticas</th>     
    </tr>
    </thead>
    <tbody>
    <tr>
        <td>(GET) Listar</td>
-       <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -102,13 +101,11 @@ In addition to CRUD, it is possible to generate a pdf sales report generated wit
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
+       <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-
+       <td>❌</td>
    </tr>
    
    <tr>
@@ -119,11 +116,10 @@ In addition to CRUD, it is possible to generate a pdf sales report generated wit
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
+       <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
+       <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -131,7 +127,6 @@ In addition to CRUD, it is possible to generate a pdf sales report generated wit
      
    <tr>
        <td>(PUT) Atualizar</td>
-       <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -157,14 +152,34 @@ In addition to CRUD, it is possible to generate a pdf sales report generated wit
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
+       <td>❌</td>
        <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
+       <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
    </tr>
    </tbody>
 </table>
 
+### JasperReports
+* In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports
 
+<table border="1">
+   <thead>
+   <tr>
+       <th>Entidades/Metodos</th>
+       <th>Estatisticas</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+       <td>(GET) Vendas Diarias - Json</td>
+        <td>✔️</td>
+   </tr>
+   <tr>
+        <td>(GET) Vendas Diarias - PDF</td>
+        <td>✔️</td>
+       
+   </tr>
+   </tbody>
+</table>
