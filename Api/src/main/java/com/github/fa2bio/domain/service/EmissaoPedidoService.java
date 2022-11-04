@@ -1,7 +1,5 @@
 package com.github.fa2bio.domain.service;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +8,6 @@ import com.github.fa2bio.domain.exception.FormaPagamentoNaoEncontradaException;
 import com.github.fa2bio.domain.exception.PedidoNaoEncontradoException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.FormaPagamento;
-import com.github.fa2bio.domain.model.ItemPedido;
 import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.model.Restaurante;
@@ -48,7 +45,7 @@ public class EmissaoPedidoService {
 		validarPedido(pedido);
 		validarItens(pedido);		
 		pedido.setTaxaFrete(pedido.getRestaurante().getTaxaFrete());
-		pedido.calcularTotal();
+		pedido.calcularValorTotal();
 		
 		return pedidoRepository.save(pedido);
 	}
@@ -59,30 +56,25 @@ public class EmissaoPedidoService {
 		Cidade cidade = cadastroCidadeService.buscarOuFalhar(pedido.getEnderecoEntrega().getCidade().getId());
 		Usuario cliente = cadastroUsuarioService.buscarOuFalhar(pedido.getCliente().getId());
 		
-		for (ItemPedido itemPedido : pedido.getItens()) {
-			Produto produto = cadastroProdutoService.buscarOuFalhar(restaurante.getId(), itemPedido.getProduto().getId());
-			itemPedido.setProduto(produto);
-		}
-		
-		if(!restaurante.getFormasPagamento().contains(formaPagamento)) throw new FormaPagamentoNaoEncontradaException(formaPagamento.getId(), restaurante.getId());
-		
 		pedido.setRestaurante(restaurante);
 		pedido.setFormaPagamento(formaPagamento);
 		pedido.setCliente(cliente);
 		pedido.getEnderecoEntrega().setCidade(cidade);
-		pedido.getEnderecoEntrega().getCidade().getEstado().setNome(cidade.getEstado().getNome());
+		
+		if(restaurante.naoAceitaFormaPagamento(formaPagamento)) throw new FormaPagamentoNaoEncontradaException(formaPagamento.getId(), restaurante.getId());
+
 
 	}
 	
 	private void validarItens(Pedido pedido) {
-		for (ItemPedido itemPedido : pedido.getItens()) {
-			cadastroProdutoService.buscarOuFalhar(pedido.getRestaurante().getId(),itemPedido.getProduto().getId());
-			Produto produto = cadastroProdutoService.buscarOuFalhar(itemPedido.getProduto().getId());
+		pedido.getItens().forEach(item -> {
+			Produto produto = cadastroProdutoService.buscarOuFalhar(
+					pedido.getRestaurante().getId(), item.getProduto().getId());
 			
-			double total = itemPedido.getQuantidade()*produto.getPreco().doubleValue();
-			itemPedido.setPrecoUnitario(produto.getPreco());
-			itemPedido.setPrecoTotal(new BigDecimal(total));
-		}
+			item.setPedido(pedido);
+			item.setProduto(produto);
+			item.setPrecoUnitario(produto.getPreco());
+		});
 	}
 	
 }
