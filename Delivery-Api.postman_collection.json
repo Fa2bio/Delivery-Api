@@ -156,7 +156,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas",
+							"raw": "http://localhost:8080/cozinhas?size=2&page=0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -167,8 +167,16 @@
 							],
 							"query": [
 								{
-									"key": "Accept",
-									"value": "application/xml",
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "nome",
 									"disabled": true
 								}
 							]
@@ -795,37 +803,12 @@
 			"name": "Pedidos",
 			"item": [
 				{
-					"name": "Pedidos - Listar com Fields",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos?fields=codigo,valorTotal",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos"
-							],
-							"query": [
-								{
-									"key": "fields",
-									"value": "codigo,valorTotal"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Pedidos - Listar com Filtro",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?clienteId=2&restauranteId=1",
+							"raw": "http://localhost:8080/pedidos?clienteId=2&restauranteId=1&dataCriacaoInicio=2019-10-30T21:10:00Z&dataCriacaoFim=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -842,6 +825,26 @@
 								{
 									"key": "restauranteId",
 									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2019-10-30T21:10:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2022-11-01T18:23:31Z"
+								},
+								{
+									"key": "size",
+									"value": "2"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "sort",
+									"value": "nomeCliente"
 								}
 							]
 						}
@@ -1768,6 +1771,107 @@
 								"usuarios"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Estatisticas",
+			"item": [
+				{
+					"name": "Vendas Diarias - Json",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estatisticas",
+								"vendas-diarias"
+							],
+							"query": [
+								{
+									"key": "restauranteId",
+									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2022-10-30T08:30:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2022-11-02T23:59:59Z"
+								},
+								{
+									"key": "timeOffset",
+									"value": "-03:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Vendas Diarias - PDF",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/pdf,application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"estatisticas",
+								"vendas-diarias"
+							],
+							"query": [
+								{
+									"key": "restauranteId",
+									"value": "1"
+								},
+								{
+									"key": "dataCriacaoInicio",
+									"value": "2022-10-30T08:30:00Z"
+								},
+								{
+									"key": "dataCriacaoFim",
+									"value": "2022-11-02T23:59:59Z"
+								},
+								{
+									"key": "timeOffset",
+									"value": "-03:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
