@@ -38,6 +38,7 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 - Clone the repository for your device
 - Import it as a MAVEN project
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database
+- In your Postman client, import requests from the Delivery-Api.postman_collection.json file
 
 ### Application.properties
 ```xml
@@ -51,3 +52,119 @@ After meeting the requirements and installation, run the main method as a spring
 ## <a name="general-usage"></a>General Usage
 
 In addition to CRUD, it is possible to generate a pdf sales report generated with Jasper Reports
+
+### CRUD
+<table border="1">
+   <thead>
+   <tr>
+       <th>Entidades/Metodos</th>
+       <th>Cidades</th>
+       <th>Cozinhas</th>
+       <th>Estados</th>
+       <th>Formas De Pagamento</th>
+       <th>Grupos</th>
+       <th>Grupos-Permissoes</th>
+       <th>Pedidos</th>
+       <th>Restaurantes</th>
+       <th>Restaurantes-Formas De Pagamento</th>
+       <th>Restaurantes-Produtos</th>
+       <th>Restaurantes-Usuarios</th>
+       <th>Usuarios</th>
+       <th>Usuarios-Grupos</th>
+       <th>Estatisticas</th>     
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+       <td>(GET) Listar</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+   <tr>
+       <td>(GET) Buscar</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+
+   </tr>
+   
+   <tr>
+       <td>(DEL) Excluir</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+     
+   <tr>
+       <td>(PUT) Atualizar</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+     
+   <tr>
+       <td>(POST) Adicionar</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+   </tbody>
+</table>
+
+
