@@ -92,7 +92,7 @@ public class CadastroRestauranteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
 		
-		restaurante.associarFormaPagamento(formaPagamento);
+		restaurante.adicionarFormaPagamento(formaPagamento);
 	
 	}
 	
@@ -101,7 +101,7 @@ public class CadastroRestauranteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
 		
-		restaurante.desassociarFormaPagamento(formaPagamento);
+		restaurante.removerFormaPagamento(formaPagamento);
 	
 	}
 	
@@ -110,7 +110,7 @@ public class CadastroRestauranteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
 		
-		restaurante.associarUsuario(usuario);
+		restaurante.adicionarResponsavel(usuario);
 	}
 	
 	@Transactional
@@ -118,7 +118,7 @@ public class CadastroRestauranteService {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
 		
-		restaurante.desassociarUsuario(usuario);
+		restaurante.removerResponsavel(usuario);
 	}
 
 }
