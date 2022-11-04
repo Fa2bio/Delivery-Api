@@ -5,7 +5,7 @@
 ### Contents
   
 * [What is it?](#what-is-it)
-* [Prerequisites](#prerequisites)
+* [Requirements](#requirements)
 * [Technologies Used](#technologies)
 * [Installation](#installation)
 * [Run Application](#run-application)
@@ -15,7 +15,7 @@
 
 Delivery-Api is a REST-API developed in Java and Spring Boot. This API is designed to manage a back-end application for managing a food delivery enterprise.
 
-## <a name="prerequisites"></a>Requirements
+## <a name="requirements"></a>Requirements
 
 - Java 12+
 - Spring Boot (version 2.1.7.RELEASE)
@@ -46,8 +46,8 @@ spring.datasource.password=
 ```
 ## <a name="run-application"></a>Run Application
 
-After meeting the prerequisites and installation, run the main method as a spring boot project in DeliveryApi.java 
+After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java 
 
 ## <a name="general-usage"></a>General Usage
 
-In addition to CRUD, it is possible to generate a pdf sales report generated with Jasper Reports 
+In addition to CRUD, it is possible to generate a pdf sales report generated with Jasper Reports
