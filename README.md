@@ -8,6 +8,8 @@
 * [Prerequisites](#prerequisites)
 * [Technologies Used](#technologies)
 * [Installation](#installation)
+* [Run Application](#run-application)
+* [General Usage](#general-usage)
 
 ## <a name="what-is-it"></a>What is it?
 
@@ -35,9 +37,17 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 
 - Clone the repository for your device
 - Import it as a MAVEN project
-- In the application.properties file, enter the USER and PASSWORD of your MySQL database
+- In the application.properties file, edit the USER and PASSWORD of your MySQL database
 
 ### Application.properties
 ```xml
 spring.datasource.username=
 spring.datasource.password=
+```
+## <a name="run-application"></a>Run Application
+
+After meeting the prerequisites and installation, run the main method as a spring boot project in DeliveryApi.java 
+
+## <a name="general-usage"></a>General Usage
+
+In addition to CRUD, it is possible to generate a pdf sales report generated with Jasper Reports 
