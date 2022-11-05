@@ -168,8 +168,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
        <td>❌</td>
        <td>❌</td>
-       <td>❌</td>
        <td>✔️</td>
+       <td>❌</td>       
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
@@ -185,8 +185,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
        <td>❌</td>
        <td>❌</td>
-       <td>❌</td>
        <td>✔️</td>
+       <td>❌</td>       
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
