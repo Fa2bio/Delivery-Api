@@ -58,7 +58,7 @@ After meeting the requirements and installation, run the main method as a spring
 <table border="1">
    <thead>
    <tr>
-       <th>Entidades/Metodos</th>
+       <thEntities/Methods</th>
        <th>Cidades</th>
        <th>Cozinhas</th>
        <th>Estados</th>
@@ -158,6 +158,126 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
        <td>✔️</td>
    </tr>
+
+   <tr>
+       <td>(DEL) Desassociar</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Associar</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Fluxo</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Abertura</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Ativar</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Fechamento</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Desativar</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+
    </tbody>
 </table>
 
