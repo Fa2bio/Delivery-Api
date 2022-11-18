@@ -7,6 +7,7 @@
 * [What is it?](#what-is-it)
 * [Requirements](#requirements)
 * [Technologies Used](#technologies)
+* [Class Diagram](#uml)
 * [Installation](#installation)
 * [Run Application](#run-application)
 * [General Usage](#general-usage)
@@ -32,6 +33,9 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 - Model Mapper
 - Squiggly Filter For Jackson
 - JasperReports
+
+## <a name="uml"></a> Class Diagram
+![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
 
 ## <a name="installation"></a>Installation
 
