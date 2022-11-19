@@ -33,6 +33,7 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 - Model Mapper
 - Squiggly Filter For Jackson
 - JasperReports
+- Clean Architecture
 
 ## <a name="uml"></a> Class Diagram
 ![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
