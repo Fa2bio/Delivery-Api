@@ -15,6 +15,7 @@ delete from restaurante_forma_pagamento;
 delete from restaurante_usuario;
 delete from usuario;
 delete from usuario_grupo;
+delete from foto_produto;
 
 set foreign_key_checks = 1;
 
