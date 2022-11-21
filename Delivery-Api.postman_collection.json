@@ -852,6 +852,26 @@
 					"response": []
 				},
 				{
+					"name": "Pedidos - Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Pedidos - Adicionar",
 					"request": {
 						"method": "POST",
@@ -874,26 +894,6 @@
 							"port": "8080",
 							"path": [
 								"pedidos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pedidos - Buscar",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4"
 							]
 						}
 					},
@@ -1014,27 +1014,6 @@
 					"response": []
 				},
 				{
-					"name": "Restaurantes - Abertura",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/restaurantes/1/abertura",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes",
-								"1",
-								"abertura"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Restaurantes - Atualizar",
 					"request": {
 						"method": "PUT",
@@ -1058,6 +1037,55 @@
 							"path": [
 								"restaurantes",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurantes - Adicionar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Comida Mineira\",\r\n    \"taxaFrete\": 10,\r\n        \"cozinha\": {\r\n            \"id\": 1\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restaurantes - Abertura",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/abertura",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"abertura"
 							]
 						}
 					},
@@ -1129,34 +1157,6 @@
 								"restaurantes",
 								"1",
 								"fechamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Restaurantes - Adicionar",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Comida Mineira\",\r\n    \"taxaFrete\": 10,\r\n        \"cozinha\": {\r\n            \"id\": 1\r\n        }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurantes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurantes"
 							]
 						}
 					},
@@ -1492,6 +1492,49 @@
 			]
 		},
 		{
+			"name": "Restaurante - Produto Foto",
+			"item": [
+				{
+					"name": "Restaurante -  Atualizar Foto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "arquivo",
+									"type": "file",
+									"src": "/C:/Users/fabio/Documents/Catalogo/whopper2.png"
+								},
+								{
+									"key": "descricao",
+									"value": "\"abc\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/produtos/1/foto",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"produtos",
+								"1",
+								"foto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Usuarios",
 			"item": [
 				{
@@ -1694,22 +1737,28 @@
 					"response": []
 				},
 				{
-					"name": "Usuarios - Desassociar",
+					"name": "Usuarios - Adicionar",
 					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"nome\": \"Maria Joaquina\",\r\n        \"email\": \"maria.vnd@test.com\",\r\n        \"senha\": \"123\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos/2",
+							"raw": "http://localhost:8080/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
-								"1",
-								"grupos",
-								"2"
+								"usuarios"
 							]
 						}
 					},
@@ -1747,28 +1796,22 @@
 					"response": []
 				},
 				{
-					"name": "Usuarios - Adicionar",
+					"name": "Usuarios - Desassociar",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Maria Joaquina\",\r\n        \"email\": \"maria.vnd@test.com\",\r\n        \"senha\": \"123\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/usuarios/1/grupos/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"usuarios",
+								"1",
+								"grupos",
+								"2"
 							]
 						}
 					},
@@ -1864,14 +1907,6 @@
 								}
 							]
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}
