@@ -63,7 +63,7 @@ After meeting the requirements and installation, run the main method as a spring
 <table border="1">
    <thead>
    <tr>
-       <thEntities/Methods</th>
+       <th>Entities/Methods</th>
        <th>Cidades</th>
        <th>Cozinhas</th>
        <th>Estados</th>
@@ -72,21 +72,11 @@ After meeting the requirements and installation, run the main method as a spring
        <th>Grupos-Permissoes</th>
        <th>Pedidos</th>
        <th>Restaurantes</th>
-       <th>Restaurantes-Formas De Pagamento</th>
-       <th>Restaurantes-Produtos</th>
-       <th>Restaurantes-Usuarios</th>
-       <th>Usuarios</th>
-       <th>Usuarios-Grupos</th>
    </tr>
    </thead>
    <tbody>
    <tr>
        <td>(GET) Listar</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -106,11 +96,6 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>❌</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>❌</td>
    </tr>
    
    <tr>
@@ -120,14 +105,9 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>✔️</td>
        <td>❌</td>
-       <td>✔️</td>
-       <td>✔️</td>
        <td>❌</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
+       <td>❌</td>
    </tr>
      
    <tr>
@@ -137,13 +117,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
-       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
        <td>✔️</td>
    </tr>
      
@@ -157,11 +132,18 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Associar</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>  
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
-       <td>✔️</td>
-       <td>✔️</td>
+       <td>❌</td>
    </tr>
 
    <tr>
@@ -170,32 +152,10 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
-       <td>✔️</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>✔️</td>
-       <td>❌</td>       
-       <td>❌</td>
-       <td>✔️</td>
-       <td>❌</td>
-       <td>✔️</td>
-   </tr>
-
-   <tr>
-       <td>(PUT) Associar</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
        <td>❌</td>
-       <td>✔️</td>
-       <td>❌</td>       
-       <td>❌</td>
-       <td>✔️</td>
-       <td>❌</td>
-       <td>✔️</td>
    </tr>
 
    <tr>
@@ -204,14 +164,9 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
+       <td>❌</td>       
        <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
        <td>❌</td>
    </tr>
 
@@ -223,13 +178,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
+       <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
    </tr>
 
    <tr>
@@ -240,13 +190,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
+       <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>       
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
    </tr>
 
    <tr>
@@ -257,13 +202,8 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
+       <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>       
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
-       <td>❌</td>
    </tr>
 
    <tr>
@@ -274,13 +214,93 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
+       <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>       
+   </tr>
+
+   </tbody>
+</table>
+
+<table border="2">
+   <thead>
+   <tr>
+       <th>Entities/Methods</th>
+       <th>Restaurantes-Formas De Pagamento</th>
+       <th>Restaurantes-Produtos</th>
+       <th>Restaurantes-Usuarios</th>
+       <th>Restaurantes-Produto Foto</th>
+       <th>Usuarios</th>
+       <th>Usuarios-Grupos</th>
+   </tr>
+   </thead>
+   <tbody>
+   <tr>
+       <td>(GET) Listar</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+   <tr>
+       <td>(GET) Buscar</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+   </tr>
+   
+   <tr>
+       <td>(DEL) Excluir</td>
        <td>❌</td>
        <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+   </tr>
+     
+   <tr>
+       <td>(PUT) Atualizar</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+       <td>❌</td>
+   </tr>
+     
+   <tr>
+       <td>(POST) Adicionar</td>
+       <td>❌</td>
+       <td>✔️</td>
        <td>❌</td>
        <td>❌</td>
+       <td>✔️</td>
+       <td>✔️</td>
+   </tr>
+
+   <tr>
+       <td>(PUT) Associar</td>
+       <td>✔️</td>       
        <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+   </tr>
+   
+   <tr>
+       <td>(DEL) Desassociar</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
    </tr>
 
    </tbody>
