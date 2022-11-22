@@ -43,12 +43,17 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 - Clone the repository for your device
 - Import it as a MAVEN project
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database
-- In your Postman client, import requests from the Delivery-Api.postman_collection.json file
+- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file, in this field insert a folder directory like this "/Users/user/Documents/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request
+- Open your Postman client and import requests from the Delivery-Api.postman_collection.json file
 
 ### Application.properties
 ```xml
 spring.datasource.username=
 spring.datasource.password=
+.
+.
+.
+delivery.storage.local.diretorio-fotos=
 ```
 ## <a name="run-application"></a>Run Application
 
