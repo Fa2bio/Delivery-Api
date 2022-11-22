@@ -59,7 +59,7 @@ delivery.storage.local.diretorio-fotos=
 
 After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java.
 
-## <a name="general-usage"></a>General Usage
+## <a name="general-usage"></a>General Use
 
 ### CRUD
 
@@ -81,7 +81,7 @@ After meeting the requirements and installation, run the main method as a spring
    </thead>
    <tbody>
    <tr>
-       <td>(GET) Listar</td>
+       <td>(GET) List</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -92,7 +92,7 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
    </tr>
    <tr>
-       <td>(GET) Buscar</td>
+       <td>(GET) Find</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -104,7 +104,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
    
    <tr>
-       <td>(DEL) Excluir</td>
+       <td>(DEL) Delete</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -116,7 +116,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(PUT) Atualizar</td>
+       <td>(PUT) Update</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -128,7 +128,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(POST) Adicionar</td>
+       <td>(POST) Add</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -140,7 +140,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Associar</td>
+       <td>(PUT) Associate</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -152,7 +152,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(DEL) Desassociar</td>
+       <td>(DEL) Disassociate</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -164,7 +164,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Fluxo</td>
+       <td>(PUT) Flow</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -176,7 +176,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Abertura</td>
+       <td>(PUT) Opening</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -188,7 +188,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Ativar</td>
+       <td>(PUT) Activate</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -200,7 +200,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Fechamento</td>
+       <td>(PUT) Closening</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -212,7 +212,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Desativar</td>
+       <td>(PUT) Deactivate</td>
        <td>❌</td>
        <td>❌</td>
        <td>❌</td>
@@ -240,7 +240,7 @@ After meeting the requirements and installation, run the main method as a spring
    </thead>
    <tbody>
    <tr>
-       <td>(GET) Listar</td>
+       <td>(GET) List</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -249,7 +249,7 @@ After meeting the requirements and installation, run the main method as a spring
        <td>✔️</td>
    </tr>
    <tr>
-       <td>(GET) Buscar</td>
+       <td>(GET) Find</td>
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -259,7 +259,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
    
    <tr>
-       <td>(DEL) Excluir</td>
+       <td>(DEL) Delete</td>
        <td>❌</td>
        <td>❌</td>
        <td>✔️</td>
@@ -269,7 +269,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(PUT) Atualizar</td>
+       <td>(PUT) Update</td>
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
@@ -279,7 +279,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(POST) Adicionar</td>
+       <td>(POST) Add</td>
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
@@ -289,7 +289,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
 
    <tr>
-       <td>(PUT) Associar</td>
+       <td>(PUT) Associate</td>
        <td>✔️</td>       
        <td>❌</td>
        <td>✔️</td>
@@ -299,7 +299,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
    
    <tr>
-       <td>(DEL) Desassociar</td>
+       <td>(DEL) Disassociate</td>
        <td>✔️</td>
        <td>❌</td>
        <td>✔️</td>
@@ -323,11 +323,11 @@ After meeting the requirements and installation, run the main method as a spring
    </thead>
    <tbody>
    <tr>
-       <td>(GET) Vendas Diarias - Json</td>
+       <td>(GET) Daily Sales - Json</td>
         <td>✔️</td>
    </tr>
    <tr>
-        <td>(GET) Vendas Diarias - PDF</td>
+        <td>(GET) Daily Sales - PDF</td>
         <td>✔️</td>
        
    </tr>
