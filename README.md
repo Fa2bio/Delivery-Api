@@ -14,7 +14,7 @@
 
 ## <a name="what-is-it"></a>What is it?
 
-Delivery-Api is a REST-API developed in Java and Spring Boot. This API is designed to manage a back-end application for managing a food delivery enterprise. The database chosen for the development of this api was MySQL.
+Delivery-Api is a REST-API developed in Java, Spring Boot and MySQL. This API is designed to manage a back-end application for managing a food delivery enterprise.
 
 ## <a name="requirements"></a>Requirements
 
@@ -43,7 +43,7 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 - Clone the repository for your device;
 - Import it as a MAVEN project in your IDE;
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database;
-- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Documents/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
+- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
 - Open your Postman client and import requests from the Delivery-Api.postman_collection.json file.
 
 ### Application.properties
@@ -253,7 +253,7 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>✔️</td>
        <td>✔️</td>
-       <td>❌</td>
+       <td>✔️</td>
        <td>✔️</td>
        <td>❌</td>
    </tr>
@@ -263,7 +263,7 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>❌</td>
        <td>✔️</td>
-       <td>❌</td>
+       <td>✔️</td>
        <td>✔️</td>
        <td>❌</td>
    </tr>
@@ -283,7 +283,7 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
-       <td>❌</td>
+       <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
    </tr>
@@ -317,8 +317,8 @@ After meeting the requirements and installation, run the main method as a spring
 <table border="1">
    <thead>
    <tr>
-       <th>Entidades/Metodos</th>
-       <th>Estatisticas</th>
+       <th>Entities/Methods</th>
+       <th>Statistics</th>
    </tr>
    </thead>
    <tbody>
