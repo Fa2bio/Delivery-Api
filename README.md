@@ -14,7 +14,7 @@
 
 ## <a name="what-is-it"></a>What is it?
 
-Delivery-Api is a REST-API developed in Java and Spring Boot. This API is designed to manage a back-end application for managing a food delivery enterprise.
+Delivery-Api is a REST-API developed in Java and Spring Boot. This API is designed to manage a back-end application for managing a food delivery enterprise. The database chosen for the development of this api was MySQL.
 
 ## <a name="requirements"></a>Requirements
 
@@ -40,11 +40,11 @@ Delivery-Api is a REST-API developed in Java and Spring Boot. This API is design
 
 ## <a name="installation"></a>Installation
 
-- Clone the repository for your device
-- Import it as a MAVEN project
-- In the application.properties file, edit the USER and PASSWORD of your MySQL database
-- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file, in this field insert a folder directory like this "/Users/user/Documents/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request
-- Open your Postman client and import requests from the Delivery-Api.postman_collection.json file
+- Clone the repository for your device;
+- Import it as a MAVEN project in your IDE;
+- In the application.properties file, edit the USER and PASSWORD of your MySQL database;
+- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Documents/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
+- Open your Postman client and import requests from the Delivery-Api.postman_collection.json file.
 
 ### Application.properties
 ```xml
@@ -57,13 +57,13 @@ delivery.storage.local.diretorio-fotos=
 ```
 ## <a name="run-application"></a>Run Application
 
-After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java 
+After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java.
 
 ## <a name="general-usage"></a>General Usage
 
 ### CRUD
 
-* After you add the requests to your Postman client, you'll have access to the following API features
+* After you add the requests to your Postman client, you'll have access to the following API features.
 
 <table border="1">
    <thead>
@@ -312,7 +312,7 @@ After meeting the requirements and installation, run the main method as a spring
 </table>
 
 ### JasperReports
-* In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports
+* In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports.
 
 <table border="1">
    <thead>
