@@ -34,6 +34,7 @@
 - Squiggly Filter For Jackson
 - JasperReports
 - Clean Architecture
+- Data Transfer Object (DTO)
 
 ## <a name="installation"></a>Installation
 
