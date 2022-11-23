@@ -7,7 +7,7 @@
 * [What is it?](#what-is-it)
 * [Requirements](#requirements)
 * [Technologies Used](#technologies)
-* [Class Diagram](#uml)
+* [Diagrams](#uml)
 * [Installation](#installation)
 * [Run Application](#run-application)
 * [General Usage](#general-usage)
@@ -35,16 +35,20 @@ Delivery-Api is a REST-API developed in Java, Spring Boot and MySQL. This API is
 - JasperReports
 - Clean Architecture
 
-## <a name="uml"></a> Class Diagram
+## <a name="uml"></a> Diagrams
+### Class Diagram
 ![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
+
+### SQL Diagram
+![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/203461283-48b9072a-9ed2-49d8-9055-12c654f29597.png)
 
 ## <a name="installation"></a>Installation
 
 - Clone the repository for your device;
 - Import it as a MAVEN project in your IDE;
+- In your Postman client, import the requests from the Delivery-Api.postman_collection.json file;
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database;
-- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
-- Open your Postman client and import requests from the Delivery-Api.postman_collection.json file.
+- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request.
 
 ### Application.properties
 ```xml
@@ -69,14 +73,14 @@ After meeting the requirements and installation, run the main method as a spring
    <thead>
    <tr>
        <th>Entities/Methods</th>
-       <th>Cidades</th>
-       <th>Cozinhas</th>
-       <th>Estados</th>
-       <th>Formas De Pagamento</th>
-       <th>Grupos</th>
-       <th>Grupos-Permissoes</th>
-       <th>Pedidos</th>
-       <th>Restaurantes</th>
+       <th>Citys</th>
+       <th>Kitchens</th>
+       <th>States</th>
+       <th>Payment Methods</th>
+       <th>Groups</th>
+       <th>Groups-Permissions</th>
+       <th>Orders</th>
+       <th>Restaurants</th>
    </tr>
    </thead>
    <tbody>
@@ -128,7 +132,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(POST) Add</td>
+       <td>(POST) Create</td>
        <td>✔️</td>
        <td>✔️</td>
        <td>✔️</td>
@@ -230,12 +234,12 @@ After meeting the requirements and installation, run the main method as a spring
    <thead>
    <tr>
        <th>Entities/Methods</th>
-       <th>Restaurantes-Formas De Pagamento</th>
-       <th>Restaurantes-Produtos</th>
-       <th>Restaurantes-Usuarios</th>
-       <th>Restaurantes-Produto Foto</th>
-       <th>Usuarios</th>
-       <th>Usuarios-Grupos</th>
+       <th>Restaurants-Payment Methods</th>
+       <th>Restaurants-Products</th>
+       <th>Restaurants-Users</th>
+       <th>Restaurants-Products Photos</th>
+       <th>Users</th>
+       <th>Users-Groups</th>
    </tr>
    </thead>
    <tbody>
@@ -279,7 +283,7 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
      
    <tr>
-       <td>(POST) Add</td>
+       <td>(POST) Create</td>
        <td>❌</td>
        <td>✔️</td>
        <td>❌</td>
@@ -307,6 +311,17 @@ After meeting the requirements and installation, run the main method as a spring
        <td>❌</td>
        <td>✔️</td>
    </tr>
+   
+   <tr>
+       <td>(DEL) To Recover</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>❌</td>
+       <td>✔️</td>
+       <td>❌</td>
+       <td>❌</td>
+   </tr>
+    
 
    </tbody>
 </table>
