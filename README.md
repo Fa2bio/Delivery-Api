@@ -19,14 +19,14 @@
 ## <a name="requirements"></a>Requirements
 
 - Java 12+
-- Spring Boot (version 2.1.7.RELEASE)
+- Spring Boot
 - MySQL 8.0+
 - Lombok
 
 ## <a name="technologies"></a>Technologies Used
 
 - Java
-- Spring Boot
+- Spring Boot (version 2.1.7.RELEASE)
 - MySQL
 - Lombok
 - Flyway
