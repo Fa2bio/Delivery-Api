@@ -14,7 +14,7 @@
 
 ## <a name="what-is-it"></a>What is it?
 
-Delivery-Api is a REST-API developed in Java, Spring Boot and MySQL. This API is designed to manage a back-end application for managing a food delivery enterprise.
+- Delivery-Api is a REST-API developed in Java, Spring Boot and MySQL. This API is designed to manage a back-end application for managing a food delivery enterprise.
 
 ## <a name="requirements"></a>Requirements
 
@@ -54,7 +54,7 @@ delivery.storage.local.diretorio-fotos=
 ```
 ## <a name="run-application"></a>Run Application
 
-After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java.
+- After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java.
 
 ## <a name="general-usage"></a>General Use
 
