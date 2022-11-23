@@ -7,10 +7,10 @@
 * [What is it?](#what-is-it)
 * [Requirements](#requirements)
 * [Technologies Used](#technologies)
-* [Diagrams](#uml)
 * [Installation](#installation)
 * [Run Application](#run-application)
 * [General Usage](#general-usage)
+* [Diagrams](#uml)
 
 ## <a name="what-is-it"></a>What is it?
 
@@ -34,13 +34,6 @@ Delivery-Api is a REST-API developed in Java, Spring Boot and MySQL. This API is
 - Squiggly Filter For Jackson
 - JasperReports
 - Clean Architecture
-
-## <a name="uml"></a> Diagrams
-### Class Diagram
-![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
-
-### SQL Diagram
-![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/203461283-48b9072a-9ed2-49d8-9055-12c654f29597.png)
 
 ## <a name="installation"></a>Installation
 
@@ -348,3 +341,10 @@ After meeting the requirements and installation, run the main method as a spring
    </tr>
    </tbody>
 </table>
+
+## <a name="uml"></a> Diagrams
+### Class Diagram
+![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
+
+### SQL Diagram
+![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/203461283-48b9072a-9ed2-49d8-9055-12c654f29597.png)
