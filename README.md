@@ -35,6 +35,7 @@
 - JasperReports
 - Clean Architecture
 - Data Transfer Object (DTO)
+- Swagger
 
 ## <a name="installation"></a>Installation
 
