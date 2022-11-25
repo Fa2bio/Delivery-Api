@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = "Cities")
 public interface CityControllerSwagger {
 
-	@ApiOperation("List the cities")
+	@ApiOperation("List of cities")
 	List<CityModel> list();
 	
 	@ApiOperation("Search a city by Id")

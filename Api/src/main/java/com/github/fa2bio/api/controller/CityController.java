@@ -53,7 +53,7 @@ public class CityController implements CityControllerSwagger{
 	@Override
 	@GetMapping("/{cityId}")
 	public CityModel find(@PathVariable Long cityId) {
-		Cidade city = cityService.buscarOuFalhar(cityId);
+		Cidade city = cityService.fetchOrFail(cityId);
 		return cityModelAssembler.toModel(city);
 	}
 	
@@ -74,7 +74,7 @@ public class CityController implements CityControllerSwagger{
 	public CityModel update(@PathVariable Long cityId,
 			@RequestBody @Valid CityInput cityInput) {
 		try {
-			Cidade currentCity = cityService.buscarOuFalhar(cityId);
+			Cidade currentCity = cityService.fetchOrFail(cityId);
 			
 			cityInputDisassembler.copyToDomainObject(cityInput, currentCity);
 			
