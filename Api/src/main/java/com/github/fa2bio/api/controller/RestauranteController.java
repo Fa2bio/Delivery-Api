@@ -23,8 +23,8 @@ import com.github.fa2bio.api.model.RestauranteModel;
 import com.github.fa2bio.api.model.input.RestauranteInput;
 import com.github.fa2bio.api.model.view.RestauranteView;
 import com.github.fa2bio.domain.exception.CityNotFoundException;
-import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.KitchenNaoEncontradaException;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.repository.RestauranteRepository;
@@ -72,8 +72,8 @@ public class RestauranteController {
 		try {
 			Restaurante restaurante = restauranteInputDisassembler.toDomainObject(restauranteInput);
 			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restaurante));
-		} catch (CozinhaNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage());
+		} catch (KitchenNaoEncontradaException e) {
+			throw new BusinessException(e.getMessage());
 		}
 	}
 	
@@ -86,8 +86,8 @@ public class RestauranteController {
 			
 			restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
 			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restauranteAtual));
-		} catch (CozinhaNaoEncontradaException | CityNotFoundException e) {
-			throw new NegocioException(e.getMessage());
+		} catch (KitchenNaoEncontradaException | CityNotFoundException e) {
+			throw new BusinessException(e.getMessage());
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class RestauranteController {
 		try {
 			cadastroRestaurante.ativarMultiplos(restauranteIds);
 		} catch (RestauranteNaoEncontradoException e) {
-			throw new NegocioException(e.getMessage(), e);
+			throw new BusinessException(e.getMessage(), e);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class RestauranteController {
 		try {
 			cadastroRestaurante.inativarMultiplos(restauranteIds);
 		} catch (RestauranteNaoEncontradoException e) {
-			throw new NegocioException(e.getMessage(), e);
+			throw new BusinessException(e.getMessage(), e);
 		}
 	}
 	

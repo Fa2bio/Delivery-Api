@@ -6,13 +6,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.PermissaoNaoEncontradaException;
 import com.github.fa2bio.domain.model.Permissao;
 import com.github.fa2bio.domain.repository.PermissaoRepository;
 
 @Service
-public class CadastroPermissaoService {
+public class PermissionService {
 	private static final String MSG_PERMISSAO_EM_USO 
 	= "Permissão de código %d não pode ser removido, pois está em uso";
 
@@ -32,7 +32,7 @@ public class CadastroPermissaoService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new PermissaoNaoEncontradaException(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_PERMISSAO_EM_USO, id));
+			throw new EntityInUseException(String.format(MSG_PERMISSAO_EM_USO, id));
 		}
 	}
 	

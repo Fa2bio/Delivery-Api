@@ -22,7 +22,7 @@ import com.github.fa2bio.api.model.CityModel;
 import com.github.fa2bio.api.model.input.CityInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.CityControllerSwagger;
 import com.github.fa2bio.domain.exception.StateNotFoundException;
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.repository.CityRepository;
 import com.github.fa2bio.domain.service.CityService;
@@ -65,7 +65,7 @@ public class CityController implements CityControllerSwagger{
 			Cidade city = cityInputDisassembler.toDomainObject(cityInput);
 			return cityModelAssembler.toModel(cityService.salvar(city));
 		} catch (StateNotFoundException e) {
-			throw new NegocioException(e.getMessage(), e);
+			throw new BusinessException(e.getMessage(), e);
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class CityController implements CityControllerSwagger{
 			
 			return cityModelAssembler.toModel(cityService.salvar(currentCity));
 		} catch (StateNotFoundException e) {
-			throw new NegocioException(e.getMessage(), e);
+			throw new BusinessException(e.getMessage(), e);
 		}
 	}
 	

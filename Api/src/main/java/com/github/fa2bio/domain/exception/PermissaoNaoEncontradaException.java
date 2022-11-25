@@ -1,6 +1,6 @@
 package com.github.fa2bio.domain.exception;
 
-public class PermissaoNaoEncontradaException extends EntidadeNaoEncontradaException{
+public class PermissaoNaoEncontradaException extends EntityNotFoundException{
 
 	private static final long serialVersionUID = 1L;
 	

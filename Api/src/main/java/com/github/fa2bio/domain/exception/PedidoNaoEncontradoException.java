@@ -1,6 +1,6 @@
 package com.github.fa2bio.domain.exception;
 
-public class PedidoNaoEncontradoException extends EntidadeNaoEncontradaException {
+public class PedidoNaoEncontradoException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -30,9 +30,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
-import com.github.fa2bio.domain.exception.EntidadeNaoEncontradaException;
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
+import com.github.fa2bio.domain.exception.EntityNotFoundException;
+import com.github.fa2bio.domain.exception.BusinessException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -59,8 +59,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
 	
-	@ExceptionHandler(EntidadeNaoEncontradaException.class)
-	public ResponseEntity<?> handleEntidadeNaoEncontrada(EntidadeNaoEncontradaException ex,
+	@ExceptionHandler(EntityNotFoundException.class)
+	public ResponseEntity<?> handleEntidadeNaoEncontrada(EntityNotFoundException ex,
 			WebRequest request) {
 		
 		HttpStatus status = HttpStatus.NOT_FOUND;
@@ -74,8 +74,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
 	
-	@ExceptionHandler(EntidadeEmUsoException.class)
-	public ResponseEntity<?> handleEntidadeEmUso(EntidadeEmUsoException ex, WebRequest request) {
+	@ExceptionHandler(EntityInUseException.class)
+	public ResponseEntity<?> handleEntidadeEmUso(EntityInUseException ex, WebRequest request) {
 		
 		HttpStatus status = HttpStatus.CONFLICT;
 		ProblemType problemType = ProblemType.ENTIDADE_EM_USO;
@@ -88,8 +88,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
 	
-	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<?> handleNegocio(NegocioException ex, WebRequest request) {
+	@ExceptionHandler(BusinessException.class)
+	public ResponseEntity<?> handleNegocio(BusinessException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ProblemType problemType = ProblemType.ERRO_NEGOCIO;

@@ -1,6 +1,6 @@
 package com.github.fa2bio.domain.exception;
 
-public class StateNotFoundException extends EntidadeNaoEncontradaException {
+public class StateNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 

@@ -1,14 +1,14 @@
 package com.github.fa2bio.domain.exception;
 
-public class GrupoNaoEncontradoException extends EntidadeNaoEncontradaException{
+public class GroupNotFoundException extends EntityNotFoundException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public GrupoNaoEncontradoException(String mensagem) {
+	public GroupNotFoundException(String mensagem) {
 		super(mensagem);
 	}
 
-	public GrupoNaoEncontradoException(Long grupoId) {
+	public GroupNotFoundException(Long grupoId) {
 		super(String.format("Não existe um cadastro de grupo com código %d", grupoId));
 	}
 }

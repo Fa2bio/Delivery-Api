@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.FormaPagamentoNaoEncontradaException;
+import com.github.fa2bio.domain.exception.PaymentMethodNotFoundException;
 import com.github.fa2bio.domain.exception.PedidoNaoEncontradoException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.FormaPagamento;
@@ -61,7 +61,7 @@ public class EmissaoPedidoService {
 		pedido.setCliente(cliente);
 		pedido.getEnderecoEntrega().setCidade(cidade);
 		
-		if(restaurante.naoAceitaFormaPagamento(formaPagamento)) throw new FormaPagamentoNaoEncontradaException(formaPagamento.getId(), restaurante.getId());
+		if(restaurante.naoAceitaFormaPagamento(formaPagamento)) throw new PaymentMethodNotFoundException(formaPagamento.getId(), restaurante.getId());
 
 
 	}

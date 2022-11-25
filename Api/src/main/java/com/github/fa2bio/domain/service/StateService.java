@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.StateNotFoundException;
 import com.github.fa2bio.domain.model.Estado;
 import com.github.fa2bio.domain.repository.StateRepository;
@@ -33,7 +33,7 @@ public class StateService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new StateNotFoundException(estadoId);
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(
+			throw new EntityInUseException(
 				String.format(MSG_ESTADO_EM_USO, estadoId));
 		}
 	}

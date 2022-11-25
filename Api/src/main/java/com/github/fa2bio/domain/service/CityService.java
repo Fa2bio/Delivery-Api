@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.CityNotFoundException;
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.Estado;
 import com.github.fa2bio.domain.repository.CityRepository;
@@ -45,7 +45,7 @@ public class CityService {
 			throw new CityNotFoundException(cidadeId);
 		
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(
+			throw new EntityInUseException(
 				String.format(MSG_CIDADE_EM_USO, cidadeId));
 		}
 	}

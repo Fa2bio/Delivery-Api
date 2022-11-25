@@ -6,8 +6,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
-import com.github.fa2bio.domain.exception.FormaPagamentoNaoEncontradaException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
+import com.github.fa2bio.domain.exception.PaymentMethodNotFoundException;
 import com.github.fa2bio.domain.model.FormaPagamento;
 import com.github.fa2bio.domain.repository.PaymentMethodsRepository;
 
@@ -31,14 +31,14 @@ public class PaymentMethodsService {
 			formaPagamentoRepository.deleteById(id);
 			formaPagamentoRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new FormaPagamentoNaoEncontradaException(id);
+			throw new PaymentMethodNotFoundException(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_FORMAPAGAMENTO_EM_USO, id));
+			throw new EntityInUseException(String.format(MSG_FORMAPAGAMENTO_EM_USO, id));
 		}
 	}
 	
 	public FormaPagamento fetchOrFail(Long formaPagamentoId) {
 		return formaPagamentoRepository.findById(formaPagamentoId)
-			.orElseThrow(() -> new FormaPagamentoNaoEncontradaException(formaPagamentoId));
+			.orElseThrow(() -> new PaymentMethodNotFoundException(formaPagamentoId));
 	}
 }

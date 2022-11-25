@@ -6,8 +6,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
-import com.github.fa2bio.domain.exception.GrupoNaoEncontradoException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
+import com.github.fa2bio.domain.exception.GroupNotFoundException;
 import com.github.fa2bio.domain.model.Grupo;
 import com.github.fa2bio.domain.model.Permissao;
 import com.github.fa2bio.domain.repository.GroupRepository;
@@ -19,44 +19,44 @@ public class GroupService {
 	= "Grupo de código %d não pode ser removido, pois está em uso";
 
 	@Autowired
-	private GroupRepository grupoRepository;
+	private GroupRepository groupRepository;
 	
 	@Autowired
-	private CadastroPermissaoService cadastroPermissaoService;
+	private PermissionService permissionService;
 	
 	@Transactional
 	public Grupo salvar(Grupo grupo) {
-		return grupoRepository.save(grupo);
+		return groupRepository.save(grupo);
 	}
 	
 	@Transactional
 	public void excluir(Long id) {
 		try {
-			grupoRepository.deleteById(id);
-			grupoRepository.flush();
+			groupRepository.deleteById(id);
+			groupRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new GrupoNaoEncontradoException(id);
+			throw new GroupNotFoundException(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_GRUPO_EM_USO, id));
+			throw new EntityInUseException(String.format(MSG_GRUPO_EM_USO, id));
 		}
 	}
 	
 	@Transactional
 	public void associatePermission(Long grupoId, Long permissaoId) {
 		Grupo grupo = fetchOrFail(grupoId);
-		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
+		Permissao permissao = permissionService.buscarOuFalhar(permissaoId);
 		grupo.adicionarPermissao(permissao);
 	}
 	
 	@Transactional
 	public void disassociatePermission(Long grupoId, Long permissaoId) {
 		Grupo grupo = fetchOrFail(grupoId);
-		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
+		Permissao permissao = permissionService.buscarOuFalhar(permissaoId);
 		grupo.removerPermissao(permissao);
 	}
 	
 	public Grupo fetchOrFail(Long grupoId) {
-		return grupoRepository.findById(grupoId)
-			.orElseThrow(() -> new GrupoNaoEncontradoException(grupoId));
+		return groupRepository.findById(grupoId)
+			.orElseThrow(() -> new GroupNotFoundException(grupoId));
 	}
 }

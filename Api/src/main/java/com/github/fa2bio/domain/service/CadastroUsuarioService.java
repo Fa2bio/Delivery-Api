@@ -8,8 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.UsuarioNaoEncontradoException;
 import com.github.fa2bio.domain.model.Grupo;
 import com.github.fa2bio.domain.model.Usuario;
@@ -34,7 +34,7 @@ public class CadastroUsuarioService {
 		
 		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 		if(usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
-			throw new NegocioException(String.format("Já existe um usuário cadastrado com o email %s", usuario.getEmail()));
+			throw new BusinessException(String.format("Já existe um usuário cadastrado com o email %s", usuario.getEmail()));
 		}
 				
 		return usuarioRepository.save(usuario);
@@ -48,7 +48,7 @@ public class CadastroUsuarioService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new UsuarioNaoEncontradoException(usuarioId);
 		} catch (DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_USUARIO_EM_USO, usuarioId));
+			throw new EntityInUseException(String.format(MSG_USUARIO_EM_USO, usuarioId));
 		}
 		
 	}

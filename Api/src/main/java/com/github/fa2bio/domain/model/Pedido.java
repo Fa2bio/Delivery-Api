@@ -22,7 +22,7 @@ import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.BusinessException;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -97,7 +97,7 @@ public class Pedido {
 	
 	private void setStatus(StatusPedido novoStatus) {
 		if(getStatus().naoPodeAlterarPara(novoStatus)) {
-			throw new NegocioException(String.format("Status do pedido %s não pode ser alterado de %s para %s",
+			throw new BusinessException(String.format("Status do pedido %s não pode ser alterado de %s para %s",
 					getCodigo(),
 					getStatus().getDescricao(),
 					novoStatus.getDescricao()));

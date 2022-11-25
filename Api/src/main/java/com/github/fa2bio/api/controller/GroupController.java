@@ -30,49 +30,49 @@ import com.github.fa2bio.domain.service.GroupService;
 public class GroupController implements GroupControllerSwagger{
 
 	@Autowired
-	private GroupRepository grupoRepository;
+	private GroupRepository groupRepository;
 	
 	@Autowired
-	private GroupService cadastroGrupoService;
+	private GroupService groupService;
 	
 	@Autowired
-	private GroupModelAssembler grupoModelAssembler;
+	private GroupModelAssembler groupModelAssembler;
 	
 	@Autowired
-	private GroupInputDisassembler grupoInputDisassembler;
+	private GroupInputDisassembler groupInputDisassembler;
 	
 	@Override
 	@GetMapping
 	public List<GroupModel> list(){
-		return grupoModelAssembler.toCollectionModel(grupoRepository.findAll());
+		return groupModelAssembler.toCollectionModel(groupRepository.findAll());
 	}
 	
 	@Override
 	@GetMapping("/{groupId}")
 	public GroupModel find(@PathVariable Long groupId) {
-		Grupo group = cadastroGrupoService.fetchOrFail(groupId);
-		return grupoModelAssembler.toModel(group);
+		Grupo group = groupService.fetchOrFail(groupId);
+		return groupModelAssembler.toModel(group);
 	}
 	
 	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public GroupModel register(@RequestBody @Valid GroupInput groupInput) {
-		Grupo group = grupoInputDisassembler.toDomainObject(groupInput);
-		return grupoModelAssembler.toModel(cadastroGrupoService.salvar(group));
+		Grupo group = groupInputDisassembler.toDomainObject(groupInput);
+		return groupModelAssembler.toModel(groupService.salvar(group));
 	}
 	
 	@Override
 	@PutMapping("/{groupId}")
 	public GroupModel update(@PathVariable Long groupId ,@RequestBody @Valid GroupInput groupInput) {
-		Grupo currentGroup = cadastroGrupoService.fetchOrFail(groupId);
-		grupoInputDisassembler.copyToDomainObject(groupInput, currentGroup);
-		return grupoModelAssembler.toModel(cadastroGrupoService.salvar(currentGroup));
+		Grupo currentGroup = groupService.fetchOrFail(groupId);
+		groupInputDisassembler.copyToDomainObject(groupInput, currentGroup);
+		return groupModelAssembler.toModel(groupService.salvar(currentGroup));
 	}
 	
 	@Override
-	@DeleteMapping("/{grupoId}")
+	@DeleteMapping("/{groupId}")
 	public void delete(@PathVariable Long groupId) {
-		cadastroGrupoService.excluir(groupId);
+		groupService.excluir(groupId);
 	}
 }

@@ -1,14 +1,14 @@
 package com.github.fa2bio.domain.exception;
 
-public class CozinhaNaoEncontradaException extends EntidadeNaoEncontradaException {
+public class KitchenNaoEncontradaException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CozinhaNaoEncontradaException(String mensagem) {
+	public KitchenNaoEncontradaException(String mensagem) {
 		super(mensagem);
 	}
 	
-	public CozinhaNaoEncontradaException(Long cozinhaId) {
+	public KitchenNaoEncontradaException(Long cozinhaId) {
 		this(String.format("Não existe um cadastro de cozinha com código %d", cozinhaId));
 	}
 	

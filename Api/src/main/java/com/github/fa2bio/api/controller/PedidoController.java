@@ -26,8 +26,8 @@ import com.github.fa2bio.api.model.PedidoModel;
 import com.github.fa2bio.api.model.PedidoResumoModel;
 import com.github.fa2bio.api.model.input.PedidoInput;
 import com.github.fa2bio.core.data.PageableTranslator;
-import com.github.fa2bio.domain.exception.EntidadeNaoEncontradaException;
-import com.github.fa2bio.domain.exception.NegocioException;
+import com.github.fa2bio.domain.exception.EntityNotFoundException;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.filter.PedidoFilter;
 import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.Usuario;
@@ -88,8 +88,8 @@ public class PedidoController {
 			novoPedido.setCliente(new Usuario());
 			novoPedido.getCliente().setId(1L);
 			return pedidoModelAssembler.toModel(emissaoPedidoService.emitir(novoPedido));
-		} catch (EntidadeNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage(),e);
+		} catch (EntityNotFoundException e) {
+			throw new BusinessException(e.getMessage(),e);
 		}
 	}
 	

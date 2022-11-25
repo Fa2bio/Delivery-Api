@@ -1,6 +1,6 @@
 package com.github.fa2bio.domain.exception;
 
-public class FotoProdutoNaoEncontradaException extends EntidadeNaoEncontradaException{
+public class FotoProdutoNaoEncontradaException extends EntityNotFoundException{
 
 	private static final long serialVersionUID = 1L;
 	

@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
+import com.github.fa2bio.domain.exception.KitchenNaoEncontradaException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.model.Cozinha;
 import com.github.fa2bio.domain.service.KitchenService;
 
@@ -49,12 +49,12 @@ public class CadastroCozinhaIntegrationTests {
 
 	}
 	
-	@Test(expected = EntidadeEmUsoException.class)
+	@Test(expected = EntityInUseException.class)
 	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
 		cadastroCozinha.excluir(1L);
 	}
 	
-	@Test(expected = CozinhaNaoEncontradaException.class)
+	@Test(expected = KitchenNaoEncontradaException.class)
 	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
 		cadastroCozinha.excluir(100L);
 	}

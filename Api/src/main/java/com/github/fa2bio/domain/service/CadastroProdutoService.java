@@ -6,7 +6,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
+import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.ProdutoNaoEncontradoException;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.repository.ProdutoRepository;
@@ -32,7 +32,7 @@ public class CadastroProdutoService {
 		} catch (EmptyResultDataAccessException e) {
 			throw new ProdutoNaoEncontradoException(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new EntidadeEmUsoException(String.format(MSG_PRODUTO_EM_USO, id));
+			throw new EntityInUseException(String.format(MSG_PRODUTO_EM_USO, id));
 		}
 	}
 	
