@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.exception.StateNotFoundException;
 import com.github.fa2bio.domain.model.Estado;
-import com.github.fa2bio.domain.repository.EstadoRepository;
+import com.github.fa2bio.domain.repository.StateRepository;
 
 @Service
-public class CadastroEstadoService {
+public class StateService {
 
 	private static final String MSG_ESTADO_EM_USO 
 		= "Estado de código %d não pode ser removido, pois está em uso";
 	
 	@Autowired
-	private EstadoRepository estadoRepository;
+	private StateRepository estadoRepository;
 	
 	@Transactional
 	public Estado salvar(Estado estado) {
@@ -38,7 +38,7 @@ public class CadastroEstadoService {
 		}
 	}
 
-	public Estado buscarOuFalhar(Long estadoId) {
+	public Estado fetchOrFail(Long estadoId) {
 		return estadoRepository.findById(estadoId)
 			.orElseThrow(() -> new StateNotFoundException(estadoId));
 	}

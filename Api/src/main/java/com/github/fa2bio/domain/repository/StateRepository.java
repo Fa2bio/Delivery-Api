@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.github.fa2bio.domain.model.Estado;
 
 @Repository
-public interface EstadoRepository extends CustomJpaRepository<Estado, Long> {
+public interface StateRepository extends CustomJpaRepository<Estado, Long> {
 
 }

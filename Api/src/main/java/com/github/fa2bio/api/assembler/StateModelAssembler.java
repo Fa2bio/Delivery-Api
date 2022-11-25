@@ -7,20 +7,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.EstadoModel;
+import com.github.fa2bio.api.model.StateModel;
 import com.github.fa2bio.domain.model.Estado;
 
 @Component
-public class EstadoModelAssembler {
+public class StateModelAssembler {
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public EstadoModel toModel(Estado estado) {
-		return modelMapper.map(estado, EstadoModel.class);
+	public StateModel toModel(Estado estado) {
+		return modelMapper.map(estado, StateModel.class);
 	}
 	
-	public List<EstadoModel> toCollectionModel(List<Estado> estados){
+	public List<StateModel> toCollectionModel(List<Estado> estados){
 		return estados.stream()
 				.map(estado -> toModel(estado))
 				.collect(Collectors.toList());

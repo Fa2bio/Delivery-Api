@@ -1,14 +1,15 @@
 package com.github.fa2bio.api.model.input;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class EstadoIdInput {
+public class StateInput {
 
-	@NotNull
-	private Long id;
+	@NotBlank
+	private String nome;
+	
 }

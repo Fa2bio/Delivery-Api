@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EstadoModel {
+public class StateModel {
 	private Long id;
 	private String nome;
 }
