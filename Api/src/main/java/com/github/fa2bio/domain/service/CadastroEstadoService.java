@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
-import com.github.fa2bio.domain.exception.EstadoNaoEncontradoException;
+import com.github.fa2bio.domain.exception.StateNotFoundException;
 import com.github.fa2bio.domain.model.Estado;
 import com.github.fa2bio.domain.repository.EstadoRepository;
 
@@ -31,7 +31,7 @@ public class CadastroEstadoService {
 			estadoRepository.deleteById(estadoId);
 			estadoRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new EstadoNaoEncontradoException(estadoId);
+			throw new StateNotFoundException(estadoId);
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
 				String.format(MSG_ESTADO_EM_USO, estadoId));
@@ -40,7 +40,7 @@ public class CadastroEstadoService {
 
 	public Estado buscarOuFalhar(Long estadoId) {
 		return estadoRepository.findById(estadoId)
-			.orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
+			.orElseThrow(() -> new StateNotFoundException(estadoId));
 	}
 	
 }

@@ -7,20 +7,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.CidadeModel;
+import com.github.fa2bio.api.model.CityModel;
 import com.github.fa2bio.domain.model.Cidade;
 
 @Component
-public class CidadeModelAssembler {
+public class CityModelAssembler {
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public CidadeModel toModel(Cidade cidade) {
-		return modelMapper.map(cidade, CidadeModel.class);
+	public CityModel toModel(Cidade cidade) {
+		return modelMapper.map(cidade, CityModel.class);
 	}
 	
-	public List<CidadeModel> toCollectionModel(List<Cidade> cidades){
+	public List<CityModel> toCollectionModel(List<Cidade> cidades){
 		return cidades.stream()
 				.map(cidade -> toModel(cidade))
 				.collect(Collectors.toList());

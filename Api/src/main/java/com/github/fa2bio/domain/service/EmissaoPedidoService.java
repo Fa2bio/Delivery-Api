@@ -21,7 +21,7 @@ public class EmissaoPedidoService {
 	private PedidoRepository pedidoRepository;
 	
 	@Autowired
-	private CadastroCidadeService cadastroCidadeService;
+	private CityService cadastroCidadeService;
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;

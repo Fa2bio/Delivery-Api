@@ -6,20 +6,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.CidadeNaoEncontradaException;
+import com.github.fa2bio.domain.exception.CityNotFoundException;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.Estado;
-import com.github.fa2bio.domain.repository.CidadeRepository;
+import com.github.fa2bio.domain.repository.CityRepository;
 
 @Service
-public class CadastroCidadeService {
+public class CityService {
 
 	private static final String MSG_CIDADE_EM_USO 
 		= "Cidade de código %d não pode ser removida, pois está em uso";
 
 	@Autowired
-	private CidadeRepository cidadeRepository;
+	private CityRepository cidadeRepository;
 	
 	@Autowired
 	private CadastroEstadoService cadastroEstado;
@@ -42,7 +42,7 @@ public class CadastroCidadeService {
 			cidadeRepository.flush();
 			
 		} catch (EmptyResultDataAccessException e) {
-			throw new CidadeNaoEncontradaException(cidadeId);
+			throw new CityNotFoundException(cidadeId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
@@ -52,7 +52,7 @@ public class CadastroCidadeService {
 	
 	public Cidade buscarOuFalhar(Long cidadeId) {
 		return cidadeRepository.findById(cidadeId)
-			.orElseThrow(() -> new CidadeNaoEncontradaException(cidadeId));
+			.orElseThrow(() -> new CityNotFoundException(cidadeId));
 	}
 	
 }

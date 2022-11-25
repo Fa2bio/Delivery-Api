@@ -22,7 +22,7 @@ import com.github.fa2bio.api.assembler.RestauranteModelAssembler;
 import com.github.fa2bio.api.model.RestauranteModel;
 import com.github.fa2bio.api.model.input.RestauranteInput;
 import com.github.fa2bio.api.model.view.RestauranteView;
-import com.github.fa2bio.domain.exception.CidadeNaoEncontradaException;
+import com.github.fa2bio.domain.exception.CityNotFoundException;
 import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
 import com.github.fa2bio.domain.exception.NegocioException;
 import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
@@ -86,7 +86,7 @@ public class RestauranteController {
 			
 			restauranteInputDisassembler.copyToDomainObject(restauranteInput, restauranteAtual);
 			return restauranteModelAssembler.toModel(cadastroRestaurante.salvar(restauranteAtual));
-		} catch (CozinhaNaoEncontradaException | CidadeNaoEncontradaException e) {
+		} catch (CozinhaNaoEncontradaException | CityNotFoundException e) {
 			throw new NegocioException(e.getMessage());
 		}
 	}

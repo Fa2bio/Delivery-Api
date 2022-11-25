@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.github.fa2bio.domain.model.Cidade;
 
 @Repository
-public interface CidadeRepository extends CustomJpaRepository<Cidade, Long> {
+public interface CityRepository extends CustomJpaRepository<Cidade, Long> {
 
 	@Query("from Cidade r join fetch r.estado")
 	List<Cidade> findAll();

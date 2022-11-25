@@ -1,14 +1,14 @@
 package com.github.fa2bio.domain.exception;
 
-public class EstadoNaoEncontradoException extends EntidadeNaoEncontradaException {
+public class StateNotFoundException extends EntidadeNaoEncontradaException {
 
 	private static final long serialVersionUID = 1L;
 
-	public EstadoNaoEncontradoException(String mensagem) {
+	public StateNotFoundException(String mensagem) {
 		super(mensagem);
 	}
 	
-	public EstadoNaoEncontradoException(Long estadoId) {
+	public StateNotFoundException(Long estadoId) {
 		this(String.format("Não existe um cadastro de estado com código %d", estadoId));
 	}
 	

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CidadeIdInput {
+public class CityIdInput {
 	
 	@NotNull
 	private Long id;
