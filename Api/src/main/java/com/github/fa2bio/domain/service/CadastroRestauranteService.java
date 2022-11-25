@@ -21,7 +21,7 @@ public class CadastroRestauranteService {
 	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
-	private CadastroCozinhaService cadastroCozinhaService;
+	private KitchenService cadastroCozinhaService;
 	
 	@Autowired
 	private CityService cadastroCidadeService;
@@ -37,8 +37,8 @@ public class CadastroRestauranteService {
 		Long cozinhaId = restaurante.getCozinha().getId();
 		Long cidadeId = restaurante.getEndereco().getCidade().getId();
 		
-		Cozinha cozinha = cadastroCozinhaService.buscarOuFalhar(cozinhaId);
-		Cidade cidade = cadastroCidadeService.buscarOuFalhar(cidadeId);
+		Cozinha cozinha = cadastroCozinhaService.fetchOrFail(cozinhaId);
+		Cidade cidade = cadastroCidadeService.fetchOrFail(cidadeId);
 		
 		restaurante.setCozinha(cozinha);
 		restaurante.getEndereco().setCidade(cidade);

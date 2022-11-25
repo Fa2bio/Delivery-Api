@@ -1,13 +1,14 @@
 package com.github.fa2bio.api.model.input;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CozinhaInput {
-	@NotBlank
-	private String nome;
+public class KitchenIdInput {
+	
+	@NotNull
+	private Long id;
 }

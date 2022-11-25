@@ -13,14 +13,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.model.Cozinha;
-import com.github.fa2bio.domain.service.CadastroCozinhaService;
+import com.github.fa2bio.domain.service.KitchenService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CadastroCozinhaIntegrationTests {
 
 	@Autowired
-	private CadastroCozinhaService cadastroCozinha;
+	private KitchenService cadastroCozinha;
 	
 	@Test
 	public void testarCadastroCozinhaComSucesso() {

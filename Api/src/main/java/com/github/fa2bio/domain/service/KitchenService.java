@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.CozinhaNaoEncontradaException;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.model.Cozinha;
-import com.github.fa2bio.domain.repository.CozinhaRepository;
+import com.github.fa2bio.domain.repository.KitchenRepository;
 
 @Service
-public class CadastroCozinhaService {
+public class KitchenService {
 
 	private static final String MSG_COZINHA_EM_USO 
 		= "Cozinha de código %d não pode ser removida, pois está em uso";
 
 	@Autowired
-	private CozinhaRepository cozinhaRepository;
+	private KitchenRepository cozinhaRepository;
 	
 	@Transactional
 	public Cozinha salvar(Cozinha cozinha) {
@@ -40,7 +40,7 @@ public class CadastroCozinhaService {
 		}
 	}
 	
-	public Cozinha buscarOuFalhar(Long cozinhaId) {
+	public Cozinha fetchOrFail(Long cozinhaId) {
 		return cozinhaRepository.findById(cozinhaId)
 			.orElseThrow(() -> new CozinhaNaoEncontradaException(cozinhaId));
 	}

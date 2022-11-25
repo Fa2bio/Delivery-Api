@@ -53,7 +53,7 @@ public class EmissaoPedidoService {
 	private void validarPedido(Pedido pedido) {
 		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(pedido.getRestaurante().getId());
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(pedido.getFormaPagamento().getId());
-		Cidade cidade = cadastroCidadeService.buscarOuFalhar(pedido.getEnderecoEntrega().getCidade().getId());
+		Cidade cidade = cadastroCidadeService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
 		Usuario cliente = cadastroUsuarioService.buscarOuFalhar(pedido.getCliente().getId());
 		
 		pedido.setRestaurante(restaurante);

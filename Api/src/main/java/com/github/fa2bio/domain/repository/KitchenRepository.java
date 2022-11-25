@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.github.fa2bio.domain.model.Cozinha;
 
 @Repository
-public interface CozinhaRepository extends CustomJpaRepository<Cozinha, Long> {
+public interface KitchenRepository extends CustomJpaRepository<Cozinha, Long> {
 
 	List<Cozinha> findTodasByNomeContaining(String nome);
 	

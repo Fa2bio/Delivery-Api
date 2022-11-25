@@ -4,20 +4,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.input.CozinhaInput;
+import com.github.fa2bio.api.model.input.KitchenInput;
 import com.github.fa2bio.domain.model.Cozinha;
 
 @Component
-public class CozinhaInputDisassembler {
+public class KitchenInputDisassembler {
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Cozinha toDomainObject(CozinhaInput cozinhaInput) {
+	public Cozinha toDomainObject(KitchenInput cozinhaInput) {
 		return modelMapper.map(cozinhaInput, Cozinha.class);
 	}
 	
-	public void copyToDomainObject(CozinhaInput cozinhaInput, Cozinha cozinha) {
+	public void copyToDomainObject(KitchenInput cozinhaInput, Cozinha cozinha) {
 		modelMapper.map(cozinhaInput, cozinha);
 	}
 }

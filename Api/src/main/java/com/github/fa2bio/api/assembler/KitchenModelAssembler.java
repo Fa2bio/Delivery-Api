@@ -7,20 +7,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.CozinhaModel;
+import com.github.fa2bio.api.model.KitchenModel;
 import com.github.fa2bio.domain.model.Cozinha;
 
 @Component
-public class CozinhaModelAssembler {
+public class KitchenModelAssembler {
 
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public CozinhaModel toModel(Cozinha cozinha) {
-		return modelMapper.map(cozinha, CozinhaModel.class);
+	public KitchenModel toModel(Cozinha cozinha) {
+		return modelMapper.map(cozinha, KitchenModel.class);
 	}
 	
-	public List<CozinhaModel> toCollectionModel(List<Cozinha> cozinhas){
+	public List<KitchenModel> toCollectionModel(List<Cozinha> cozinhas){
 		return cozinhas.stream()
 				.map(cozinha -> toModel(cozinha))
 				.collect(Collectors.toList());

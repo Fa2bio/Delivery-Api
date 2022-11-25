@@ -22,7 +22,7 @@ public class RestauranteModel {
 	private BigDecimal taxaFrete;
 	
 	@JsonView(RestauranteView.Resumo.class)
-	private CozinhaModel cozinha;
+	private KitchenModel cozinha;
 	 
 	private Boolean ativo;
 	private Boolean aberto;

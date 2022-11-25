@@ -14,7 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.github.fa2bio.domain.model.Cozinha;
-import com.github.fa2bio.domain.repository.CozinhaRepository;
+import com.github.fa2bio.domain.repository.KitchenRepository;
 import com.github.fa2bio.util.DatabaseCleaner;
 import com.github.fa2bio.util.ResourceUtils;
 
@@ -39,7 +39,7 @@ public class CozinhaApiTests {
 	private DatabaseCleaner cleaner;
 	
 	@Autowired
-	private CozinhaRepository cozinhaRepository;
+	private KitchenRepository cozinhaRepository;
 	
 	@Before
 	public void setUp() {

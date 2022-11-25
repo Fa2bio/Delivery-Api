@@ -50,7 +50,7 @@ public class CityService {
 		}
 	}
 	
-	public Cidade buscarOuFalhar(Long cidadeId) {
+	public Cidade fetchOrFail(Long cidadeId) {
 		return cidadeRepository.findById(cidadeId)
 			.orElseThrow(() -> new CityNotFoundException(cidadeId));
 	}
