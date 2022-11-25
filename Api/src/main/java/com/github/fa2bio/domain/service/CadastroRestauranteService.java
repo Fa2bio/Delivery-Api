@@ -27,7 +27,7 @@ public class CadastroRestauranteService {
 	private CityService cadastroCidadeService;
 	
 	@Autowired
-	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
+	private PaymentMethodsService cadastroFormaPagamentoService;
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
@@ -90,7 +90,7 @@ public class CadastroRestauranteService {
 	@Transactional
 	public void associarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(formaPagamentoId);
 		
 		restaurante.adicionarFormaPagamento(formaPagamento);
 	
@@ -99,7 +99,7 @@ public class CadastroRestauranteService {
 	@Transactional
 	public void desassociarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(formaPagamentoId);
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(formaPagamentoId);
 		
 		restaurante.removerFormaPagamento(formaPagamento);
 	

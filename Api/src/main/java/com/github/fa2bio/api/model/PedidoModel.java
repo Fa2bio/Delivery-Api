@@ -22,7 +22,7 @@ public class PedidoModel {
 	private OffsetDateTime dataCancelamento; 
 	private RestauranteResumoModel restaurante; 
 	private UsuarioModel cliente; 
-	private FormaPagamentoModel formaPagamento; 
+	private PaymentMethodModel formaPagamento; 
 	private EnderecoModel enderecoEntrega; 
 	private List<ItemPedidoModel> itens; 
 }

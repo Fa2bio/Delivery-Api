@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.exception.FormaPagamentoNaoEncontradaException;
 import com.github.fa2bio.domain.model.FormaPagamento;
-import com.github.fa2bio.domain.repository.FormaPagamentoRepository;
+import com.github.fa2bio.domain.repository.PaymentMethodsRepository;
 
 @Service
-public class CadastroFormaPagamentoService {
+public class PaymentMethodsService {
 
 	private static final String MSG_FORMAPAGAMENTO_EM_USO 
 	= "Forma de pagamento de código %d não pode ser removida, pois está em uso";
 
 	@Autowired
-	private FormaPagamentoRepository formaPagamentoRepository;
+	private PaymentMethodsRepository formaPagamentoRepository;
 	
 	@Transactional
 	public FormaPagamento salvar (FormaPagamento formaPagamento) {
@@ -37,7 +37,7 @@ public class CadastroFormaPagamentoService {
 		}
 	}
 	
-	public FormaPagamento buscarOuFalhar(Long formaPagamentoId) {
+	public FormaPagamento fetchOrFail(Long formaPagamentoId) {
 		return formaPagamentoRepository.findById(formaPagamentoId)
 			.orElseThrow(() -> new FormaPagamentoNaoEncontradaException(formaPagamentoId));
 	}

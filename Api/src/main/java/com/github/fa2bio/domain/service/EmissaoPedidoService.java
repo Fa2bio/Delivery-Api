@@ -30,7 +30,7 @@ public class EmissaoPedidoService {
 	private CadastroRestauranteService cadastroRestauranteService;
 	
 	@Autowired
-	private CadastroFormaPagamentoService cadastroFormaPagamentoService;
+	private PaymentMethodsService cadastroFormaPagamentoService;
 	
 	@Autowired
 	private CadastroProdutoService cadastroProdutoService;
@@ -52,7 +52,7 @@ public class EmissaoPedidoService {
 
 	private void validarPedido(Pedido pedido) {
 		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(pedido.getRestaurante().getId());
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.buscarOuFalhar(pedido.getFormaPagamento().getId());
+		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(pedido.getFormaPagamento().getId());
 		Cidade cidade = cadastroCidadeService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
 		Usuario cliente = cadastroUsuarioService.buscarOuFalhar(pedido.getCliente().getId());
 		
