@@ -6,22 +6,22 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.fa2bio.domain.filter.VendaDiariaFilter;
-import com.github.fa2bio.domain.service.VendaQueryService;
-import com.github.fa2bio.domain.service.VendaReportService;
+import com.github.fa2bio.domain.filter.DailySaleFilter;
+import com.github.fa2bio.domain.service.SaleQueryService;
+import com.github.fa2bio.domain.service.SaleReportService;
 
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
-public class PdfVendaReportService implements VendaReportService{
+public class PdfVendaReportService implements SaleReportService{
 	
 	@Autowired
-	private VendaQueryService vendaQueryService;
+	private SaleQueryService vendaQueryService;
 
 	@Override
-	public byte[] emitirVendasDiarias(VendaDiariaFilter filtro, String timeOffset) {
+	public byte[] issueDailySales(DailySaleFilter filtro, String timeOffset) {
 		
 		try {
 			var inputStream = this.getClass().getResourceAsStream(
@@ -30,7 +30,7 @@ public class PdfVendaReportService implements VendaReportService{
 			var parametros = new HashMap<String, Object>();
 			parametros.put("REPORT_LOCALE", new Locale("pt","BR"));
 			
-			var vendasDiarias = vendaQueryService.consultarVendasDiarias(filtro, timeOffset);
+			var vendasDiarias = vendaQueryService.consultDailySales(filtro, timeOffset);
 					
 			var dataSource = new JRBeanCollectionDataSource(vendasDiarias);
 			

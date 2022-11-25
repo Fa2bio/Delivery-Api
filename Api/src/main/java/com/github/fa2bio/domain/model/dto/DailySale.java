@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter 
-public class VendaDiaria {
+public class DailySale {
 	private Date data;
 	private Long totalVendas;
 	private BigDecimal totalFaturado;

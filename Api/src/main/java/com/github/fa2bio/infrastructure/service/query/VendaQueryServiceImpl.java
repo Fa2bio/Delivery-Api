@@ -10,23 +10,23 @@ import javax.persistence.criteria.Predicate;
 
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.filter.VendaDiariaFilter;
+import com.github.fa2bio.domain.filter.DailySaleFilter;
 import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.StatusPedido;
-import com.github.fa2bio.domain.model.dto.VendaDiaria;
-import com.github.fa2bio.domain.service.VendaQueryService;
+import com.github.fa2bio.domain.model.dto.DailySale;
+import com.github.fa2bio.domain.service.SaleQueryService;
 
 @Repository
-public class VendaQueryServiceImpl implements VendaQueryService{
+public class VendaQueryServiceImpl implements SaleQueryService{
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Override
-	public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro,
+	public List<DailySale> consultDailySales(DailySaleFilter filtro,
 			String timeOffset) {
 		var builder = manager.getCriteriaBuilder();
-		var query = builder.createQuery(VendaDiaria.class);
+		var query = builder.createQuery(DailySale.class);
 		var root = query.from(Pedido.class);
 		
 		var predicates = new ArrayList<Predicate>();
@@ -54,7 +54,7 @@ public class VendaQueryServiceImpl implements VendaQueryService{
 		var functionDataCriacao = builder.function(
 				"date", Date.class, functionConvertTzDataCriacao);
 		
-		var selection = builder.construct(VendaDiaria.class,
+		var selection = builder.construct(DailySale.class,
 				functionDataCriacao,
 				builder.count(root.get("id")),
 				builder.sum(root.get("valorTotal")));

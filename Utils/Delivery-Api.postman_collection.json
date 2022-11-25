@@ -1968,15 +1968,15 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/statistics/daily-sales?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estatisticas",
-								"vendas-diarias"
+								"statistics",
+								"daily-sales"
 							],
 							"query": [
 								{
@@ -2012,15 +2012,15 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/estatisticas/vendas-diarias?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/statistics/daily-sales?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estatisticas",
-								"vendas-diarias"
+								"statistics",
+								"daily-sales"
 							],
 							"query": [
 								{
