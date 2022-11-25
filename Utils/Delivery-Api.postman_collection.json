@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Citys",
+			"name": "Cities",
 			"item": [
 				{
 					"name": "List",
@@ -22,14 +22,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cidades",
+							"raw": "http://localhost:8080/cities",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cidades"
+								"cities"
 							],
 							"query": [
 								{
@@ -43,40 +43,48 @@
 					"response": []
 				},
 				{
-					"name": "Find",
+					"name": "Register",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Sobral\",\r\n    \"estado\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/cidades/1",
+							"raw": "http://localhost:8080/cities",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cidades",
-								"1"
+								"cities"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "Find",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/cidades/6",
+							"raw": "http://localhost:8080/cities/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cidades",
-								"6"
+								"cities",
+								"1"
 							]
 						}
 					},
@@ -97,14 +105,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cidades/1",
+							"raw": "http://localhost:8080/cities/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cidades",
+								"cities",
 								"1"
 							]
 						}
@@ -112,28 +120,20 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Sobral\",\r\n    \"estado\": {\r\n        \"id\": 1\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/cidades",
+							"raw": "http://localhost:8080/cities/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cidades"
+								"cities",
+								"6"
 							]
 						}
 					},
@@ -156,14 +156,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/cozinhas?size=2&page=0",
+							"raw": "http://localhost:8080/kitchens?size=2&page=0",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cozinhas"
+								"kitchens"
 							],
 							"query": [
 								{
@@ -185,33 +185,13 @@
 					"response": []
 				},
 				{
-					"name": "Find",
+					"name": "Register",
 					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/cozinhas/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cozinhas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"nome\": \"Comida Alema\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -219,15 +199,34 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/5",
+							"raw": "http://localhost:8080/kitchens",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cozinhas",
-								"5"
+								"kitchens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/kitchens/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"kitchens",
+								"1"
 							]
 						}
 					},
@@ -248,86 +247,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/cozinhas/1",
+							"raw": "http://localhost:8080/kitchens/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"cozinhas",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Comida Alema\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/cozinhas",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"cozinhas"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "States",
-			"item": [
-				{
-					"name": "List",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/estados",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Find",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/estados/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"estados",
+								"kitchens",
 								"1"
 							]
 						}
@@ -349,15 +276,87 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados/4",
+							"raw": "http://localhost:8080/kitchens/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estados",
-								"4"
+								"kitchens",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "States",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Parana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/states/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states",
+								"1"
 							]
 						}
 					},
@@ -378,14 +377,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados/1",
+							"raw": "http://localhost:8080/states/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estados",
+								"states",
 								"1"
 							]
 						}
@@ -393,13 +392,13 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Parana\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,14 +406,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/estados",
+							"raw": "http://localhost:8080/states/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"estados"
+								"states",
+								"4"
 							]
 						}
 					},
