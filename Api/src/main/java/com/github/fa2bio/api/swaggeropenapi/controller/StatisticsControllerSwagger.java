@@ -26,7 +26,7 @@ public interface StatisticsControllerSwagger {
 			example = "2019-12-02T23:59:59Z", dataType = "date-time")
 	})
 	List<DailySale> queryDailySalesJson(
-			@ApiParam(value = "Deslocamento de horário a ser considerado na consulta em relação ao UTC", defaultValue = "+00:00")
+			@ApiParam(value = "Time offset to be considered in the query from UTC", defaultValue = "+00:00")
 			DailySaleFilter filter, String timeOffset);
 	
 	ResponseEntity<byte[]> queryDailySalesJsonPdf(DailySaleFilter filter, String timeOffset);
