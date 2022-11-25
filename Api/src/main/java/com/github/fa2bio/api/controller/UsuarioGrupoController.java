@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.api.assembler.GrupoModelAssembler;
-import com.github.fa2bio.api.model.GrupoModel;
+import com.github.fa2bio.api.assembler.GroupModelAssembler;
+import com.github.fa2bio.api.model.GroupModel;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.service.CadastroUsuarioService;
 
@@ -25,10 +25,10 @@ public class UsuarioGrupoController {
 	private CadastroUsuarioService cadastroUsuarioService;
 	
 	@Autowired
-	private GrupoModelAssembler grupoModelAssembler;
+	private GroupModelAssembler grupoModelAssembler;
 	
 	@GetMapping("/grupos")
-	public List<GrupoModel> listar(@PathVariable Long usuarioId){
+	public List<GroupModel> listar(@PathVariable Long usuarioId){
 		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
 		return grupoModelAssembler.toCollectionModel(usuario.getGrupos());
 	}

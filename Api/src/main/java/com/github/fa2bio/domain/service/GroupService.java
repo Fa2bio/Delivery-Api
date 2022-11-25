@@ -10,16 +10,16 @@ import com.github.fa2bio.domain.exception.EntidadeEmUsoException;
 import com.github.fa2bio.domain.exception.GrupoNaoEncontradoException;
 import com.github.fa2bio.domain.model.Grupo;
 import com.github.fa2bio.domain.model.Permissao;
-import com.github.fa2bio.domain.repository.GrupoRepository;
+import com.github.fa2bio.domain.repository.GroupRepository;
 
 @Service
-public class CadastroGrupoService {
+public class GroupService {
 	
 	private static final String MSG_GRUPO_EM_USO 
 	= "Grupo de código %d não pode ser removido, pois está em uso";
 
 	@Autowired
-	private GrupoRepository grupoRepository;
+	private GroupRepository grupoRepository;
 	
 	@Autowired
 	private CadastroPermissaoService cadastroPermissaoService;
@@ -42,20 +42,20 @@ public class CadastroGrupoService {
 	}
 	
 	@Transactional
-	public void associarPermissao(Long grupoId, Long permissaoId) {
-		Grupo grupo = buscarOuFalhar(grupoId);
+	public void associatePermission(Long grupoId, Long permissaoId) {
+		Grupo grupo = fetchOrFail(grupoId);
 		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
 		grupo.adicionarPermissao(permissao);
 	}
 	
 	@Transactional
-	public void desassociarPermissao(Long grupoId, Long permissaoId) {
-		Grupo grupo = buscarOuFalhar(grupoId);
+	public void disassociatePermission(Long grupoId, Long permissaoId) {
+		Grupo grupo = fetchOrFail(grupoId);
 		Permissao permissao = cadastroPermissaoService.buscarOuFalhar(permissaoId);
 		grupo.removerPermissao(permissao);
 	}
 	
-	public Grupo buscarOuFalhar(Long grupoId) {
+	public Grupo fetchOrFail(Long grupoId) {
 		return grupoRepository.findById(grupoId)
 			.orElseThrow(() -> new GrupoNaoEncontradoException(grupoId));
 	}

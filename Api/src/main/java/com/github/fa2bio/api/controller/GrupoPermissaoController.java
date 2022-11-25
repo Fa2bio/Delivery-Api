@@ -15,33 +15,33 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.PermissaoModelAssembler;
 import com.github.fa2bio.api.model.PermissaoModel;
 import com.github.fa2bio.domain.model.Grupo;
-import com.github.fa2bio.domain.service.CadastroGrupoService;
+import com.github.fa2bio.domain.service.GroupService;
 
 @RestController
 @RequestMapping(value = "/grupos/{grupoId}")
 public class GrupoPermissaoController {
 	
 	@Autowired
-	private CadastroGrupoService cadastroGrupoService;
+	private GroupService cadastroGrupoService;
 	
 	@Autowired
 	private PermissaoModelAssembler permissaoModelAssembler;
 	
 	@GetMapping("/permissoes")
 	public List<PermissaoModel> listar(@PathVariable Long grupoId){
-		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId); 
+		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId); 
 		return permissaoModelAssembler.toCollectionModel(grupo.getPermissoes());
 	}
 	
 	@PutMapping("/permissoes/{permissaoId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void associar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
-		cadastroGrupoService.associarPermissao(grupoId, permissaoId);
+		cadastroGrupoService.associatePermission(grupoId, permissaoId);
 	}
 	
 	@DeleteMapping("/permissoes/{permissaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void desassociar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
-		cadastroGrupoService.desassociarPermissao(grupoId, permissaoId);
+		cadastroGrupoService.disassociatePermission(grupoId, permissaoId);
 	}
 }

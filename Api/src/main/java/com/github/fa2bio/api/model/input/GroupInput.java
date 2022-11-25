@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GrupoInput {
+public class GroupInput {
 	@NotBlank
 	private String nome;
 }

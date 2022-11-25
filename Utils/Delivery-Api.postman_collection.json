@@ -459,7 +459,7 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Register",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -573,14 +573,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos",
+							"raw": "http://localhost:8080/groups",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos"
+								"groups"
 							],
 							"query": [
 								{
@@ -594,40 +594,48 @@
 					"response": []
 				},
 				{
-					"name": "Find",
+					"name": "Register",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Visitante\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/grupos/1",
+							"raw": "http://localhost:8080/groups",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos",
-								"1"
+								"groups"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete",
+					"name": "Find",
 					"request": {
-						"method": "DELETE",
+						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/grupos/5",
+							"raw": "http://localhost:8080/groups/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos",
-								"5"
+								"groups",
+								"1"
 							]
 						}
 					},
@@ -648,14 +656,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos/2",
+							"raw": "http://localhost:8080/groups/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos",
+								"groups",
 								"2"
 							]
 						}
@@ -663,28 +671,20 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Delete",
 					"request": {
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Visitante\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/grupos",
+							"raw": "http://localhost:8080/groups/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos"
+								"groups",
+								"5"
 							]
 						}
 					},

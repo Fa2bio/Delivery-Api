@@ -25,7 +25,7 @@ public class CadastroUsuarioService {
 	private UsuarioRepository usuarioRepository;
 	
 	@Autowired
-	private CadastroGrupoService cadastroGrupoService;
+	private GroupService cadastroGrupoService;
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
@@ -56,7 +56,7 @@ public class CadastroUsuarioService {
 	@Transactional
 	public void associar(Long usuarioId, Long grupoId) {
 		Usuario usuario = buscarOuFalhar(usuarioId);
-		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
+		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.adicionarGrupo(grupo);
 		
 	}
@@ -64,7 +64,7 @@ public class CadastroUsuarioService {
 	@Transactional
 	public void deassociar(Long usuarioId, Long grupoId) {
 		Usuario usuario = buscarOuFalhar(usuarioId);
-		Grupo grupo = cadastroGrupoService.buscarOuFalhar(grupoId);
+		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.removerGrupo(grupo);
 		
 	}
