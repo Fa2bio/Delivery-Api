@@ -1069,6 +1069,26 @@
 					"response": []
 				},
 				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update With Password",
 					"request": {
 						"method": "PUT",
@@ -1096,26 +1116,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/users/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"5"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1135,16 +1135,16 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos",
+							"raw": "http://localhost:8080/users/1/groups",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
+								"users",
 								"1",
-								"grupos"
+								"groups"
 							],
 							"query": [
 								{
@@ -1158,35 +1158,7 @@
 					"response": []
 				},
 				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Maria Joaquina\",\r\n        \"email\": \"maria.vnd@test.com\",\r\n        \"senha\": \"123\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Assiciate - Groups",
+					"name": "Associate",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -1200,16 +1172,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos/2",
+							"raw": "http://localhost:8080/users/1/groups/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
+								"users",
 								"1",
-								"grupos",
+								"groups",
 								"2"
 							]
 						}
@@ -1217,21 +1189,21 @@
 					"response": []
 				},
 				{
-					"name": "Disassocieate - Groups",
+					"name": "Disassocieate",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/usuarios/1/grupos/2",
+							"raw": "http://localhost:8080/users/1/groups/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios",
+								"users",
 								"1",
-								"grupos",
+								"groups",
 								"2"
 							]
 						}

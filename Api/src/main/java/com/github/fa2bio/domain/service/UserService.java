@@ -55,7 +55,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void associar(Long usuarioId, Long grupoId) {
+	public void associate(Long usuarioId, Long grupoId) {
 		Usuario usuario = fetchOrFail(usuarioId);
 		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.adicionarGrupo(grupo);
@@ -63,7 +63,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void deassociar(Long usuarioId, Long grupoId) {
+	public void disassociate(Long usuarioId, Long grupoId) {
 		Usuario usuario = fetchOrFail(usuarioId);
 		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.removerGrupo(grupo);
@@ -75,7 +75,7 @@ public class UserService {
 			.orElseThrow(() -> new UserNotFoundException(usuarioId));
 	}
 
-	public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
+	public void updatePassword(Long usuarioId, String senhaAtual, String novaSenha) {
 		Usuario user = fetchOrFail(usuarioId);
 		if(user.getSenha().equals(senhaAtual)) {
 			user.setSenha(novaSenha);

@@ -77,7 +77,7 @@ public class UserController implements UserControllerSwagger{
 	@PutMapping("/{userId}-updatePassword")
 	@ResponseStatus(HttpStatus.OK)
 	public void updatePassword(@PathVariable Long userId, @RequestBody @Valid PasswordInput passwordInput) {
-		userService.alterarSenha(userId, passwordInput.getSenhaAtual(), passwordInput.getNovaSenha());
+		userService.updatePassword(userId, passwordInput.getSenhaAtual(), passwordInput.getNovaSenha());
 	}
 	
 	@Override

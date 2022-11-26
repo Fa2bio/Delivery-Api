@@ -14,35 +14,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.fa2bio.api.assembler.GroupModelAssembler;
 import com.github.fa2bio.api.model.GroupModel;
+import com.github.fa2bio.api.swaggeropenapi.controller.UserGroupControllerSwagger;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.service.UserService;
 
 @RestController
-@RequestMapping("/usuarios/{usuarioId}")
-public class UsuarioGrupoController {
+@RequestMapping("/users/{userId}")
+public class UserGroupController implements UserGroupControllerSwagger{
 
 	@Autowired
-	private UserService cadastroUsuarioService;
+	private UserService userService;
 	
 	@Autowired
-	private GroupModelAssembler grupoModelAssembler;
+	private GroupModelAssembler groupModelAssembler;
 	
-	@GetMapping("/grupos")
-	public List<GroupModel> listar(@PathVariable Long usuarioId){
-		Usuario usuario = cadastroUsuarioService.fetchOrFail(usuarioId);
-		return grupoModelAssembler.toCollectionModel(usuario.getGrupos());
+	@Override
+	@GetMapping("/groups")
+	public List<GroupModel> list(@PathVariable Long userId){
+		Usuario user = userService.fetchOrFail(userId);
+		return groupModelAssembler.toCollectionModel(user.getGrupos());
 	}
 	
-	@PutMapping("/grupos/{grupoId}")
+	@Override
+	@PutMapping("/groups/{groupId}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void associar(@PathVariable Long usuarioId, @PathVariable Long grupoId) {
-		cadastroUsuarioService.associar(usuarioId, grupoId);
+	public void associate(@PathVariable Long userId, @PathVariable Long groupId) {
+		userService.associate(userId, groupId);
 	}
 	
-	@DeleteMapping("/grupos/{grupoId}")
+	@Override
+	@DeleteMapping("/groups/{groupId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deassociar(@PathVariable Long usuarioId, @PathVariable Long grupoId) {
-		cadastroUsuarioService.deassociar(usuarioId, grupoId);
+	public void disassociate(@PathVariable Long userId, @PathVariable Long groupId) {
+		userService.disassociate(userId, groupId);
 	}
 	
 }
