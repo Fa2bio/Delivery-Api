@@ -48,7 +48,12 @@ public interface UserControllerSwagger {
 			@ApiParam(name = "Body", value = "Representation of a new user with the new data", required = true)
 			UserInput userInput);
 	
-	
+	@ApiOperation("Update a password by Id")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "Password updated"),
+		@ApiResponse(code = 400, message = "Password not match", response = Problem.class),
+		@ApiResponse(code = 404, message = "User not found", response = Problem.class)
+	})
 	void updatePassword(
 			@ApiParam(value = "User Id", example = "1", required = true) 
 			Long userId, 
