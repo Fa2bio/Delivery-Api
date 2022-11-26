@@ -891,27 +891,6 @@
 			"name": "Order - Status",
 			"item": [
 				{
-					"name": "Order - Confirm",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/confirm",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"orders",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
-								"confirm"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Order - Cancel",
 					"request": {
 						"method": "PUT",
@@ -927,6 +906,27 @@
 								"orders",
 								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
 								"cancellation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order - Confirm",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+								"confirm"
 							]
 						}
 					},
@@ -971,14 +971,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"users"
 							],
 							"query": [
 								{
@@ -986,104 +986,6 @@
 									"value": "application/json",
 									"disabled": true
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Find",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/usuarios/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/usuarios/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Maria Joaquina\",\r\n        \"email\": \"maria.vnd@test.com\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update With Password",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "    {\r\n        \"senhaAtual\": \"123\",\r\n        \"senhaNova\": \"5678\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/usuarios/5-atualizarSenha",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"usuarios",
-								"5-atualizarSenha"
 							]
 						}
 					},
@@ -1104,14 +1006,112 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://localhost:8080/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"usuarios"
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"nome\": \"Neymar Junior\",\r\n        \"email\": \"neyJunior.vnd@test.com\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update With Password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"senhaAtual\": \"123\",\r\n        \"novaSenha\": \"45678\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/5-updatePassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5-updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"5"
 							]
 						}
 					},

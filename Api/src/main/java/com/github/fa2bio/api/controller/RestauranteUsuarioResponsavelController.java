@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.api.assembler.UsuarioModelAssembler;
-import com.github.fa2bio.api.model.UsuarioModel;
+import com.github.fa2bio.api.assembler.UserModelAssembler;
+import com.github.fa2bio.api.model.UserModel;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.service.RestaurantService;
 
@@ -25,10 +25,10 @@ public class RestauranteUsuarioResponsavelController {
 	private RestaurantService cadastroRestauranteService;
 	
 	@Autowired
-	private UsuarioModelAssembler usuarioModelAssembler;
+	private UserModelAssembler usuarioModelAssembler;
 	
 	@GetMapping("/responsaveis")
-	public List<UsuarioModel> listar(@PathVariable Long restauranteId){
+	public List<UserModel> listar(@PathVariable Long restauranteId){
 		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(restauranteId);
 		return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
 	}

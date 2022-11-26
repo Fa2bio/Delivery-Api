@@ -54,7 +54,7 @@ public class OrderService {
 		Restaurante restaurante = restaurantService.buscarOuFalhar(pedido.getRestaurante().getId());
 		FormaPagamento formaPagamento = paymentMethodsService.fetchOrFail(pedido.getFormaPagamento().getId());
 		Cidade cidade = cityService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
-		Usuario cliente = userService.buscarOuFalhar(pedido.getCliente().getId());
+		Usuario cliente = userService.fetchOrFail(pedido.getCliente().getId());
 		
 		pedido.setRestaurante(restaurante);
 		pedido.setFormaPagamento(formaPagamento);

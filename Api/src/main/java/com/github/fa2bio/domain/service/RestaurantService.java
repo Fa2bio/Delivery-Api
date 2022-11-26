@@ -108,7 +108,7 @@ public class RestaurantService {
 	@Transactional
 	public void associarUsuario(Long restauranteId, Long usuarioId) {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
-		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
+		Usuario usuario = cadastroUsuarioService.fetchOrFail(usuarioId);
 		
 		restaurante.adicionarResponsavel(usuario);
 	}
@@ -116,7 +116,7 @@ public class RestaurantService {
 	@Transactional
 	public void desassociarUsuario(Long restauranteId, Long usuarioId) {
 		Restaurante restaurante = buscarOuFalhar(restauranteId);
-		Usuario usuario = cadastroUsuarioService.buscarOuFalhar(usuarioId);
+		Usuario usuario = cadastroUsuarioService.fetchOrFail(usuarioId);
 		
 		restaurante.removerResponsavel(usuario);
 	}

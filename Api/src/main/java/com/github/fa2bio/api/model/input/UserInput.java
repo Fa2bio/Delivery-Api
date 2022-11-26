@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UsuarioInput {
+public class UserInput {
 
 	@NotBlank
 	private String nome;

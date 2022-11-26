@@ -21,7 +21,7 @@ public class OrderModel {
 	private OffsetDateTime dataEntrega; 
 	private OffsetDateTime dataCancelamento; 
 	private RestauranteResumoModel restaurante; 
-	private UsuarioModel cliente; 
+	private UserModel cliente; 
 	private PaymentMethodModel formaPagamento; 
 	private EnderecoModel enderecoEntrega; 
 	private List<ItemPedidoModel> itens; 

@@ -17,5 +17,5 @@ public class OderAbstractModel {
 	private String Status;
 	private OffsetDateTime dataCriacao;
 	private RestauranteResumoModel restaurante;
-	private UsuarioModel Cliente;
+	private UserModel Cliente;
 }

@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.EntityInUseException;
+import com.github.fa2bio.domain.exception.PasswordNotMatchExceptiom;
 import com.github.fa2bio.domain.exception.BusinessException;
-import com.github.fa2bio.domain.exception.UsuarioNaoEncontradoException;
+import com.github.fa2bio.domain.exception.UserNotFoundException;
 import com.github.fa2bio.domain.model.Grupo;
 import com.github.fa2bio.domain.model.Usuario;
-import com.github.fa2bio.domain.repository.UsuarioRepository;
+import com.github.fa2bio.domain.repository.UserRepository;
 
 @Service
 public class UserService {
@@ -22,7 +23,7 @@ public class UserService {
 	= "Usuario de código %d não pode ser removida, pois está em uso";
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 	
 	@Autowired
 	private GroupService cadastroGrupoService;
@@ -46,7 +47,7 @@ public class UserService {
 			usuarioRepository.deleteById(usuarioId);
 			usuarioRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new UsuarioNaoEncontradoException(usuarioId);
+			throw new UserNotFoundException(usuarioId);
 		} catch (DataIntegrityViolationException e) {
 			throw new EntityInUseException(String.format(MSG_USUARIO_EM_USO, usuarioId));
 		}
@@ -55,7 +56,7 @@ public class UserService {
 	
 	@Transactional
 	public void associar(Long usuarioId, Long grupoId) {
-		Usuario usuario = buscarOuFalhar(usuarioId);
+		Usuario usuario = fetchOrFail(usuarioId);
 		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.adicionarGrupo(grupo);
 		
@@ -63,19 +64,23 @@ public class UserService {
 	
 	@Transactional
 	public void deassociar(Long usuarioId, Long grupoId) {
-		Usuario usuario = buscarOuFalhar(usuarioId);
+		Usuario usuario = fetchOrFail(usuarioId);
 		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
 		usuario.removerGrupo(grupo);
 		
 	}
 	
-	public Usuario buscarOuFalhar(Long usuarioId) {
+	public Usuario fetchOrFail(Long usuarioId) {
 		return usuarioRepository.findById(usuarioId)
-			.orElseThrow(() -> new UsuarioNaoEncontradoException(usuarioId));
+			.orElseThrow(() -> new UserNotFoundException(usuarioId));
 	}
 
 	public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
-		// TODO Auto-generated method stub
-		
+		Usuario user = fetchOrFail(usuarioId);
+		if(user.getSenha().equals(senhaAtual)) {
+			user.setSenha(novaSenha);
+			salvar(user);
+		}else throw new PasswordNotMatchExceptiom("Could not change password because the password entered is incorrect. Change the field senhaAtual and try again");
+				
 	}
 }

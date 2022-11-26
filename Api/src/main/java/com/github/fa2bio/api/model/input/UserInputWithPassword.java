@@ -7,11 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SenhaInput {
-
-	@NotBlank
-	private String senhaAtual;
+public class UserInputWithPassword extends UserInput{
 	
 	@NotBlank
-	private String novaSenha;
+	private String senha;
 }
