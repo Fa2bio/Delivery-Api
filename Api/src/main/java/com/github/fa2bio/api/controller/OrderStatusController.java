@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.domain.service.OrderStatusService;
 
 @RestController
-@RequestMapping(value = "/orders/{codeOrder}")
+@RequestMapping(value = "/orders/{orderCode}")
 public class OrderStatusController {
 	
 	@Autowired
@@ -19,19 +19,19 @@ public class OrderStatusController {
 	
 	@PutMapping("/confirm")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void confirm(@PathVariable String codeOrder) {
-		orderStatusService.confirmar(codeOrder);
+	public void confirm(@PathVariable String orderCode) {
+		orderStatusService.confirmar(orderCode);
 	}
 	
 	@PutMapping("/cancellation")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void cancellation(@PathVariable String codeOrder) {
-		orderStatusService.cancelar(codeOrder);
+	public void cancellation(@PathVariable String orderCode) {
+		orderStatusService.cancelar(orderCode);
 	}
 	
 	@PutMapping("/delivered")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delivered(@PathVariable String codeOrder) {
-		orderStatusService.entregar(codeOrder);
+	public void delivered(@PathVariable String orderCode) {
+		orderStatusService.entregar(orderCode);
 	}
 }

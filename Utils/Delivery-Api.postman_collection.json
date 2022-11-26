@@ -708,16 +708,16 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/grupos/1/permissoes",
+							"raw": "http://localhost:8080/groups/1/permissions",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos",
+								"groups",
 								"1",
-								"permissoes"
+								"permissions"
 							],
 							"query": [
 								{
@@ -725,6 +725,28 @@
 									"value": "application/json",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disassociate - Permissions",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/groups/1/permissions/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"groups",
+								"1",
+								"permissions",
+								"1"
 							]
 						}
 					},
@@ -745,38 +767,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos/1/permissoes/1",
+							"raw": "http://localhost:8080/groups/1/permissions/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"grupos",
+								"groups",
 								"1",
-								"permissoes",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Disassociate - Permissions",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/grupos/1/permissoes/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"grupos",
-								"1",
-								"permissoes",
+								"permissions",
 								"1"
 							]
 						}
@@ -794,14 +794,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos?clienteId=2&restauranteId=1&dataCriacaoInicio=2019-10-30T21:10:00Z&dataCriacaoFim=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
+							"raw": "http://localhost:8080/orders?clienteId=2&restauranteId=1&dataCriacaoInicio=2019-10-30T21:10:00Z&dataCriacaoFim=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos"
+								"orders"
 							],
 							"query": [
 								{
@@ -843,14 +843,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos",
+								"orders",
 								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4"
 							]
 						}
@@ -858,7 +858,7 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Register",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -872,77 +872,82 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/pedidos",
+							"raw": "http://localhost:8080/orders",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos"
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order - Status",
+			"item": [
+				{
+					"name": "Order - Confirm",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/confirm",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+								"confirm"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Flor Confirm",
+					"name": "Order - Cancel",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/confirmacao",
+							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/cancellation",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos",
+								"orders",
 								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
-								"confirmacao"
+								"cancellation"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Flow - Cancel",
+					"name": "Order - Delivered",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/cancelamento",
+							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/delivered",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"pedidos",
+								"orders",
 								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
-								"cancelamento"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Flow - Delivery",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/pedidos/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/entregue",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"pedidos",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
-								"entregue"
+								"delivered"
 							]
 						}
 					},
@@ -1085,7 +1090,7 @@
 					"response": []
 				},
 				{
-					"name": "Create",
+					"name": "Register",
 					"request": {
 						"method": "POST",
 						"header": [],

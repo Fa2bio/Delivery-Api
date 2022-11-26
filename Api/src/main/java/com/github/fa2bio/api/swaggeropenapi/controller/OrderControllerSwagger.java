@@ -34,7 +34,7 @@ public interface OrderControllerSwagger {
 	})
 	OrderModel find(
 			@ApiParam(value = "Order UUID", example = "5a76ddc6-fc45-468d-8b8d-bc8bef3462b4", required = true)
-			String codeOrder);
+			String orderCode);
 	
 	@ApiOperation("Register a order")
 	@ApiResponses({
