@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.UsuarioModelAssembler;
 import com.github.fa2bio.api.model.UsuarioModel;
 import com.github.fa2bio.domain.model.Restaurante;
-import com.github.fa2bio.domain.service.CadastroRestauranteService;
+import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
 @RequestMapping("/restaurantes/{restauranteId}")
 public class RestauranteUsuarioResponsavelController {
 
 	@Autowired
-	private CadastroRestauranteService cadastroRestauranteService;
+	private RestaurantService cadastroRestauranteService;
 	
 	@Autowired
 	private UsuarioModelAssembler usuarioModelAssembler;

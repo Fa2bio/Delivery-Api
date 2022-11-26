@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PedidoResumoModel {
+public class OderAbstractModel {
 	
 	private String codigo;
 	private BigDecimal subtotal;

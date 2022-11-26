@@ -8,20 +8,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.PedidoModel;
+import com.github.fa2bio.api.model.OderAbstractModel;
 import com.github.fa2bio.domain.model.Pedido;
 
 @Component
-public class PedidoModelAssembler {
+public class OrderAbstractModelAssembler {
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public PedidoModel toModel(Pedido pedido) {
-		return modelMapper.map(pedido, PedidoModel.class);
+	public OderAbstractModel toModel(Pedido pedido) {
+		return modelMapper.map(pedido, OderAbstractModel.class);
 	}
 	
-	public List<PedidoModel> toCollectionModel(Collection<Pedido> pedidos){
+	public List<OderAbstractModel> toCollectionModel(Collection<Pedido> pedidos){
 		return pedidos.stream()
 				.map(pedido -> toModel(pedido))
 				.collect(Collectors.toList());

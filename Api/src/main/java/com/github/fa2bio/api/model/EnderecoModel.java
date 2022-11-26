@@ -11,5 +11,5 @@ public class EnderecoModel {
 	private String numero;
 	private String complemento;
 	private String bairro;
-	private CidadeResumoModel cidade;
+	private CityAbstractModel cidade;
 }

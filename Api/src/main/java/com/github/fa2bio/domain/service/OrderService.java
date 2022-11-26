@@ -5,39 +5,39 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.PaymentMethodNotFoundException;
-import com.github.fa2bio.domain.exception.PedidoNaoEncontradoException;
+import com.github.fa2bio.domain.exception.OrderNotFoundException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.FormaPagamento;
 import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.model.Usuario;
-import com.github.fa2bio.domain.repository.PedidoRepository;
+import com.github.fa2bio.domain.repository.OrderRepository;
 
 @Service
-public class EmissaoPedidoService {
+public class OrderService {
 
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private OrderRepository orderRepository;
 	
 	@Autowired
-	private CityService cadastroCidadeService;
+	private CityService cityService;
 	
 	@Autowired
-	private CadastroUsuarioService cadastroUsuarioService;
+	private UserService userService;
 	
 	@Autowired
-	private CadastroRestauranteService cadastroRestauranteService;
+	private RestaurantService restaurantService;
 	
 	@Autowired
-	private PaymentMethodsService cadastroFormaPagamentoService;
+	private PaymentMethodsService paymentMethodsService;
 	
 	@Autowired
-	private CadastroProdutoService cadastroProdutoService;
+	private ProductService productService;
 	
-	public Pedido buscarOuFalhar(String codigoPedido) {
-		return pedidoRepository.findByCodigo(codigoPedido)
-			.orElseThrow(() -> new PedidoNaoEncontradoException(codigoPedido));
+	public Pedido fetchOrFail(String codigoPedido) {
+		return orderRepository.findByCodigo(codigoPedido)
+			.orElseThrow(() -> new OrderNotFoundException(codigoPedido));
 	}
 	
 	@Transactional
@@ -47,14 +47,14 @@ public class EmissaoPedidoService {
 		pedido.setTaxaFrete(pedido.getRestaurante().getTaxaFrete());
 		pedido.calcularValorTotal();
 		
-		return pedidoRepository.save(pedido);
+		return orderRepository.save(pedido);
 	}
 
 	private void validarPedido(Pedido pedido) {
-		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(pedido.getRestaurante().getId());
-		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(pedido.getFormaPagamento().getId());
-		Cidade cidade = cadastroCidadeService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
-		Usuario cliente = cadastroUsuarioService.buscarOuFalhar(pedido.getCliente().getId());
+		Restaurante restaurante = restaurantService.buscarOuFalhar(pedido.getRestaurante().getId());
+		FormaPagamento formaPagamento = paymentMethodsService.fetchOrFail(pedido.getFormaPagamento().getId());
+		Cidade cidade = cityService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
+		Usuario cliente = userService.buscarOuFalhar(pedido.getCliente().getId());
 		
 		pedido.setRestaurante(restaurante);
 		pedido.setFormaPagamento(formaPagamento);
@@ -68,7 +68,7 @@ public class EmissaoPedidoService {
 	
 	private void validarItens(Pedido pedido) {
 		pedido.getItens().forEach(item -> {
-			Produto produto = cadastroProdutoService.buscarOuFalhar(
+			Produto produto = productService.buscarOuFalhar(
 					pedido.getRestaurante().getId(), item.getProduto().getId());
 			
 			item.setPedido(pedido);

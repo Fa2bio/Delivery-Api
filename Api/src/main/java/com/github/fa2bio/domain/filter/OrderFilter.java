@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class PedidoFilter {
+public class OrderFilter {
 	private Long clienteId;
 	private Long restauranteId;
 	

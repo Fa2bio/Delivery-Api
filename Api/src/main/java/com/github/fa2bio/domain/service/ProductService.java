@@ -12,7 +12,7 @@ import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.repository.ProdutoRepository;
 
 @Service
-public class CadastroProdutoService {
+public class ProductService {
 	private static final String MSG_PRODUTO_EM_USO 
 	= "Produto de código %d não pode ser removido, pois está em uso";
 

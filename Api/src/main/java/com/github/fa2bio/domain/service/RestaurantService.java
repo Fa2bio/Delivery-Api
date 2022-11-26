@@ -15,7 +15,7 @@ import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.RestauranteRepository;
 
 @Service
-public class CadastroRestauranteService {
+public class RestaurantService {
 
 	@Autowired
 	private RestauranteRepository restauranteRepository;
@@ -30,7 +30,7 @@ public class CadastroRestauranteService {
 	private PaymentMethodsService cadastroFormaPagamentoService;
 	
 	@Autowired
-	private CadastroUsuarioService cadastroUsuarioService;
+	private UserService cadastroUsuarioService;
 	
 	@Transactional
 	public Restaurante salvar(Restaurante restaurante) {

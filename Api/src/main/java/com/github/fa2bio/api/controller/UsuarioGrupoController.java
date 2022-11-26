@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.GroupModelAssembler;
 import com.github.fa2bio.api.model.GroupModel;
 import com.github.fa2bio.domain.model.Usuario;
-import com.github.fa2bio.domain.service.CadastroUsuarioService;
+import com.github.fa2bio.domain.service.UserService;
 
 @RestController
 @RequestMapping("/usuarios/{usuarioId}")
 public class UsuarioGrupoController {
 
 	@Autowired
-	private CadastroUsuarioService cadastroUsuarioService;
+	private UserService cadastroUsuarioService;
 	
 	@Autowired
 	private GroupModelAssembler grupoModelAssembler;

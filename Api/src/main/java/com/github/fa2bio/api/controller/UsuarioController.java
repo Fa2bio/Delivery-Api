@@ -24,7 +24,7 @@ import com.github.fa2bio.api.model.input.UsuarioInput;
 import com.github.fa2bio.api.model.input.UsuarioInputComSenha;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.UsuarioRepository;
-import com.github.fa2bio.domain.service.CadastroUsuarioService;
+import com.github.fa2bio.domain.service.UserService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -34,7 +34,7 @@ public class UsuarioController {
 	private UsuarioRepository UsuarioRepository;
 	
 	@Autowired
-	private CadastroUsuarioService cadastroUsuarioService;
+	private UserService cadastroUsuarioService;
 	
 	@Autowired
 	private UsuarioModelAssembler usuarioModelAssembler;

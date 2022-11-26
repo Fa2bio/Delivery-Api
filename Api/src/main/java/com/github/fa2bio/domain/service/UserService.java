@@ -16,7 +16,7 @@ import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.UsuarioRepository;
 
 @Service
-public class CadastroUsuarioService {
+public class UserService {
 
 	private static final String MSG_USUARIO_EM_USO 
 	= "Usuario de código %d não pode ser removida, pois está em uso";

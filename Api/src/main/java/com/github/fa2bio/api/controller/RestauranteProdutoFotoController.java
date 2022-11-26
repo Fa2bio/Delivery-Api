@@ -26,7 +26,7 @@ import com.github.fa2bio.api.model.FotoProdutoModel;
 import com.github.fa2bio.api.model.input.FotoProdutoInput;
 import com.github.fa2bio.domain.model.FotoProduto;
 import com.github.fa2bio.domain.model.Produto;
-import com.github.fa2bio.domain.service.CadastroProdutoService;
+import com.github.fa2bio.domain.service.ProductService;
 import com.github.fa2bio.domain.service.CatalogoFotoProdutoService;
 import com.github.fa2bio.domain.service.FotoStorageService;
 
@@ -35,7 +35,7 @@ import com.github.fa2bio.domain.service.FotoStorageService;
 public class RestauranteProdutoFotoController {
 	
 	@Autowired
-	private CadastroProdutoService cadastroProdutoService;
+	private ProductService cadastroProdutoService;
 	
 	@Autowired
 	private CatalogoFotoProdutoService catalogoFotoProdutoService;

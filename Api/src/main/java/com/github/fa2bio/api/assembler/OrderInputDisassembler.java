@@ -4,19 +4,19 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.input.PedidoInput;
+import com.github.fa2bio.api.model.input.OrderInput;
 import com.github.fa2bio.domain.model.Pedido;
 
 @Component
-public class PedidoInputDisassembler {
+public class OrderInputDisassembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Pedido toDomainObject(PedidoInput pedidoInput) {
+	public Pedido toDomainObject(OrderInput pedidoInput) {
 		return modelMapper.map(pedidoInput, Pedido.class);
 	}
 	
-	public void copyToDomainObject(PedidoInput pedidoInput, Pedido pedido) {
+	public void copyToDomainObject(OrderInput pedidoInput, Pedido pedido) {
 		modelMapper.map(pedidoInput,pedido);
 	}
 }

@@ -6,12 +6,12 @@ import javax.persistence.criteria.Predicate;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.github.fa2bio.domain.filter.PedidoFilter;
+import com.github.fa2bio.domain.filter.OrderFilter;
 import com.github.fa2bio.domain.model.Pedido;
 
 public class PedidoSpecs {
 
-	public static Specification<Pedido> usandoFiltro(PedidoFilter filtro){
+	public static Specification<Pedido> usandoFiltro(OrderFilter filtro){
 		return (root, query, builder) -> {
 			
 			if(Pedido.class.equals(query.getResultType())) {

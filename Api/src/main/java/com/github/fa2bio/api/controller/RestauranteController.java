@@ -28,7 +28,7 @@ import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.repository.RestauranteRepository;
-import com.github.fa2bio.domain.service.CadastroRestauranteService;
+import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
 @RequestMapping(value = "/restaurantes")
@@ -38,7 +38,7 @@ public class RestauranteController {
 	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
-	private CadastroRestauranteService cadastroRestaurante;
+	private RestaurantService cadastroRestaurante;
 	
 	@Autowired
 	private RestauranteModelAssembler restauranteModelAssembler;

@@ -8,30 +8,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.domain.service.FluxoPedidoService;
+import com.github.fa2bio.domain.service.OrderStatusService;
 
 @RestController
-@RequestMapping(value = "/pedidos/{codigoPedido}")
-public class FluxoPedidoController {
+@RequestMapping(value = "/orders/{codeOrder}")
+public class OrderStatusController {
 	
 	@Autowired
-	private FluxoPedidoService fluxoPedidoService;
+	private OrderStatusService orderStatusService;
 	
-	@PutMapping("/confirmacao")
+	@PutMapping("/confirm")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void confirmar(@PathVariable String codigoPedido) {
-		fluxoPedidoService.confirmar(codigoPedido);
+	public void confirm(@PathVariable String codeOrder) {
+		orderStatusService.confirmar(codeOrder);
 	}
 	
-	@PutMapping("/cancelamento")
+	@PutMapping("/cancellation")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void cancelar(@PathVariable String codigoPedido) {
-		fluxoPedidoService.cancelar(codigoPedido);
+	public void cancellation(@PathVariable String codeOrder) {
+		orderStatusService.cancelar(codeOrder);
 	}
 	
-	@PutMapping("/entregue")
+	@PutMapping("/delivered")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void entregar(@PathVariable String codigoPedido) {
-		fluxoPedidoService.entregar(codigoPedido);
+	public void delivered(@PathVariable String codeOrder) {
+		orderStatusService.entregar(codeOrder);
 	}
 }

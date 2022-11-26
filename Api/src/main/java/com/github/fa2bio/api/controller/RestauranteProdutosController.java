@@ -23,18 +23,18 @@ import com.github.fa2bio.api.model.input.ProdutoInput;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.repository.ProdutoRepository;
-import com.github.fa2bio.domain.service.CadastroProdutoService;
-import com.github.fa2bio.domain.service.CadastroRestauranteService;
+import com.github.fa2bio.domain.service.ProductService;
+import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
 @RequestMapping(value = "/restaurantes/{restauranteId}/produtos")
 public class RestauranteProdutosController {
 
 	@Autowired
-	private CadastroRestauranteService cadastroRestaurante;
+	private RestaurantService cadastroRestaurante;
 	
 	@Autowired
-	private CadastroProdutoService cadastroProdutoService;
+	private ProductService cadastroProdutoService;
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;

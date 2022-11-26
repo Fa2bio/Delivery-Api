@@ -1,10 +1,10 @@
 package com.github.fa2bio.domain.exception;
 
-public class PedidoNaoEncontradoException extends EntityNotFoundException {
+public class OrderNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
-	public PedidoNaoEncontradoException(String codigoPedido) {
+	public OrderNotFoundException(String codigoPedido) {
 		super(String.format("Não existe um pedido com código %s", codigoPedido));
 	}
 	

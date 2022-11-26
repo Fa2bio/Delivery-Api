@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PedidoModel {
+public class OrderModel {
 	
 	private String codigo;
 	private BigDecimal subtotal;

@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PedidoInput {
+public class OrderInput {
 	
 	@Valid
 	@NotNull

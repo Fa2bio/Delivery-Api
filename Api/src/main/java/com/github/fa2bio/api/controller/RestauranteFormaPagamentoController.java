@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.PaymentMethodModelAssembler;
 import com.github.fa2bio.api.model.PaymentMethodModel;
 import com.github.fa2bio.domain.model.Restaurante;
-import com.github.fa2bio.domain.service.CadastroRestauranteService;
+import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
 @RequestMapping(value = "/restaurantes/{restauranteId}/formas-pagamento")
 public class RestauranteFormaPagamentoController {
 
 	@Autowired
-	private CadastroRestauranteService cadastroRestaurante;
+	private RestaurantService cadastroRestaurante;
 	
 	@Autowired
 	private PaymentMethodModelAssembler formaPagamentoModelAssembler;
