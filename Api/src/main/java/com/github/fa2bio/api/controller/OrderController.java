@@ -74,9 +74,9 @@ public class OrderController implements OrderControllerSwagger{
 	}
 
 	@Override
-	@GetMapping("/{codeOrder}")
-	public OrderModel find(@PathVariable String codeOrder) {
-		Pedido order = issuingOrderService.fetchOrFail(codeOrder);
+	@GetMapping("/{orderCode}")
+	public OrderModel find(@PathVariable String orderCode) {
+		Pedido order = issuingOrderService.fetchOrFail(orderCode);
 		
 		return orderModelAssembler.toModel(order);
 	}
