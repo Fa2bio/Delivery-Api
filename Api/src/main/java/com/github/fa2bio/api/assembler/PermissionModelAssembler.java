@@ -8,19 +8,19 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.PermissaoModel;
+import com.github.fa2bio.api.model.PermissionModel;
 import com.github.fa2bio.domain.model.Permissao;
 
 @Component
-public class PermissaoModelAssembler {
+public class PermissionModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public PermissaoModel toModel(Permissao permissao) {
-		return modelMapper.map(permissao, PermissaoModel.class);
+	public PermissionModel toModel(Permissao permissao) {
+		return modelMapper.map(permissao, PermissionModel.class);
 	}
 	
-	public List<PermissaoModel> toCollectionModel(Collection<Permissao> permissoes){
+	public List<PermissionModel> toCollectionModel(Collection<Permissao> permissoes){
 		return permissoes.stream()
 				.map(permissao -> toModel(permissao))
 				.collect(Collectors.toList());

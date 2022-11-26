@@ -44,14 +44,14 @@ public class GroupService {
 	@Transactional
 	public void associatePermission(Long grupoId, Long permissaoId) {
 		Grupo grupo = fetchOrFail(grupoId);
-		Permissao permissao = permissionService.buscarOuFalhar(permissaoId);
+		Permissao permissao = permissionService.fetchOrFail(permissaoId);
 		grupo.adicionarPermissao(permissao);
 	}
 	
 	@Transactional
 	public void disassociatePermission(Long grupoId, Long permissaoId) {
 		Grupo grupo = fetchOrFail(grupoId);
-		Permissao permissao = permissionService.buscarOuFalhar(permissaoId);
+		Permissao permissao = permissionService.fetchOrFail(permissaoId);
 		grupo.removerPermissao(permissao);
 	}
 	

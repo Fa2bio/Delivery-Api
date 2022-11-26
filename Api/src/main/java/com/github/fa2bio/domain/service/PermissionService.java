@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.EntityInUseException;
-import com.github.fa2bio.domain.exception.PermissaoNaoEncontradaException;
+import com.github.fa2bio.domain.exception.PermissionNotFoundException;
 import com.github.fa2bio.domain.model.Permissao;
 import com.github.fa2bio.domain.repository.PermissaoRepository;
 
@@ -30,14 +30,14 @@ public class PermissionService {
 			permissaoRepository.deleteById(id);
 			permissaoRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new PermissaoNaoEncontradaException(id);
+			throw new PermissionNotFoundException(id);
 		} catch(DataIntegrityViolationException e) {
 			throw new EntityInUseException(String.format(MSG_PERMISSAO_EM_USO, id));
 		}
 	}
 	
-	public Permissao buscarOuFalhar(Long permissaoId) {
+	public Permissao fetchOrFail(Long permissaoId) {
 		return permissaoRepository.findById(permissaoId)
-			.orElseThrow(() -> new PermissaoNaoEncontradaException(permissaoId));
+			.orElseThrow(() -> new PermissionNotFoundException(permissaoId));
 	}
 }
