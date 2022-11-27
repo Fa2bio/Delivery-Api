@@ -8,26 +8,26 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-import com.github.fa2bio.domain.service.FotoStorageService;
+import com.github.fa2bio.domain.service.PhotoStorageService;
 
 @Service
-public class LocalFotoStorageService implements FotoStorageService{
+public class LocalFotoStorageService implements PhotoStorageService{
 
 	@Value("${delivery.storage.local.diretorio-fotos}")
 	private Path diretorioFotos;
 	
 	@Override
-	public void armazenar(NovaFoto novaFoto) {
+	public void store(NewPhoto newPhoto) {
 		try {
-			Path arquivoPath = getArquivoPath(novaFoto.getNomeArquivo());
-			FileCopyUtils.copy(novaFoto.getInputStream(), Files.newOutputStream(arquivoPath));
+			Path arquivoPath = getArquivoPath(newPhoto.getNomeArquivo());
+			FileCopyUtils.copy(newPhoto.getInputStream(), Files.newOutputStream(arquivoPath));
 		} catch (Exception e) {
 			throw new StorageException("Não foi possível armazenar o arquivo", e);
 		}
 	}
 
 	@Override
-	public void remover(String nomeArquivo) {
+	public void toRemove(String nomeArquivo) {
 		try {
 			Path arquivoPath = getArquivoPath(nomeArquivo);
 			
@@ -38,7 +38,7 @@ public class LocalFotoStorageService implements FotoStorageService{
 	}
 	
 	@Override
-	public InputStream recuperar(String nomeArquivo) {
+	public InputStream toRecover(String nomeArquivo) {
 		try {
 			Path arquivoPath = getArquivoPath(nomeArquivo);
 			return Files.newInputStream(arquivoPath);

@@ -37,7 +37,7 @@ public interface GroupPermissionsControllerSwagger {
 	@ApiOperation("Disassociate a permission from a group")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "Disassociation performed successfully"),
-		@ApiResponse(code = 404, message = "\"Group or permission not found", response = Problem.class)
+		@ApiResponse(code = 404, message = "Group or permission not found", response = Problem.class)
 	})
 	void disassociate(
 			@ApiParam(value = "Group Id", example = "1", required = true) 

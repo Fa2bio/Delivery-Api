@@ -51,7 +51,7 @@ public class OrderService {
 	}
 
 	private void validarPedido(Pedido pedido) {
-		Restaurante restaurante = restaurantService.buscarOuFalhar(pedido.getRestaurante().getId());
+		Restaurante restaurante = restaurantService.fetchOrFail(pedido.getRestaurante().getId());
 		FormaPagamento formaPagamento = paymentMethodsService.fetchOrFail(pedido.getFormaPagamento().getId());
 		Cidade cidade = cityService.fetchOrFail(pedido.getEnderecoEntrega().getCidade().getId());
 		Usuario cliente = userService.fetchOrFail(pedido.getCliente().getId());
@@ -68,7 +68,7 @@ public class OrderService {
 	
 	private void validarItens(Pedido pedido) {
 		pedido.getItens().forEach(item -> {
-			Produto produto = productService.buscarOuFalhar(
+			Produto produto = productService.fetchOrFail(
 					pedido.getRestaurante().getId(), item.getProduto().getId());
 			
 			item.setPedido(pedido);

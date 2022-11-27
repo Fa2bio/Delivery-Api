@@ -67,7 +67,7 @@ public class Restaurante {
 	private Set<FormaPagamento> formasPagamento = new HashSet<>();
 	
 	@ManyToMany
-	@JoinTable(name = "restaurante_usuario_responsavel",
+	@JoinTable(name = "restaurante_usuario",
 			joinColumns = @JoinColumn(name = "restaurante_id"),
 			inverseJoinColumns = @JoinColumn(name = "usuario_id"))
 	private Set<Usuario> responsaveis = new HashSet<>();
