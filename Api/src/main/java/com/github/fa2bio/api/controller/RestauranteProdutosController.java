@@ -48,7 +48,7 @@ public class RestauranteProdutosController {
 	@GetMapping
 	public List<ProdutoModel> listar(@PathVariable Long restauranteId, 
 			@RequestParam(required = false) boolean incluirInativos) {
-		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroRestaurante.fetchOrFail(restauranteId);
 		List<Produto> todosProdutos = null;
 		
 		if(incluirInativos) todosProdutos = produtoRepository.findTodosByRestaurante(restaurante);
@@ -66,7 +66,7 @@ public class RestauranteProdutosController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProdutoModel adicionar(@PathVariable Long restauranteId, @RequestBody @Valid ProdutoInput produtoInput) {
-		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroRestaurante.fetchOrFail(restauranteId);
 		Produto produto = produtoInputDisassembler.toDomainObject(produtoInput);
 		produto.setRestaurante(restaurante);
 		return produtoModelAssembler.toModel(cadastroProdutoService.salvar(produto));

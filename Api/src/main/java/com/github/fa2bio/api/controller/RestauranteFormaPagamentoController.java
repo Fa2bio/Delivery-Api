@@ -29,7 +29,7 @@ public class RestauranteFormaPagamentoController {
 
 	@GetMapping
 	public List<PaymentMethodModel> listar(@PathVariable Long restauranteId) {
-		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
+		Restaurante restaurante = cadastroRestaurante.fetchOrFail(restauranteId);
 		
 		return formaPagamentoModelAssembler.toCollectionModel(restaurante.getFormasPagamento());
 	}
@@ -37,12 +37,12 @@ public class RestauranteFormaPagamentoController {
 	@PutMapping("/{formaPagamentoId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void associar(@PathVariable Long restauranteId, @PathVariable Long formaPagamentoId) {
-		cadastroRestaurante.associarFormaPagamento(restauranteId, formaPagamentoId);
+		cadastroRestaurante.associatePaymentMethod(restauranteId, formaPagamentoId);
 	}
 	
 	@DeleteMapping("/{formaPagamentoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void desassociar(@PathVariable Long restauranteId, @PathVariable Long formaPagamentoId) {
-		cadastroRestaurante.desassociarFormaPagamento(restauranteId, formaPagamentoId);
+		cadastroRestaurante.disassociatePaymentMethod(restauranteId, formaPagamentoId);
 	}
 }

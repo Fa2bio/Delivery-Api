@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.github.fa2bio.domain.model.Restaurante;
 
 @Repository
-public interface RestauranteRepository 
+public interface RestaurantRepository 
 		extends CustomJpaRepository<Restaurante, Long>, RestauranteRepositoryQueries,
 		JpaSpecificationExecutor<Restaurante> {
 

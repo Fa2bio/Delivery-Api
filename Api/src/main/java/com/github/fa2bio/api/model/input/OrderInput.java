@@ -15,7 +15,7 @@ public class OrderInput {
 	
 	@Valid
 	@NotNull
-	private RestauranteIdInput restaurante;
+	private RestaurantIdInput restaurante;
 	
 	@Valid
 	@NotNull
