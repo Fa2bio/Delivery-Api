@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FotoProdutoInput {
+public class PhotoProductInput {
 
 	@NotNull
 	@FileSize(max = "500KB")

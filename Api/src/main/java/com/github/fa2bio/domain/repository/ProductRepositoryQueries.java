@@ -2,7 +2,7 @@ package com.github.fa2bio.domain.repository;
 
 import com.github.fa2bio.domain.model.FotoProduto;
 
-public interface ProdutoRepositoryQueries {
+public interface ProductRepositoryQueries {
 	FotoProduto save(FotoProduto foto);
 	void delete(FotoProduto foto);
 }

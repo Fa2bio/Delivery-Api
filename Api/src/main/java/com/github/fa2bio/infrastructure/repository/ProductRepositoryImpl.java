@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.model.FotoProduto;
-import com.github.fa2bio.domain.repository.ProdutoRepositoryQueries;
+import com.github.fa2bio.domain.repository.ProductRepositoryQueries;
 
 @Repository
-public class ProdutoRepositoryImpl implements ProdutoRepositoryQueries{
+public class ProductRepositoryImpl implements ProductRepositoryQueries{
 
 	@PersistenceContext
 	private EntityManager manager;

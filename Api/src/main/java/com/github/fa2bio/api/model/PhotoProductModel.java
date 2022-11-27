@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FotoProdutoModel {
+public class PhotoProductModel {
 	private String nomeArquivo;
 	private String descricao;
 	private String contentType;
