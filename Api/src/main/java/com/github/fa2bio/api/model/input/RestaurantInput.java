@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RestauranteInput {
+public class RestaurantInput {
 	
 	@NotBlank
 	private String nome;

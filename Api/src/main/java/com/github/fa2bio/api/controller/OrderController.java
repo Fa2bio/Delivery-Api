@@ -34,7 +34,7 @@ import com.github.fa2bio.domain.model.Pedido;
 import com.github.fa2bio.domain.model.Usuario;
 import com.github.fa2bio.domain.repository.OrderRepository;
 import com.github.fa2bio.domain.service.OrderService;
-import com.github.fa2bio.infrastructure.repository.spec.PedidoSpecs;
+import com.github.fa2bio.infrastructure.repository.spec.OrderSpecs;
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -61,7 +61,7 @@ public class OrderController implements OrderControllerSwagger{
 		
 		pageable = mappingPageable(pageable);
 	
-		Page<Pedido> ordersPage = orderRepository.findAll(PedidoSpecs.
+		Page<Pedido> ordersPage = orderRepository.findAll(OrderSpecs.
 				usandoFiltro(filter),pageable);
 		
 		List<OderAbstractModel> ordersAbstractModel = orderAbstractModelAssembler.
