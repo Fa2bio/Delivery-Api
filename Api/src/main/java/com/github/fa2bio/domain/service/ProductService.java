@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.ProdutoNaoEncontradoException;
 import com.github.fa2bio.domain.model.Produto;
-import com.github.fa2bio.domain.repository.ProductRepository;
+import com.github.fa2bio.domain.repository.ProdutoRepository;
 
 @Service
 public class ProductService {
@@ -17,18 +17,18 @@ public class ProductService {
 	= "Produto de código %d não pode ser removido, pois está em uso";
 
 	@Autowired
-	private ProductRepository productRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Transactional
 	public Produto salvar (Produto produto) {
-		return productRepository.save(produto);
+		return produtoRepository.save(produto);
 	}
 	
 	@Transactional
 	public void excluir (Long id) {
 		try {
-			productRepository.deleteById(id);
-			productRepository.flush();
+			produtoRepository.deleteById(id);
+			produtoRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
 			throw new ProdutoNaoEncontradoException(id);
 		} catch(DataIntegrityViolationException e) {
@@ -37,12 +37,12 @@ public class ProductService {
 	}
 	
 	public Produto buscarOuFalhar(Long produtoId) {
-		return productRepository.findById(produtoId)
+		return produtoRepository.findById(produtoId)
 			.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
 	}
 	
 	public Produto buscarOuFalhar(Long restauranteId, Long produtoId) {
-		return productRepository.findById(restauranteId, produtoId)
+		return produtoRepository.findById(restauranteId, produtoId)
 			.orElseThrow(() -> new ProdutoNaoEncontradoException(restauranteId, produtoId));
 	}
 }

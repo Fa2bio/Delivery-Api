@@ -7,20 +7,20 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.model.RestaurantModel;
+import com.github.fa2bio.api.model.RestauranteModel;
 import com.github.fa2bio.domain.model.Restaurante;
 
 @Component
-public class RestaurantModelAssembler {
+public class RestauranteModelAssembler {
 	 
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public RestaurantModel toModel(Restaurante restaurante) {
-		return modelMapper.map(restaurante, RestaurantModel.class);
+	public RestauranteModel toModel(Restaurante restaurante) {
+		return modelMapper.map(restaurante, RestauranteModel.class);
 	}
 	
-	public List<RestaurantModel> toCollectionModel(List<Restaurante> restaurantes){
+	public List<RestauranteModel> toCollectionModel(List<Restaurante> restaurantes){
 		return restaurantes.stream()
 				.map(restaurante -> toModel(restaurante))
 				.collect(Collectors.toList());

@@ -1221,14 +1221,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants",
+							"raw": "http://localhost:8080/restaurantes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants"
+								"restaurantes"
 							],
 							"query": [
 								{
@@ -1242,72 +1242,19 @@
 					"response": []
 				},
 				{
-					"name": "List - Only Names",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/restaurants?projecao=apenas-nome",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurants"
-							],
-							"query": [
-								{
-									"key": "projecao",
-									"value": "apenas-nome"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Comida Mineira\",\r\n    \"taxaFrete\": 10,\r\n    \"cozinha\": {\r\n            \"id\": 1\r\n        },\r\n    \"endereco\": {\r\n        \"cep\": \"27580-888\",\r\n        \"logradouro\": \"Rua de teste azul\",\r\n        \"numero\": \"100\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": {\r\n            \"id\": 2\r\n        }\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/restaurants",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurants"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Find",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1",
+							"raw": "http://localhost:8080/restaurantes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
+								"restaurantes",
 								"1"
 							]
 						}
@@ -1329,14 +1276,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1",
+							"raw": "http://localhost:8080/restaurantes/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
+								"restaurantes",
 								"1"
 							]
 						}
@@ -1344,21 +1291,49 @@
 					"response": []
 				},
 				{
-					"name": "Open",
+					"name": "Create",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Comida Mineira\",\r\n    \"taxaFrete\": 10,\r\n        \"cozinha\": {\r\n            \"id\": 1\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/open",
+							"raw": "http://localhost:8080/restaurantes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
+								"restaurantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Opening",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/abertura",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
 								"1",
-								"open"
+								"abertura"
 							]
 						}
 					},
@@ -1370,58 +1345,16 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/active",
+							"raw": "http://localhost:8080/restaurantes/1/ativo",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
+								"restaurantes",
 								"1",
-								"active"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Inactivate",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/restaurants/1/inactivate",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurants",
-								"1",
-								"inactivate"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Close",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/restaurants/1/close",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"restaurants",
-								"1",
-								"close"
+								"ativo"
 							]
 						}
 					},
@@ -1434,7 +1367,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[1,2,3]",
+							"raw": "[1,200,3]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1442,22 +1375,64 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/activations",
+							"raw": "http://localhost:8080/restaurantes/ativacoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
-								"activations"
+								"restaurantes",
+								"ativacoes"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Inactivate - Multiples",
+					"name": "Closening",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/fechamento",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"fechamento"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/restaurantes/1/ativo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurantes",
+								"1",
+								"ativo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate - Multiples",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -1471,15 +1446,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/inactivations",
+							"raw": "http://localhost:8080/restaurantes/ativacoes",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
-								"inactivations"
+								"restaurantes",
+								"ativacoes"
 							]
 						}
 					},
@@ -1496,16 +1471,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/4/payment-methods",
+							"raw": "http://localhost:8080/restaurantes/4/formas-pagamento",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
+								"restaurantes",
 								"4",
-								"payment-methods"
+								"formas-pagamento"
 							]
 						}
 					},
@@ -1517,17 +1492,17 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/4/payment-methods/3",
+							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
-								"4",
-								"payment-methods",
-								"3"
+								"restaurantes",
+								"1",
+								"formas-pagamento",
+								"1"
 							]
 						}
 					},
@@ -1539,17 +1514,17 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/4/payment-methods/3",
+							"raw": "http://localhost:8080/restaurantes/1/formas-pagamento/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"restaurants",
-								"4",
-								"payment-methods",
-								"3"
+								"restaurantes",
+								"1",
+								"formas-pagamento",
+								"1"
 							]
 						}
 					},

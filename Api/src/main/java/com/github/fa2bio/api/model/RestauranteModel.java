@@ -3,25 +3,25 @@ package com.github.fa2bio.api.model;
 import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.github.fa2bio.api.model.view.RestaurantView;
+import com.github.fa2bio.api.model.view.RestauranteView;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class RestaurantModel {
+public class RestauranteModel {
 	
-	@JsonView({RestaurantView.Resumo.class, RestaurantView.ApenasNome.class})
+	@JsonView({RestauranteView.Resumo.class, RestauranteView.ApenasNome.class})
 	private Long id;
 	
-	@JsonView({RestaurantView.Resumo.class, RestaurantView.ApenasNome.class})
+	@JsonView({RestauranteView.Resumo.class, RestauranteView.ApenasNome.class})
 	private String nome;
 	
-	@JsonView(RestaurantView.Resumo.class)
+	@JsonView(RestauranteView.Resumo.class)
 	private BigDecimal taxaFrete;
 	
-	@JsonView(RestaurantView.Resumo.class)
+	@JsonView(RestauranteView.Resumo.class)
 	private KitchenModel cozinha;
 	 
 	private Boolean ativo;

@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductInput {
+public class ProdutoInput {
 
 	@NotBlank
 	private String nome;

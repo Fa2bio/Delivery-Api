@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.RestaurantNotFoundException;
+import com.github.fa2bio.domain.exception.RestauranteNaoEncontradoException;
 import com.github.fa2bio.domain.model.Cidade;
 import com.github.fa2bio.domain.model.Cozinha;
 import com.github.fa2bio.domain.model.FormaPagamento;
 import com.github.fa2bio.domain.model.Restaurante;
 import com.github.fa2bio.domain.model.Usuario;
-import com.github.fa2bio.domain.repository.RestaurantRepository;
+import com.github.fa2bio.domain.repository.RestauranteRepository;
 
 @Service
 public class RestaurantService {
 
 	@Autowired
-	private RestaurantRepository restauranteRepository;
+	private RestauranteRepository restauranteRepository;
 	
 	@Autowired
 	private KitchenService cadastroCozinhaService;
@@ -33,63 +33,63 @@ public class RestaurantService {
 	private UserService cadastroUsuarioService;
 	
 	@Transactional
-	public Restaurante salvar(Restaurante restaurant) {
-		Long cozinhaId = restaurant.getCozinha().getId();
-		Long cidadeId = restaurant.getEndereco().getCidade().getId();
+	public Restaurante salvar(Restaurante restaurante) {
+		Long cozinhaId = restaurante.getCozinha().getId();
+		Long cidadeId = restaurante.getEndereco().getCidade().getId();
 		
 		Cozinha cozinha = cadastroCozinhaService.fetchOrFail(cozinhaId);
 		Cidade cidade = cadastroCidadeService.fetchOrFail(cidadeId);
 		
-		restaurant.setCozinha(cozinha);
-		restaurant.getEndereco().setCidade(cidade);
+		restaurante.setCozinha(cozinha);
+		restaurante.getEndereco().setCidade(cidade);
 		
-		return restauranteRepository.save(restaurant);
+		return restauranteRepository.save(restaurante);
 	}
 	
 	@Transactional
-	public void activate (Long restaurantId) {
-		Restaurante restauranteAtual = fetchOrFail(restaurantId);
+	public void ativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		restauranteAtual.ativar();
 	}
 	
 	@Transactional
-	public void activateMultiples(List<Long> restaurantId) {
-		for (Long long1 : restaurantId) {
-			this.activate(long1);	
+	public void ativarMultiplos(List<Long> restauranteIds) {
+		for (Long long1 : restauranteIds) {
+			this.ativar(long1);	
 		}
 	}
 	
 	@Transactional
-	public void inactivate (Long restaurantId) {
-		Restaurante restauranteAtual = fetchOrFail(restaurantId);
+	public void inativar (Long restauranteId) {
+		Restaurante restauranteAtual = buscarOuFalhar(restauranteId);
 		restauranteAtual.inativar();
 	}
 	
 	@Transactional
-	public void inactivateMultiples(List<Long> restaurantIds) {
-		restaurantIds.forEach(this::inactivate);
+	public void inativarMultiplos(List<Long> restauranteIds) {
+		restauranteIds.forEach(this::inativar);
 	}
 	
 	@Transactional
-	public void open(Long restaurantId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void abrir(Long restauranteId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		restaurante.abrir();
 	}
 	
 	@Transactional
-	public void close(Long restaurantId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void fechar(Long restauranteId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		restaurante.fechar();
 	}
 	
-	public Restaurante fetchOrFail(Long restaurantId) {
-		return restauranteRepository.findById(restaurantId)
-			.orElseThrow(() -> new RestaurantNotFoundException(restaurantId));
+	public Restaurante buscarOuFalhar(Long restauranteId) {
+		return restauranteRepository.findById(restauranteId)
+			.orElseThrow(() -> new RestauranteNaoEncontradoException(restauranteId));
 	}
 	
 	@Transactional
-	public void associatePaymentMethod(Long restaurantId, Long formaPagamentoId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void associarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(formaPagamentoId);
 		
 		restaurante.adicionarFormaPagamento(formaPagamento);
@@ -97,8 +97,8 @@ public class RestaurantService {
 	}
 	
 	@Transactional
-	public void disassociatePaymentMethod(Long restaurantId, Long formaPagamentoId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void desassociarFormaPagamento(Long restauranteId, Long formaPagamentoId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		FormaPagamento formaPagamento = cadastroFormaPagamentoService.fetchOrFail(formaPagamentoId);
 		
 		restaurante.removerFormaPagamento(formaPagamento);
@@ -106,16 +106,16 @@ public class RestaurantService {
 	}
 	
 	@Transactional
-	public void associateUser(Long restaurantId, Long usuarioId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void associarUsuario(Long restauranteId, Long usuarioId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		Usuario usuario = cadastroUsuarioService.fetchOrFail(usuarioId);
 		
 		restaurante.adicionarResponsavel(usuario);
 	}
 	
 	@Transactional
-	public void disassociateUser(Long restaurantId, Long usuarioId) {
-		Restaurante restaurante = fetchOrFail(restaurantId);
+	public void desassociarUsuario(Long restauranteId, Long usuarioId) {
+		Restaurante restaurante = buscarOuFalhar(restauranteId);
 		Usuario usuario = cadastroUsuarioService.fetchOrFail(usuarioId);
 		
 		restaurante.removerResponsavel(usuario);

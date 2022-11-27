@@ -16,6 +16,6 @@ public class OderAbstractModel {
 	private BigDecimal valorTotal;
 	private String Status;
 	private OffsetDateTime dataCriacao;
-	private RestaurantAbstractModel restaurante;
+	private RestauranteResumoModel restaurante;
 	private UserModel Cliente;
 }

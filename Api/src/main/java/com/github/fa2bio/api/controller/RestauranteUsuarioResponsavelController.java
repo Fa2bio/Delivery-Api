@@ -29,19 +29,19 @@ public class RestauranteUsuarioResponsavelController {
 	
 	@GetMapping("/responsaveis")
 	public List<UserModel> listar(@PathVariable Long restauranteId){
-		Restaurante restaurante = cadastroRestauranteService.fetchOrFail(restauranteId);
+		Restaurante restaurante = cadastroRestauranteService.buscarOuFalhar(restauranteId);
 		return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
 	}
 	
 	@PutMapping("/responsaveis/{usuarioId}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void associar(@PathVariable Long restauranteId, @PathVariable Long usuarioId) {
-		cadastroRestauranteService.associateUser(restauranteId, usuarioId);
+		cadastroRestauranteService.associarUsuario(restauranteId, usuarioId);
 	}
 	
 	@DeleteMapping("/responsaveis/{usuarioId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void desassociar(@PathVariable Long restauranteId, @PathVariable Long usuarioId) {
-		cadastroRestauranteService.disassociateUser(restauranteId, usuarioId);
+		cadastroRestauranteService.desassociarUsuario(restauranteId, usuarioId);
 	}
 }

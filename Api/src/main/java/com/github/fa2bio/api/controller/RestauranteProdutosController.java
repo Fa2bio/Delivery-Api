@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.api.assembler.ProductInputDisassembler;
-import com.github.fa2bio.api.assembler.ProductModelAssembler;
-import com.github.fa2bio.api.model.ProductModel;
-import com.github.fa2bio.api.model.input.ProductInput;
+import com.github.fa2bio.api.assembler.ProdutoInputDisassembler;
+import com.github.fa2bio.api.assembler.ProdutoModelAssembler;
+import com.github.fa2bio.api.model.ProdutoModel;
+import com.github.fa2bio.api.model.input.ProdutoInput;
 import com.github.fa2bio.domain.model.Produto;
 import com.github.fa2bio.domain.model.Restaurante;
-import com.github.fa2bio.domain.repository.ProductRepository;
+import com.github.fa2bio.domain.repository.ProdutoRepository;
 import com.github.fa2bio.domain.service.ProductService;
 import com.github.fa2bio.domain.service.RestaurantService;
 
@@ -37,45 +37,45 @@ public class RestauranteProdutosController {
 	private ProductService cadastroProdutoService;
 	
 	@Autowired
-	private ProductRepository productRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Autowired
-	private ProductModelAssembler productModelAssembler;
+	private ProdutoModelAssembler produtoModelAssembler;
 	
 	@Autowired
-	private ProductInputDisassembler productInputDisassembler;
+	private ProdutoInputDisassembler produtoInputDisassembler;
 
 	@GetMapping
-	public List<ProductModel> listar(@PathVariable Long restauranteId, 
+	public List<ProdutoModel> listar(@PathVariable Long restauranteId, 
 			@RequestParam(required = false) boolean incluirInativos) {
-		Restaurante restaurante = cadastroRestaurante.fetchOrFail(restauranteId);
+		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
 		List<Produto> todosProdutos = null;
 		
-		if(incluirInativos) todosProdutos = productRepository.findTodosByRestaurante(restaurante);
-		else todosProdutos = productRepository.findAtivosByRestaurante(restaurante);
+		if(incluirInativos) todosProdutos = produtoRepository.findTodosByRestaurante(restaurante);
+		else todosProdutos = produtoRepository.findAtivosByRestaurante(restaurante);
 		
-		return productModelAssembler.toCollectionModel(todosProdutos);
+		return produtoModelAssembler.toCollectionModel(todosProdutos);
 	}
 	
 	@GetMapping("/{produtoId}")
-	public ProductModel buscar(@PathVariable Long restauranteId, @PathVariable Long produtoId) {
+	public ProdutoModel buscar(@PathVariable Long restauranteId, @PathVariable Long produtoId) {
 		Produto produto = cadastroProdutoService.buscarOuFalhar(restauranteId, produtoId);
-		return productModelAssembler.toModel(produto);
+		return produtoModelAssembler.toModel(produto);
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ProductModel adicionar(@PathVariable Long restauranteId, @RequestBody @Valid ProductInput productInput) {
-		Restaurante restaurante = cadastroRestaurante.fetchOrFail(restauranteId);
-		Produto produto = productInputDisassembler.toDomainObject(productInput);
+	public ProdutoModel adicionar(@PathVariable Long restauranteId, @RequestBody @Valid ProdutoInput produtoInput) {
+		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
+		Produto produto = produtoInputDisassembler.toDomainObject(produtoInput);
 		produto.setRestaurante(restaurante);
-		return productModelAssembler.toModel(cadastroProdutoService.salvar(produto));
+		return produtoModelAssembler.toModel(cadastroProdutoService.salvar(produto));
 	}
 	
 	@PutMapping("/{produtoId}")
-	public ProductModel atualizar(@PathVariable Long restauranteId, @PathVariable Long produtoId, @RequestBody @Valid ProductInput productInput) {
+	public ProdutoModel atualizar(@PathVariable Long restauranteId, @PathVariable Long produtoId, @RequestBody @Valid ProdutoInput produtoInput) {
 		Produto produto = cadastroProdutoService.buscarOuFalhar(restauranteId, produtoId);
-		productInputDisassembler.copyToDomainObject(productInput, produto);
-		return productModelAssembler.toModel(cadastroProdutoService.salvar(produto));
+		produtoInputDisassembler.copyToDomainObject(produtoInput, produto);
+		return produtoModelAssembler.toModel(cadastroProdutoService.salvar(produto));
 	}
 }

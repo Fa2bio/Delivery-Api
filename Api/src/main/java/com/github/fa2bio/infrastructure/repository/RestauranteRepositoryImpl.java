@@ -1,7 +1,7 @@
 package com.github.fa2bio.infrastructure.repository;
 
-import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.comFreteGratis;
-import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.comNomeSemelhante;
+import static com.github.fa2bio.infrastructure.repository.spec.RestauranteSpecs.comFreteGratis;
+import static com.github.fa2bio.infrastructure.repository.spec.RestauranteSpecs.comNomeSemelhante;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -17,17 +17,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import com.github.fa2bio.domain.model.Restaurante;
-import com.github.fa2bio.domain.repository.RestaurantRepository;
+import com.github.fa2bio.domain.repository.RestauranteRepository;
 import com.github.fa2bio.domain.repository.RestauranteRepositoryQueries;
 
 @Repository
-public class RestaurantRepositoryImpl implements RestauranteRepositoryQueries {
+public class RestauranteRepositoryImpl implements RestauranteRepositoryQueries {
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Autowired @Lazy
-	private RestaurantRepository restauranteRepository;
+	private RestauranteRepository restauranteRepository;
 	
 	@Override
 	public List<Restaurante> find(String nome, 

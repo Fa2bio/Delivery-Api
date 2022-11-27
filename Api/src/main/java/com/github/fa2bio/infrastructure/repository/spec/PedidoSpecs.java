@@ -9,7 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import com.github.fa2bio.domain.filter.OrderFilter;
 import com.github.fa2bio.domain.model.Pedido;
 
-public class OrderSpecs {
+public class PedidoSpecs {
 
 	public static Specification<Pedido> usandoFiltro(OrderFilter filtro){
 		return (root, query, builder) -> {

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class ProductModel {
+public class ProdutoModel {
 	
 	private Long id;
 	private String nome;

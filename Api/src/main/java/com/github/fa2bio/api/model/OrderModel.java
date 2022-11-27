@@ -20,7 +20,7 @@ public class OrderModel {
 	private OffsetDateTime dataConfirmacao; 
 	private OffsetDateTime dataEntrega; 
 	private OffsetDateTime dataCancelamento; 
-	private RestaurantAbstractModel restaurante; 
+	private RestauranteResumoModel restaurante; 
 	private UserModel cliente; 
 	private PaymentMethodModel formaPagamento; 
 	private EnderecoModel enderecoEntrega; 

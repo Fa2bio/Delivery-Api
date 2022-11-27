@@ -6,7 +6,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.github.fa2bio.domain.model.Restaurante;
 
-public class RestaurantSpecs {
+public class RestauranteSpecs {
 
 	public static Specification<Restaurante> comFreteGratis() {
 		return (root, query, builder) -> 
