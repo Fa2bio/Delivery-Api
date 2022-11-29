@@ -145,7 +145,7 @@ public class SpringFoxConfig {
 				.title("DELIVERY API")
 				.description("Open API for customers and restaurants")
 				.version("1")
-				.contact(new Contact("Fa2bio", "https://www.github.com/Fa2bio", "fa2bio.s0@gmail.com"))
+				.contact(new Contact("Fa2bio", "https://www.github.com/Fa2bio", "fabio.s0@hotmail.com"))
 				.build();
 	}
 	
