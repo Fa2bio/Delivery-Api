@@ -72,4 +72,4 @@ delivery.storage.local.diretorio-fotos=
 ![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
 
 ### SQL Diagram
-![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/203461283-48b9072a-9ed2-49d8-9055-12c654f29597.png)
+![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/204697548-9133f597-6735-4c42-a3c8-cd66d325e1f9.png)
