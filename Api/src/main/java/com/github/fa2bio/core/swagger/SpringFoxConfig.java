@@ -52,7 +52,7 @@ public class SpringFoxConfig {
 		
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-					.apis(RequestHandlerSelectors.basePackage("com.algaworks.algafood.api"))
+					.apis(RequestHandlerSelectors.basePackage("com.github.fa2bio.api"))
 					.paths(PathSelectors.any())
 					.build()
 				.useDefaultResponseMessages(false)
