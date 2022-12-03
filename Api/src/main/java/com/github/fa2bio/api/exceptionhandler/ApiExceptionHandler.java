@@ -47,7 +47,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;		
-		ProblemType problemType = ProblemType.ERRO_DE_SISTEMA;
+		ProblemType problemType = ProblemType.SYSTEM_ERROR;
 		String detail = MSG_GENERIC_FINAL_USER_ERROR;
 
 		ex.printStackTrace();
@@ -64,7 +64,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			WebRequest request) {
 		
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
+		ProblemType problemType = ProblemType.RESOURCE_NOT_FUND;
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
@@ -78,7 +78,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleEntidadeEmUso(EntityInUseException ex, WebRequest request) {
 		
 		HttpStatus status = HttpStatus.CONFLICT;
-		ProblemType problemType = ProblemType.ENTIDADE_EM_USO;
+		ProblemType problemType = ProblemType.ENTITY_IN_USE;
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
@@ -92,7 +92,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleNegocio(BusinessException ex, WebRequest request) {
 
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		ProblemType problemType = ProblemType.ERRO_NEGOCIO;
+		ProblemType problemType = ProblemType.BUSINESS_ERROR;
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
@@ -107,8 +107,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex, WebRequest request){
 		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
-		ProblemType problemType = ProblemType.PARAMETRO_INVALIDO;
-		String detail = String.format("O arquivo carregado excede o limite permitido, carregue um arquivo de até 500KB");
+		ProblemType problemType = ProblemType.INVALID_PARAMETER;
+		String detail = String.format("The uploaded file exceeds the allowed limit, upload a file of up to 500KB");
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
 				.userMessage(detail)
@@ -134,8 +134,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, 
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		ProblemType problemType = ProblemType.RECURSO_NAO_ENCONTRADO;
-		String detail = String.format("O recurso %s, que você tentou acessar, é inexistente.", 
+		ProblemType problemType = ProblemType.RESOURCE_NOT_FUND;
+		String detail = String.format("The resource %s you tried to access does not exist.", 
 				ex.getRequestURL());
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
@@ -168,8 +168,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			return handlePropertyBinding((PropertyBindingException) rootCause, headers, status, request); 
 		}
 		
-		ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
-		String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
+		ProblemType problemType = ProblemType.MESSAGE_INCOMPREENSIBLE;
+		String detail = "The request body is invalid. Check syntax error.";
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
 				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
@@ -228,10 +228,10 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			MethodArgumentTypeMismatchException ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 
-		ProblemType problemType = ProblemType.PARAMETRO_INVALIDO;
+		ProblemType problemType = ProblemType.INVALID_PARAMETER;
 
-		String detail = String.format("O parâmetro de URL '%s' recebeu o valor '%s', "
-				+ "que é de um tipo inválido. Corrija e informe um valor compatível com o tipo %s.",
+		String detail = String.format("The URL parameter '%s' was given the value '%s', "
+				+ "which is of an invalid type. Correct and enter a value compatible with type %s.",
 				ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
@@ -243,8 +243,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	private ResponseEntity<Object> handleValidationInternal(Exception ex, HttpHeaders headers,
 			HttpStatus status, WebRequest request, BindingResult bindingResult) {
-		ProblemType problemType = ProblemType.DADOS_INVALIDOS;
-	    String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
+		ProblemType problemType = ProblemType.INVALID_DATA;
+	    String detail = "One or more fields are invalid. Fill in correctly and try again.";
 	    
 	    Set<Problem.Object> problemObjects = bindingResult.getAllErrors().stream()
 	    		.map(objectError -> {
@@ -276,9 +276,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		String path = joinPath(ex.getPath());
 		
-		ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
-		String detail = String.format("A propriedade '%s' não existe. "
-				+ "Corrija ou remova essa propriedade e tente novamente.", path);
+		ProblemType problemType = ProblemType.MESSAGE_INCOMPREENSIBLE;
+		String detail = String.format("Property '%s' does not exist. "
+				+ "Correct or remove this property and try again.", path);
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
 				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
@@ -292,9 +292,9 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
 		String path = joinPath(ex.getPath());
 		
-		ProblemType problemType = ProblemType.MENSAGEM_INCOMPREENSIVEL;
-		String detail = String.format("A propriedade '%s' recebeu o valor '%s', "
-				+ "que é de um tipo inválido. Corrija e informe um valor compatível com o tipo %s.",
+		ProblemType problemType = ProblemType.MESSAGE_INCOMPREENSIBLE;
+		String detail = String.format("The property '%s' received the value '%s', "
+				+ "which is of an invalid type. Correct and enter a value compatible with type %s.",
 				path, ex.getValue(), ex.getTargetType().getSimpleName());
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
