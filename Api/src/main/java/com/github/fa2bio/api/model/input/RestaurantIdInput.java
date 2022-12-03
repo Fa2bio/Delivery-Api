@@ -2,6 +2,7 @@ package com.github.fa2bio.api.model.input;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +11,6 @@ import lombok.Setter;
 public class RestaurantIdInput {
 
 	@NotNull
+	@ApiModelProperty(example = "1", required = true)
 	private Long id;
 }
