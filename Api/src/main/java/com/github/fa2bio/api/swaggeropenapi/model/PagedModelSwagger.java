@@ -1,11 +1,8 @@
 package com.github.fa2bio.api.swaggeropenapi.model;
 
-import java.util.List;
-
 import io.swagger.annotations.ApiModelProperty;
 
 public class PagedModelSwagger<T> {
-	private List<T> content;
 	
 	@ApiModelProperty(example = "10", value = "Number of records per page")
 	private Long size;
