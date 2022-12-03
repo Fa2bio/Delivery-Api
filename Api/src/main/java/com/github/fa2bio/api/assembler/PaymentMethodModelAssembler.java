@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.PaymentMethodModel;
-import com.github.fa2bio.domain.model.FormaPagamento;
+import com.github.fa2bio.domain.model.PaymentMethod;
 
 @Component
 public class PaymentMethodModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public PaymentMethodModel toModel(FormaPagamento formaPagamento) {
-		return modelMapper.map(formaPagamento, PaymentMethodModel.class);
+	public PaymentMethodModel toModel(PaymentMethod paymentMethod) {
+		return modelMapper.map(paymentMethod, PaymentMethodModel.class);
 	}
 	
-	public List<PaymentMethodModel> toCollectionModel(Collection<FormaPagamento> formaPagamentos){
-		return formaPagamentos.stream()
-				.map(formaPagamento -> toModel(formaPagamento))
+	public List<PaymentMethodModel> toCollectionModel(Collection<PaymentMethod> paymentMethods){
+		return paymentMethods.stream()
+				.map(paymentMethod -> toModel(paymentMethod))
 				.collect(Collectors.toList());
 	}
 }

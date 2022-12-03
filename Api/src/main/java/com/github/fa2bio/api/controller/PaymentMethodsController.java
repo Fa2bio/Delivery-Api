@@ -21,7 +21,7 @@ import com.github.fa2bio.api.assembler.PaymentMethodModelAssembler;
 import com.github.fa2bio.api.model.PaymentMethodModel;
 import com.github.fa2bio.api.model.input.PaymentMethodInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.PaymentMethodsSwagger;
-import com.github.fa2bio.domain.model.FormaPagamento;
+import com.github.fa2bio.domain.model.PaymentMethod;
 import com.github.fa2bio.domain.repository.PaymentMethodsRepository;
 import com.github.fa2bio.domain.service.PaymentMethodsService;
 
@@ -50,7 +50,7 @@ public class PaymentMethodsController implements PaymentMethodsSwagger{
 	@Override
 	@GetMapping("/{paymentMethodId}")
 	public PaymentMethodModel find(@PathVariable Long paymentMethodId) {
-		FormaPagamento paymentMethod = paymentMethodsService.fetchOrFail(paymentMethodId);
+		PaymentMethod paymentMethod = paymentMethodsService.fetchOrFail(paymentMethodId);
 		return paymentMethodModelAssembler.toModel(paymentMethod);
 	}
 	
@@ -58,21 +58,21 @@ public class PaymentMethodsController implements PaymentMethodsSwagger{
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public PaymentMethodModel register(@RequestBody @Valid PaymentMethodInput paymentMethodInput) {
-		FormaPagamento paymentMethod = paymentMethodInputDisassembler.toDomainObject(paymentMethodInput);
-		return paymentMethodModelAssembler.toModel(paymentMethodsService.salvar(paymentMethod));
+		PaymentMethod paymentMethod = paymentMethodInputDisassembler.toDomainObject(paymentMethodInput);
+		return paymentMethodModelAssembler.toModel(paymentMethodsService.save(paymentMethod));
 	}
 	
 	@PutMapping("/{paymentMethodId}")
 	public PaymentMethodModel update(@PathVariable Long paymentMethodId, @RequestBody @Valid PaymentMethodInput paymentMethodInput) {
-		FormaPagamento paymentMethod = paymentMethodsService.fetchOrFail(paymentMethodId);
+		PaymentMethod paymentMethod = paymentMethodsService.fetchOrFail(paymentMethodId);
 		paymentMethodInputDisassembler.copyToDomainObject(paymentMethodInput, paymentMethod);
-		return paymentMethodModelAssembler.toModel(paymentMethodsService.salvar(paymentMethod));
+		return paymentMethodModelAssembler.toModel(paymentMethodsService.save(paymentMethod));
 	}
 	
 	@Override
 	@DeleteMapping("/{paymentMethodId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long paymentMethodId) {
-		paymentMethodsService.excluir(paymentMethodId);
+		paymentMethodsService.delete(paymentMethodId);
 	}
 }

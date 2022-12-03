@@ -19,19 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.fa2bio.api.assembler.OrderAbstractModelAssembler;
-import com.github.fa2bio.api.assembler.OrderInputDisassembler;
-import com.github.fa2bio.api.assembler.OrderModelAssembler;
-import com.github.fa2bio.api.model.OderAbstractModel;
-import com.github.fa2bio.api.model.OrderModel;
-import com.github.fa2bio.api.model.input.OrderInput;
+import com.github.fa2bio.api.assembler.OrderrAbstractModelAssembler;
+import com.github.fa2bio.api.assembler.OrderrInputDisassembler;
+import com.github.fa2bio.api.assembler.OrderrModelAssembler;
+import com.github.fa2bio.api.model.OrderrAbstractModel;
+import com.github.fa2bio.api.model.OrderrModel;
+import com.github.fa2bio.api.model.input.OrrderInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.OrderControllerSwagger;
 import com.github.fa2bio.core.data.PageableTranslator;
 import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.EntityNotFoundException;
 import com.github.fa2bio.domain.filter.OrderFilter;
-import com.github.fa2bio.domain.model.Pedido;
-import com.github.fa2bio.domain.model.Usuario;
+import com.github.fa2bio.domain.model.Orderr;
+import com.github.fa2bio.domain.model.User;
 import com.github.fa2bio.domain.repository.OrderRepository;
 import com.github.fa2bio.domain.service.OrderService;
 import com.github.fa2bio.infrastructure.repository.spec.OrderSpecs;
@@ -47,27 +47,27 @@ public class OrderController implements OrderControllerSwagger{
 	private OrderService issuingOrderService;
 	
 	@Autowired
-	private OrderModelAssembler orderModelAssembler;
+	private OrderrModelAssembler orderrModelAssembler;
 	
 	@Autowired
-	private OrderAbstractModelAssembler orderAbstractModelAssembler;
+	private OrderrAbstractModelAssembler orderrAbstractModelAssembler;
 	
 	@Autowired
-	private OrderInputDisassembler orderInputDisassembler;
+	private OrderrInputDisassembler orderrInputDisassembler;
 	
 	@Override
 	@GetMapping
-	public Page<OderAbstractModel> findWithPageable(@PageableDefault(size = 10) Pageable pageable, OrderFilter filter) {
+	public Page<OrderrAbstractModel> findWithPageable(@PageableDefault(size = 10) Pageable pageable, OrderFilter filter) {
 		
 		pageable = mappingPageable(pageable);
 	
-		Page<Pedido> ordersPage = orderRepository.findAll(OrderSpecs.
-				usandoFiltro(filter),pageable);
+		Page<Orderr> ordersPage = orderRepository.findAll(OrderSpecs.
+				usingFilter(filter),pageable);
 		
-		List<OderAbstractModel> ordersAbstractModel = orderAbstractModelAssembler.
+		List<OrderrAbstractModel> ordersAbstractModel = orderrAbstractModelAssembler.
 				toCollectionModel(ordersPage.getContent());
 		
-		Page<OderAbstractModel> orderAbstractModelPage = new PageImpl<>(ordersAbstractModel, pageable,
+		Page<OrderrAbstractModel> orderAbstractModelPage = new PageImpl<>(ordersAbstractModel, pageable,
 				ordersPage.getTotalElements());
 		
 		return orderAbstractModelPage;
@@ -75,23 +75,23 @@ public class OrderController implements OrderControllerSwagger{
 
 	@Override
 	@GetMapping("/{orderCode}")
-	public OrderModel find(@PathVariable String orderCode) {
-		Pedido order = issuingOrderService.fetchOrFail(orderCode);
+	public OrderrModel find(@PathVariable String orderCode) {
+		Orderr orderr = issuingOrderService.fetchOrFail(orderCode);
 		
-		return orderModelAssembler.toModel(order);
+		return orderrModelAssembler.toModel(orderr);
 	}
 	
 	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public OrderModel register(@RequestBody @Valid OrderInput orderInput) {
+	public OrderrModel register(@RequestBody @Valid OrrderInput orrderInput) {
 		try {
-			Pedido newOrder = orderInputDisassembler.toDomainObject(orderInput);
+			Orderr newOrder = orderrInputDisassembler.toDomainObject(orrderInput);
 			
-			// TODO pegar usuário autenticado
-			newOrder.setCliente(new Usuario());
-			newOrder.getCliente().setId(1L);
-			return orderModelAssembler.toModel(issuingOrderService.emitir(newOrder));
+			// TODO get authenticated user
+			newOrder.setClient(new User());
+			newOrder.getClient().setId(1L);
+			return orderrModelAssembler.toModel(issuingOrderService.issue(newOrder));
 		} catch (EntityNotFoundException e) {
 			throw new BusinessException(e.getMessage(),e);
 		}
@@ -99,15 +99,14 @@ public class OrderController implements OrderControllerSwagger{
 	
 	private Pageable mappingPageable(Pageable apiPegeable) {
 		var mapping = Map.of(
-				"codigo", "codigo",
+				"uuiCode", "uuiCode",
 				"subtotal", "subtotal",
-				"taxaFrete", "taxaFrete",
-				"valorTotal", "valorTotal",
-				"dataCriacao", "dataCriacao",
-				"restaurante.nome", "restaurante.nome",
-				"restaurante.id", "restaurante.id",
-				"cliente.id", "cliente.id",
-				"cliente.nome", "cliente.nome"
+				"rateShipping", "rateShipping",
+				"totalAmount", "totalAmount",
+				"restaurant.name", "restaurant.name",
+				"restaurant.id", "restaurant.id",
+				"client.id", "client.id",
+				"client.name", "client.name"
 				);
 		return PageableTranslator.translate(apiPegeable, mapping);
 	}

@@ -10,6 +10,6 @@ import lombok.Setter;
 public class StateInput {
 
 	@NotBlank
-	private String nome;
+	private String name;
 	
 }

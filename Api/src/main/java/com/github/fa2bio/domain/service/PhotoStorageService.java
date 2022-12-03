@@ -11,7 +11,7 @@ public interface PhotoStorageService {
 
 	void store(NewPhoto newPhoto);
 
-	void toRemove(String nomeArquivo);
+	void toRemove(String fileName);
 	
 	default void toReplace(String oldFileName, NewPhoto newPhoto) {
 		this.store(newPhoto);
@@ -25,7 +25,7 @@ public interface PhotoStorageService {
 	@Builder
 	@Getter
 	class NewPhoto{
-		private String nomeArquivo;
+		private String fileName;
 		private java.io.InputStream inputStream;
 	}
 }

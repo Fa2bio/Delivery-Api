@@ -30,16 +30,16 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.fasterxml.jackson.databind.JsonMappingException.Reference;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.fasterxml.jackson.databind.exc.PropertyBindingException;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.EntityNotFoundException;
-import com.github.fa2bio.domain.exception.BusinessException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-	public static final String MSG_ERRO_GENERICA_USUARIO_FINAL
-		= "Ocorreu um erro interno inesperado no sistema. Tente novamente e se "
-				+ "o problema persistir, entre em contato com o administrador do sistema.";
+	public static final String MSG_GENERIC_FINAL_USER_ERROR
+		= "An unexpected internal system error has occurred. Try again and if "
+				+ "the problem persists, contact your system administrator.";
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -48,7 +48,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> handleUncaught(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;		
 		ProblemType problemType = ProblemType.ERRO_DE_SISTEMA;
-		String detail = MSG_ERRO_GENERICA_USUARIO_FINAL;
+		String detail = MSG_GENERIC_FINAL_USER_ERROR;
 
 		ex.printStackTrace();
 		
@@ -139,7 +139,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				ex.getRequestURL());
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -172,7 +172,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = "O corpo da requisição está inválido. Verifique erro de sintaxe.";
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -187,14 +187,14 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				.timestamp(LocalDateTime.now())
 				.title(status.getReasonPhrase())
 				.status(status.value())
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		} else if (body instanceof String) {
 			body = Problem.builder()
 				.timestamp(LocalDateTime.now())
 				.title((String) body)
 				.status(status.value())
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		}
 		
@@ -235,7 +235,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -281,7 +281,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				+ "Corrija ou remova essa propriedade e tente novamente.", path);
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -298,7 +298,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				path, ex.getValue(), ex.getTargetType().getSimpleName());
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
-				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
+				.userMessage(MSG_GENERIC_FINAL_USER_ERROR)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);

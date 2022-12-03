@@ -21,9 +21,9 @@ import com.github.fa2bio.api.assembler.CityModelAssembler;
 import com.github.fa2bio.api.model.CityModel;
 import com.github.fa2bio.api.model.input.CityInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.CityControllerSwagger;
-import com.github.fa2bio.domain.exception.StateNotFoundException;
 import com.github.fa2bio.domain.exception.BusinessException;
-import com.github.fa2bio.domain.model.Cidade;
+import com.github.fa2bio.domain.exception.StateNotFoundException;
+import com.github.fa2bio.domain.model.City;
 import com.github.fa2bio.domain.repository.CityRepository;
 import com.github.fa2bio.domain.service.CityService;
 
@@ -53,7 +53,7 @@ public class CityController implements CityControllerSwagger{
 	@Override
 	@GetMapping("/{cityId}")
 	public CityModel find(@PathVariable Long cityId) {
-		Cidade city = cityService.fetchOrFail(cityId);
+		City city = cityService.fetchOrFail(cityId);
 		return cityModelAssembler.toModel(city);
 	}
 	
@@ -62,8 +62,8 @@ public class CityController implements CityControllerSwagger{
 	@ResponseStatus(HttpStatus.CREATED)
 	public CityModel register(@RequestBody @Valid CityInput cityInput) {
 		try {
-			Cidade city = cityInputDisassembler.toDomainObject(cityInput);
-			return cityModelAssembler.toModel(cityService.salvar(city));
+			City city = cityInputDisassembler.toDomainObject(cityInput);
+			return cityModelAssembler.toModel(cityService.save(city));
 		} catch (StateNotFoundException e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
@@ -74,11 +74,11 @@ public class CityController implements CityControllerSwagger{
 	public CityModel update(@PathVariable Long cityId,
 			@RequestBody @Valid CityInput cityInput) {
 		try {
-			Cidade currentCity = cityService.fetchOrFail(cityId);
+			City currentCity = cityService.fetchOrFail(cityId);
 			
 			cityInputDisassembler.copyToDomainObject(cityInput, currentCity);
 			
-			return cityModelAssembler.toModel(cityService.salvar(currentCity));
+			return cityModelAssembler.toModel(cityService.save(currentCity));
 		} catch (StateNotFoundException e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
@@ -88,7 +88,7 @@ public class CityController implements CityControllerSwagger{
 	@DeleteMapping("/{cityId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long cityId) {
-		cityService.excluir(cityId);	
+		cityService.delete(cityId);	
 	}
 	
 }

@@ -6,8 +6,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PhotoProductModel {
-	private String nomeArquivo;
-	private String descricao;
+	private String fileName;
+	private String description;
 	private String contentType;
-	private Long tamanho;
+	private Long size;
 }

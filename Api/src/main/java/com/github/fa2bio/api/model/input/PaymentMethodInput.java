@@ -10,5 +10,5 @@ import lombok.Setter;
 public class PaymentMethodInput {
 	
 	@NotBlank
-	private String descricao;
+	private String description;
 }

@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.model.Usuario;
+import com.github.fa2bio.domain.model.User;
 
 @Repository
-public interface UserRepository extends CustomJpaRepository<Usuario, Long>{
+public interface UserRepository extends CustomJpaRepository<User, Long>{
 
-	Optional<Usuario> findByEmail(String email);
+	Optional<User> findByEmail(String email);
 }

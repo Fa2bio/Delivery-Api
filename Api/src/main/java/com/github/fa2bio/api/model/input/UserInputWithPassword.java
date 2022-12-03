@@ -10,5 +10,5 @@ import lombok.Setter;
 public class UserInputWithPassword extends UserInput{
 	
 	@NotBlank
-	private String senha;
+	private String password;
 }

@@ -7,42 +7,42 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.EntityInUseException;
-import com.github.fa2bio.domain.exception.ProdutoNaoEncontradoException;
-import com.github.fa2bio.domain.model.Produto;
+import com.github.fa2bio.domain.exception.ProductNotFoundException;
+import com.github.fa2bio.domain.model.Product;
 import com.github.fa2bio.domain.repository.ProductRepository;
 
 @Service
 public class ProductService {
-	private static final String MSG_PRODUTO_EM_USO 
-	= "Produto de código %d não pode ser removido, pois está em uso";
+	private static final String MSG_PRODUCT_IN_USE 
+	= "The product with code %d cannot be removed because it is in use";
 
 	@Autowired
 	private ProductRepository productRepository;
 	
 	@Transactional
-	public Produto salvar (Produto produto) {
-		return productRepository.save(produto);
+	public Product save (Product product) {
+		return productRepository.save(product);
 	}
 	
 	@Transactional
-	public void excluir (Long id) {
+	public void delete (Long id) {
 		try {
 			productRepository.deleteById(id);
 			productRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new ProdutoNaoEncontradoException(id);
+			throw new ProductNotFoundException(id);
 		} catch(DataIntegrityViolationException e) {
-			throw new EntityInUseException(String.format(MSG_PRODUTO_EM_USO, id));
+			throw new EntityInUseException(String.format(MSG_PRODUCT_IN_USE, id));
 		}
 	}
 	
-	public Produto fetchOrFail(Long produtoId) {
-		return productRepository.findById(produtoId)
-			.orElseThrow(() -> new ProdutoNaoEncontradoException(produtoId));
+	public Product fetchOrFail(Long productId) {
+		return productRepository.findById(productId)
+			.orElseThrow(() -> new ProductNotFoundException(productId));
 	}
 	
-	public Produto fetchOrFail(Long restauranteId, Long produtoId) {
-		return productRepository.findById(restauranteId, produtoId)
-			.orElseThrow(() -> new ProdutoNaoEncontradoException(restauranteId, produtoId));
+	public Product fetchOrFail(Long restaurantId, Long productId) {
+		return productRepository.findById(restaurantId, productId)
+			.orElseThrow(() -> new ProductNotFoundException(restaurantId, productId));
 	}
 }

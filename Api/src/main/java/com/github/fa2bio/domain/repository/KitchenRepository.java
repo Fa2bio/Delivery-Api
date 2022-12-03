@@ -5,15 +5,15 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.model.Kitchen;
 
 @Repository
-public interface KitchenRepository extends CustomJpaRepository<Cozinha, Long> {
+public interface KitchenRepository extends CustomJpaRepository<Kitchen, Long> {
 
-	List<Cozinha> findTodasByNomeContaining(String nome);
+	List<Kitchen> findAllByNameContaining(String name);
 	
-	Optional<Cozinha> findByNome(String nome);
+	Optional<Kitchen> findByName(String name);
 	
-	boolean existsByNome(String nome);
+	boolean existsByName(String name);
 	
 }

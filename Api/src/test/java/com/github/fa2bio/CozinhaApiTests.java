@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.model.Kitchen;
 import com.github.fa2bio.domain.repository.KitchenRepository;
 import com.github.fa2bio.util.DatabaseCleaner;
 import com.github.fa2bio.util.ResourceUtils;
@@ -28,7 +28,7 @@ public class CozinhaApiTests {
 
 	private static final int cozinhaIdInexistente = 100;
 	private int qtdCozinhasCadastradas;
-	private Cozinha cozinhaAmericana;
+	private Kitchen cozinhaAmericana;
 	private String path;
 	private String json;
 	
@@ -98,7 +98,7 @@ public class CozinhaApiTests {
 			.get("/{cozinhaId}")
 		.then()
 			.statusCode(HttpStatus.OK.value())
-			.body("nome", equalTo(this.cozinhaAmericana.getNome()));
+			.body("nome", equalTo(this.cozinhaAmericana.getName()));
 	}
 	
 	@Test
@@ -112,12 +112,12 @@ public class CozinhaApiTests {
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
 	private void prepararDados() {
-		Cozinha cozinha1 = new Cozinha();
-		cozinha1.setNome("Tailandesa");
+		Kitchen cozinha1 = new Kitchen();
+		cozinha1.setName("Tailandesa");
 		cozinhaRepository.save(cozinha1);
 	
-		cozinhaAmericana = new Cozinha();
-		cozinhaAmericana.setNome("Americana");
+		cozinhaAmericana = new Kitchen();
+		cozinhaAmericana.setName("Americana");
 		cozinhaRepository.save(cozinhaAmericana);
 		
 		qtdCozinhasCadastradas = (int) cozinhaRepository.count();

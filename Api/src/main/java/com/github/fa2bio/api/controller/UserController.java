@@ -23,7 +23,7 @@ import com.github.fa2bio.api.model.input.PasswordInput;
 import com.github.fa2bio.api.model.input.UserInput;
 import com.github.fa2bio.api.model.input.UserInputWithPassword;
 import com.github.fa2bio.api.swaggeropenapi.controller.UserControllerSwagger;
-import com.github.fa2bio.domain.model.Usuario;
+import com.github.fa2bio.domain.model.User;
 import com.github.fa2bio.domain.repository.UserRepository;
 import com.github.fa2bio.domain.service.UserService;
 
@@ -52,7 +52,7 @@ public class UserController implements UserControllerSwagger{
 	@Override
 	@GetMapping("/{userId}")
 	public UserModel find(@PathVariable Long userId) {
-		Usuario user = userService.fetchOrFail(userId);
+		User user = userService.fetchOrFail(userId);
 		return usuarioModelAssembler.toModel(user);
 	}
 	
@@ -60,30 +60,30 @@ public class UserController implements UserControllerSwagger{
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserModel register(@RequestBody @Valid UserInputWithPassword userInput) {
-		Usuario user = usuarioInputDisassembler.toDomainObject(userInput);
-		return usuarioModelAssembler.toModel(userService.salvar(user));
+		User user = usuarioInputDisassembler.toDomainObject(userInput);
+		return usuarioModelAssembler.toModel(userService.save(user));
 	}
 	
 	@Override
 	@PutMapping("/{userId}")
 	public UserModel update(@PathVariable Long userId, @RequestBody @Valid UserInput userInput) {
 
-		Usuario currentUser = userService.fetchOrFail(userId);	
+		User currentUser = userService.fetchOrFail(userId);	
 		usuarioInputDisassembler.copyToDomainObject(userInput, currentUser);
-		return usuarioModelAssembler.toModel(userService.salvar(currentUser));
+		return usuarioModelAssembler.toModel(userService.save(currentUser));
 	}
 	
 	@Override
 	@PutMapping("/{userId}-updatePassword")
 	@ResponseStatus(HttpStatus.OK)
 	public void updatePassword(@PathVariable Long userId, @RequestBody @Valid PasswordInput passwordInput) {
-		userService.updatePassword(userId, passwordInput.getSenhaAtual(), passwordInput.getNovaSenha());
+		userService.updatePassword(userId, passwordInput);
 	}
 	
 	@Override
 	@DeleteMapping("/{userId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long userId) {
-		userService.excluir(userId);
+		userService.delete(userId);
 	}
 }

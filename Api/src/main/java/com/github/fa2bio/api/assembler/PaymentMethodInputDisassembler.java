@@ -5,18 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.input.PaymentMethodInput;
-import com.github.fa2bio.domain.model.FormaPagamento;
+import com.github.fa2bio.domain.model.PaymentMethod;
 
 @Component
 public class PaymentMethodInputDisassembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public FormaPagamento toDomainObject(PaymentMethodInput formaPagamentoInput) {
-		return modelMapper.map(formaPagamentoInput, FormaPagamento.class);
+	public PaymentMethod toDomainObject(PaymentMethodInput paymentMethodInput) {
+		return modelMapper.map(paymentMethodInput, PaymentMethod.class);
 	}
 	
-	public void copyToDomainObject(PaymentMethodInput formaPagamentoInput, FormaPagamento formaPagamento) {
-		modelMapper.map(formaPagamentoInput, formaPagamento);
+	public void copyToDomainObject(PaymentMethodInput paymentMethodInput, PaymentMethod paymentMethod) {
+		modelMapper.map(paymentMethodInput, paymentMethod);
 	}
 }

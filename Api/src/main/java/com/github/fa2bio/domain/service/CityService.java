@@ -8,51 +8,51 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.CityNotFoundException;
 import com.github.fa2bio.domain.exception.EntityInUseException;
-import com.github.fa2bio.domain.model.Cidade;
-import com.github.fa2bio.domain.model.Estado;
+import com.github.fa2bio.domain.model.City;
+import com.github.fa2bio.domain.model.State;
 import com.github.fa2bio.domain.repository.CityRepository;
 
 @Service
 public class CityService {
 
-	private static final String MSG_CIDADE_EM_USO 
-		= "Cidade de código %d não pode ser removida, pois está em uso";
+	private static final String MSG_CITY_IN_USE 
+		= "The city with code %d cannot be removed because it is in use";
 
 	@Autowired
-	private CityRepository cidadeRepository;
+	private CityRepository cityRepository;
 	
 	@Autowired
-	private StateService cadastroEstado;
+	private StateService stateService;
 	
 	@Transactional
-	public Cidade salvar(Cidade cidade) {
-		Long estadoId = cidade.getEstado().getId();
+	public City save(City city) {
+		Long stateId = city.getState().getId();
 
-		Estado estado = cadastroEstado.fetchOrFail(estadoId);
+		State state = stateService.fetchOrFail(stateId);
 		
-		cidade.setEstado(estado);
+		city.setState(state);
 		
-		return cidadeRepository.save(cidade);
+		return cityRepository.save(city);
 	}
 	
 	@Transactional
-	public void excluir(Long cidadeId) {
+	public void delete(Long cityId) {
 		try {
-			cidadeRepository.deleteById(cidadeId);
-			cidadeRepository.flush();
+			cityRepository.deleteById(cityId);
+			cityRepository.flush();
 			
 		} catch (EmptyResultDataAccessException e) {
-			throw new CityNotFoundException(cidadeId);
+			throw new CityNotFoundException(cityId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntityInUseException(
-				String.format(MSG_CIDADE_EM_USO, cidadeId));
+				String.format(MSG_CITY_IN_USE, cityId));
 		}
 	}
 	
-	public Cidade fetchOrFail(Long cidadeId) {
-		return cidadeRepository.findById(cidadeId)
-			.orElseThrow(() -> new CityNotFoundException(cidadeId));
+	public City fetchOrFail(Long cityId) {
+		return cityRepository.findById(cityId)
+			.orElseThrow(() -> new CityNotFoundException(cityId));
 	}
 	
 }

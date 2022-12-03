@@ -9,5 +9,5 @@ import lombok.Setter;
 @Setter
 public class KitchenInput {
 	@NotBlank
-	private String nome;
+	private String name;
 }

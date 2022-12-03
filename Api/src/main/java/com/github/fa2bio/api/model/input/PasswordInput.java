@@ -10,8 +10,8 @@ import lombok.Setter;
 public class PasswordInput {
 
 	@NotBlank
-	private String senhaAtual;
+	private String currentPassword;
 	
 	@NotBlank
-	private String novaSenha;
+	private String newPassword;
 }

@@ -10,9 +10,9 @@ import lombok.Setter;
 public class ProductModel {
 	
 	private Long id;
-	private String nome;
-	private String descricao;
-	private BigDecimal preco;
-	private Boolean ativo;
+	private String name;
+	private String description;
+	private BigDecimal price;
+	private Boolean active;
 
 }

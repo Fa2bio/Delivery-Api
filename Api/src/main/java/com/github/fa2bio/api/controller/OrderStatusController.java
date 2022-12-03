@@ -22,20 +22,20 @@ public class OrderStatusController implements OrderStatusControllerSwagger{
 	@PutMapping("/confirm")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void confirm(@PathVariable String orderCode) {
-		orderStatusService.confirmar(orderCode);
+		orderStatusService.confirm(orderCode);
 	}
 	
 	@Override
 	@PutMapping("/cancellation")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void cancellation(@PathVariable String orderCode) {
-		orderStatusService.cancelar(orderCode);
+		orderStatusService.cancel(orderCode);
 	}
 	
 	@Override
 	@PutMapping("/delivered")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delivered(@PathVariable String orderCode) {
-		orderStatusService.entregar(orderCode);
+		orderStatusService.deliver(orderCode);
 	}
 }

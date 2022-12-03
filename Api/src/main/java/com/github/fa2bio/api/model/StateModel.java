@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class StateModel {
 	private Long id;
-	private String nome;
+	private String name;
 }

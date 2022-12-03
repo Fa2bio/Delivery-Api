@@ -4,12 +4,12 @@ public class CityNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
-	public CityNotFoundException(String mensagem) {
-		super(mensagem);
+	public CityNotFoundException(String message) {
+		super(message);
 	}
 	
-	public CityNotFoundException(Long cidadeId) {
-		this(String.format("Não existe um cadastro de cidade com código %d", cidadeId));
+	public CityNotFoundException(Long cityId) {
+		this(String.format("There is no record of city with code %d", cityId));
 	}
 	
 }

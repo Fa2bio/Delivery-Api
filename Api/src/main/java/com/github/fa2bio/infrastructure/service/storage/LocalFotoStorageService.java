@@ -13,42 +13,42 @@ import com.github.fa2bio.domain.service.PhotoStorageService;
 @Service
 public class LocalFotoStorageService implements PhotoStorageService{
 
-	@Value("${delivery.storage.local.diretorio-fotos}")
-	private Path diretorioFotos;
+	@Value("${delivery.storage.local.diretorio-photos}")
+	private Path directoryPhotos;
 	
 	@Override
 	public void store(NewPhoto newPhoto) {
 		try {
-			Path arquivoPath = getArquivoPath(newPhoto.getNomeArquivo());
-			FileCopyUtils.copy(newPhoto.getInputStream(), Files.newOutputStream(arquivoPath));
+			Path filePath = getArquivoPath(newPhoto.getFileName());
+			FileCopyUtils.copy(newPhoto.getInputStream(), Files.newOutputStream(filePath));
 		} catch (Exception e) {
-			throw new StorageException("Não foi possível armazenar o arquivo", e);
+			throw new StorageException("Unable to store the file.", e);
 		}
 	}
 
 	@Override
-	public void toRemove(String nomeArquivo) {
+	public void toRemove(String fileName) {
 		try {
-			Path arquivoPath = getArquivoPath(nomeArquivo);
+			Path arquivoPath = getArquivoPath(fileName);
 			
 			Files.deleteIfExists(arquivoPath);
 		} catch (Exception e) {
-			throw new StorageException("Não foi possível excluir arquivo.", e);
+			throw new StorageException("Could not delete file.", e);
 		}
 	}
 	
 	@Override
-	public InputStream toRecover(String nomeArquivo) {
+	public InputStream toRecover(String fileName) {
 		try {
-			Path arquivoPath = getArquivoPath(nomeArquivo);
-			return Files.newInputStream(arquivoPath);
+			Path filePath = getArquivoPath(fileName);
+			return Files.newInputStream(filePath);
 		} catch (Exception e) {
-			throw new StorageException("Não foi possível recuperar o arquivo", e);
+			throw new StorageException("Unable to retrieve file.", e);
 		}		
 	}
 	
-	private Path getArquivoPath(String nomeArquivo) {
-		return diretorioFotos.resolve(Path.of(nomeArquivo));
+	private Path getArquivoPath(String fileName) {
+		return directoryPhotos.resolve(Path.of(fileName));
 	}
 
 }

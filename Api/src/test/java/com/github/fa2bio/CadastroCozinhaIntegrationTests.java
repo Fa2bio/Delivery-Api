@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.github.fa2bio.domain.exception.KitchenNaoEncontradaException;
 import com.github.fa2bio.domain.exception.EntityInUseException;
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.exception.KitchenNotFoundException;
+import com.github.fa2bio.domain.model.Kitchen;
 import com.github.fa2bio.domain.service.KitchenService;
 
 @RunWith(SpringRunner.class)
@@ -26,11 +26,11 @@ public class CadastroCozinhaIntegrationTests {
 	public void testarCadastroCozinhaComSucesso() {
 		
 		//cenário
-		Cozinha novaCozinha = new Cozinha();
-		novaCozinha.setNome("Chinesa");
+		Kitchen novaCozinha = new Kitchen();
+		novaCozinha.setName("Chinesa");
 		
 		//ação
-		novaCozinha = cadastroCozinha.salvar(novaCozinha);
+		novaCozinha = cadastroCozinha.save(novaCozinha);
 		
 		//validação
 		assertThat(novaCozinha).isNotNull();
@@ -41,21 +41,21 @@ public class CadastroCozinhaIntegrationTests {
 	@Test(expected = ConstraintViolationException.class)
 	public void deveFalharAoCadastrarCozinha_QuandoSemNome() {
 		//cenário
-		Cozinha novaCozinha = new Cozinha();
-		novaCozinha.setNome(null);
+		Kitchen novaCozinha = new Kitchen();
+		novaCozinha.setName(null);
 		
 		//ação
-		novaCozinha = cadastroCozinha.salvar(novaCozinha);
+		novaCozinha = cadastroCozinha.save(novaCozinha);
 
 	}
 	
 	@Test(expected = EntityInUseException.class)
 	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
-		cadastroCozinha.excluir(1L);
+		cadastroCozinha.delete(1L);
 	}
 	
-	@Test(expected = KitchenNaoEncontradaException.class)
+	@Test(expected = KitchenNotFoundException.class)
 	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
-		cadastroCozinha.excluir(100L);
+		cadastroCozinha.delete(100L);
 	}
 }

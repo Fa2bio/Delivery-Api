@@ -4,29 +4,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.model.Pedido;
+import com.github.fa2bio.domain.model.Orderr;
 
 @Service
 public class OrderStatusService {
 	    
 	@Autowired
-	private OrderService emissaoPedidoService;
+	private OrderService orderService;
 
 	@Transactional
-	public void confirmar(String codigoPedido) {
-		Pedido pedido = emissaoPedidoService.fetchOrFail(codigoPedido);
-		pedido.confirmar();
+	public void confirm(String orderCode) {
+		Orderr orderr = orderService.fetchOrFail(orderCode);
+		orderr.confirm();
 	}
 	
 	@Transactional
-	public void cancelar(String codigoPedido) {
-		Pedido pedido = emissaoPedidoService.fetchOrFail(codigoPedido);
-		pedido.cancelar();
+	public void cancel(String orderCode) {
+		Orderr orderr = orderService.fetchOrFail(orderCode);
+		orderr.cancel();
 	}
 	
 	@Transactional
-	public void entregar(String codigoPedido) {
-		Pedido pedido = emissaoPedidoService.fetchOrFail(codigoPedido);
-		pedido.entregar();
+	public void deliver(String orderCode) {
+		Orderr orderr = orderService.fetchOrFail(orderCode);
+		orderr.deliver();
 	}
 }

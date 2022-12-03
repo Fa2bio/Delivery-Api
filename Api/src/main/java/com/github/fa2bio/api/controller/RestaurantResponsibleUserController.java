@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.UserModelAssembler;
 import com.github.fa2bio.api.model.UserModel;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantResponsibleUserControllerSwagger;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
@@ -31,8 +31,8 @@ public class RestaurantResponsibleUserController implements RestaurantResponsibl
 	@Override
 	@GetMapping("/responsible")
 	public List<UserModel> list(@PathVariable Long restaurantId){
-		Restaurante restaurant = restaurantService.fetchOrFail(restaurantId);
-		return userModelAssembler.toCollectionModel(restaurant.getResponsaveis());
+		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
+		return userModelAssembler.toCollectionModel(restaurant.getResponsibles());
 	}
 	
 	@Override

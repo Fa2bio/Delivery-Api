@@ -3,7 +3,7 @@ package com.github.fa2bio.api.swaggeropenapi.controller;
 import java.util.List;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
-import com.github.fa2bio.api.model.GroupModel;
+import com.github.fa2bio.api.model.ClusterModel;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +19,7 @@ public interface UserGroupControllerSwagger {
 		@ApiResponse(code = 400, message = "Invalid user Id", response = Problem.class),
 		@ApiResponse(code = 404, message = "User not found", response = Problem.class)
 	})
-	List<GroupModel> list(
+	List<ClusterModel> list(
 			@ApiParam(value = "User Id", example = "1", required = true)
 			Long userId);
 	

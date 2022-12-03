@@ -7,34 +7,34 @@ import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.github.fa2bio.domain.filter.OrderFilter;
-import com.github.fa2bio.domain.model.Pedido;
+import com.github.fa2bio.domain.model.Orderr;
 
 public class OrderSpecs {
 
-	public static Specification<Pedido> usandoFiltro(OrderFilter filtro){
+	public static Specification<Orderr> usingFilter(OrderFilter filter){
 		return (root, query, builder) -> {
 			
-			if(Pedido.class.equals(query.getResultType())) {
-				root.fetch("restaurante").fetch("cozinha");
-				root.fetch("cliente" );
+			if(Orderr.class.equals(query.getResultType())) {
+				root.fetch("restaurant").fetch("kitchen");
+				root.fetch("client" );
 			}
 			
 			var predicates = new ArrayList<Predicate>();
 			
-			if(filtro.getClienteId() != null) {
-				predicates.add(builder.equal(root.get("cliente"), filtro.getClienteId()));
+			if(filter.getClientId() != null) {
+				predicates.add(builder.equal(root.get("client"), filter.getClientId()));
 			}
 			
-			if(filtro.getRestauranteId() != null) {
-				predicates.add(builder.equal(root.get("restaurante"), filtro.getRestauranteId()));
+			if(filter.getRestaurantId() != null) {
+				predicates.add(builder.equal(root.get("restaurant"), filter.getRestaurantId()));
 			}
 			
-			if(filtro.getDataCriacaoInicio() != null) {
-				predicates.add(builder.greaterThanOrEqualTo(root.get("dataCriacao"), filtro.getDataCriacaoInicio()));
+			if(filter.getCreationDateStart() != null) {
+				predicates.add(builder.greaterThanOrEqualTo(root.get("creationDate"), filter.getCreationDateStart()));
 			}
 			
-			if(filtro.getDataCriacaoFim() != null) {
-				predicates.add(builder.lessThanOrEqualTo(root.get("dataCriacao"), filtro.getDataCriacaoFim()));
+			if(filter.getCreationDateFinal() != null) {
+				predicates.add(builder.lessThanOrEqualTo(root.get("creationDate"), filter.getCreationDateFinal()));
 			}
 			
 			return builder.and(predicates.toArray(new Predicate[0]));

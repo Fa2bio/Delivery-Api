@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.KitchenModel;
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.model.Kitchen;
 
 @Component
 public class KitchenModelAssembler {
@@ -16,13 +16,13 @@ public class KitchenModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public KitchenModel toModel(Cozinha cozinha) {
-		return modelMapper.map(cozinha, KitchenModel.class);
+	public KitchenModel toModel(Kitchen kitchen) {
+		return modelMapper.map(kitchen, KitchenModel.class);
 	}
 	
-	public List<KitchenModel> toCollectionModel(List<Cozinha> cozinhas){
-		return cozinhas.stream()
-				.map(cozinha -> toModel(cozinha))
+	public List<KitchenModel> toCollectionModel(List<Kitchen> kitchens){
+		return kitchens.stream()
+				.map(kitchen -> toModel(kitchen))
 				.collect(Collectors.toList());
 	}
 }

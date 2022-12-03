@@ -4,16 +4,17 @@ public class PermissionNotFoundException extends EntityNotFoundException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public PermissionNotFoundException(String mensagem) {
-		super(mensagem);
+	public PermissionNotFoundException(String message) {
+		super(message);
 	}
 	
-	public PermissionNotFoundException(Long permissaoId) {
-		this(String.format("Não existe um cadastro de permissao com código %d", permissaoId));
+	public PermissionNotFoundException(Long permissionId) {
+		this(String.format("There is no record of permission with code %d",
+				permissionId));
 	}
 
-	public PermissionNotFoundException(Long grupoId, Long permissaoId) {
-		this(String.format("Não existe um cadastro de permissao com código %d para o grupo de código %d", 
-				permissaoId, grupoId));
+	public PermissionNotFoundException(Long groupId, Long permissionId) {
+		this(String.format("There is no permission record with code %d for code group %d", 
+				permissionId, groupId));
 	}
 }

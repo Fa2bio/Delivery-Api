@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.model.Cidade;
+import com.github.fa2bio.domain.model.City;
 
 @Repository
-public interface CityRepository extends CustomJpaRepository<Cidade, Long> {
+public interface CityRepository extends CustomJpaRepository<City, Long> {
 
-	@Query("from Cidade r join fetch r.estado")
-	List<Cidade> findAll();
+	@Query("from City r join fetch r.state")
+	List<City> findAll();
 }

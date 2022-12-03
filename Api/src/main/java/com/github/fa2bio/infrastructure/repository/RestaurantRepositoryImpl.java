@@ -1,7 +1,7 @@
 package com.github.fa2bio.infrastructure.repository;
 
-import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.comFreteGratis;
-import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.comNomeSemelhante;
+import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.comFreeShipping;
+import static com.github.fa2bio.infrastructure.repository.spec.RestaurantSpecs.withSimilarName;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,39 +16,39 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.repository.RestaurantRepository;
-import com.github.fa2bio.domain.repository.RestauranteRepositoryQueries;
+import com.github.fa2bio.domain.repository.RestaurantRepositoryQueries;
 
 @Repository
-public class RestaurantRepositoryImpl implements RestauranteRepositoryQueries {
+public class RestaurantRepositoryImpl implements RestaurantRepositoryQueries {
 
 	@PersistenceContext
 	private EntityManager manager;
 	
 	@Autowired @Lazy
-	private RestaurantRepository restauranteRepository;
+	private RestaurantRepository restaurantRepository;
 	
 	@Override
-	public List<Restaurante> find(String nome, 
-			BigDecimal taxaFreteInicial, BigDecimal taxaFreteFinal) {
+	public List<Restaurant> find(String name, 
+			BigDecimal creationDateStart, BigDecimal creationDateFinal) {
 		var builder = manager.getCriteriaBuilder();
 		
-		var criteria = builder.createQuery(Restaurante.class);
-		var root = criteria.from(Restaurante.class);
+		var criteria = builder.createQuery(Restaurant.class);
+		var root = criteria.from(Restaurant.class);
 
 		var predicates = new ArrayList<Predicate>();
 		
-		if (StringUtils.hasText(nome)) {
-			predicates.add(builder.like(root.get("nome"), "%" + nome + "%"));
+		if (StringUtils.hasText(name)) {
+			predicates.add(builder.like(root.get("name"), "%" + name + "%"));
 		}
 		
-		if (taxaFreteInicial != null) {
-			predicates.add(builder.greaterThanOrEqualTo(root.get("taxaFrete"), taxaFreteInicial));
+		if (creationDateStart != null) {
+			predicates.add(builder.greaterThanOrEqualTo(root.get("rateShipping"), creationDateStart));
 		}
 		
-		if (taxaFreteFinal != null) {
-			predicates.add(builder.lessThanOrEqualTo(root.get("taxaFrete"), taxaFreteFinal));
+		if (creationDateFinal != null) {
+			predicates.add(builder.lessThanOrEqualTo(root.get("rateShipping"), creationDateFinal));
 		}
 		
 		criteria.where(predicates.toArray(new Predicate[0]));
@@ -58,9 +58,9 @@ public class RestaurantRepositoryImpl implements RestauranteRepositoryQueries {
 	}
 
 	@Override
-	public List<Restaurante> findComFreteGratis(String nome) {
-		return restauranteRepository.findAll(comFreteGratis()
-				.and(comNomeSemelhante(nome)));
+	public List<Restaurant> findWithFreeShipping(String name) {
+		return restaurantRepository.findAll(comFreeShipping()
+				.and(withSimilarName(name)));
 	}
 	
 }

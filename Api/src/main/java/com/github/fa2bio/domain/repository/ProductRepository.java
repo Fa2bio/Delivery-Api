@@ -7,22 +7,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.model.FotoProduto;
-import com.github.fa2bio.domain.model.Produto;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.PhotoProduct;
+import com.github.fa2bio.domain.model.Product;
+import com.github.fa2bio.domain.model.Restaurant;
 
 @Repository
-public interface ProductRepository extends CustomJpaRepository<Produto, Long>, ProductRepositoryQueries{
+public interface ProductRepository extends CustomJpaRepository<Product, Long>, ProductRepositoryQueries{
 
-	@Query("from Produto where restaurante.id = :restaurante and id = :produto")
-	Optional<Produto> findById(@Param("restaurante") Long restauranteId, 
-			@Param("produto") Long produtoId);
+	@Query("from Product where restaurant.id = :restaurant and id = :product")
+	Optional<Product> findById(@Param("restaurant") Long restaurantId, 
+			@Param("product") Long productId);
 	
-	List<Produto> findTodosByRestaurante(Restaurante restaurante);
+	List<Product> findAllByRestaurant(Restaurant restaurant);
 	
-	@Query("from Produto p where p.ativo = true and p.restaurante = :restaurante")
-	List<Produto> findAtivosByRestaurante(Restaurante restaurante);
+	@Query("from Product p where p.active = true and p.restaurant = :restaurant")
+	List<Product> findActivesByRestaurant(Restaurant restaurant);
 	
-	@Query("select f from FotoProduto f join f.produto p where p.restaurante.id = :restauranteId and f.produto.id = :produtoId")
-	Optional<FotoProduto> findFotoById(Long restauranteId, Long produtoId);
+	@Query("select f from PhotoProduct f join f.product p where p.restaurant.id = :restaurantId and f.product.id = :productId")
+	Optional<PhotoProduct> findPhotoById(Long restaurantId, Long productId);
 }

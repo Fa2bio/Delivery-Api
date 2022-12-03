@@ -21,8 +21,8 @@ import com.github.fa2bio.api.assembler.ProductModelAssembler;
 import com.github.fa2bio.api.model.ProductModel;
 import com.github.fa2bio.api.model.input.ProductInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantProductsControllerSwagger;
-import com.github.fa2bio.domain.model.Produto;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Product;
+import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.repository.ProductRepository;
 import com.github.fa2bio.domain.service.ProductService;
 import com.github.fa2bio.domain.service.RestaurantService;
@@ -51,11 +51,11 @@ public class RestaurantProductsController
 	@GetMapping
 	public List<ProductModel> list(@PathVariable Long restaurantId, 
 			@RequestParam(required = false) boolean includeInactive) {
-		Restaurante restaurant = restaurantService.fetchOrFail(restaurantId);
-		List<Produto> allProducts = null;
+		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
+		List<Product> allProducts = null;
 		
-		if(includeInactive) allProducts = productRepository.findTodosByRestaurante(restaurant);
-		else allProducts = productRepository.findAtivosByRestaurante(restaurant);
+		if(includeInactive) allProducts = productRepository.findAllByRestaurant(restaurant);
+		else allProducts = productRepository.findActivesByRestaurant(restaurant);
 		
 		return productModelAssembler.toCollectionModel(allProducts);
 	}
@@ -63,7 +63,7 @@ public class RestaurantProductsController
 	@Override
 	@GetMapping("/{productId}")
 	public ProductModel find(@PathVariable Long restaurantId, @PathVariable Long productId) {
-		Produto product = productService.fetchOrFail(restaurantId, productId);
+		Product product = productService.fetchOrFail(restaurantId, productId);
 		return productModelAssembler.toModel(product);
 	}
 	
@@ -71,17 +71,17 @@ public class RestaurantProductsController
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProductModel register(@PathVariable Long restaurantId, @RequestBody @Valid ProductInput productInput) {
-		Restaurante restaurant = restaurantService.fetchOrFail(restaurantId);
-		Produto product = productInputDisassembler.toDomainObject(productInput);
-		product.setRestaurante(restaurant);
-		return productModelAssembler.toModel(productService.salvar(product));
+		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
+		Product product = productInputDisassembler.toDomainObject(productInput);
+		product.setRestaurant(restaurant);
+		return productModelAssembler.toModel(productService.save(product));
 	}
 	
 	@Override
 	@PutMapping("/{productId}")
 	public ProductModel update(@PathVariable Long restaurantId, @PathVariable Long productId, @RequestBody @Valid ProductInput productInput) {
-		Produto product = productService.fetchOrFail(restaurantId, productId);
+		Product product = productService.fetchOrFail(restaurantId, productId);
 		productInputDisassembler.copyToDomainObject(productInput, product);
-		return productModelAssembler.toModel(productService.salvar(product));
+		return productModelAssembler.toModel(productService.save(product));
 	}
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.RestaurantModel;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 
 @Component
 public class RestaurantModelAssembler {
@@ -16,13 +16,13 @@ public class RestaurantModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public RestaurantModel toModel(Restaurante restaurante) {
-		return modelMapper.map(restaurante, RestaurantModel.class);
+	public RestaurantModel toModel(Restaurant restaurant) {
+		return modelMapper.map(restaurant, RestaurantModel.class);
 	}
 	
-	public List<RestaurantModel> toCollectionModel(List<Restaurante> restaurantes){
-		return restaurantes.stream()
-				.map(restaurante -> toModel(restaurante))
+	public List<RestaurantModel> toCollectionModel(List<Restaurant> restaurants){
+		return restaurants.stream()
+				.map(restaurant -> toModel(restaurant))
 				.collect(Collectors.toList());
 	}
 }

@@ -21,7 +21,7 @@ import com.github.fa2bio.api.assembler.StateModelAssembler;
 import com.github.fa2bio.api.model.StateModel;
 import com.github.fa2bio.api.model.input.StateInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.StateControllerSwagger;
-import com.github.fa2bio.domain.model.Estado;
+import com.github.fa2bio.domain.model.State;
 import com.github.fa2bio.domain.repository.StateRepository;
 import com.github.fa2bio.domain.service.StateService;
 
@@ -50,7 +50,7 @@ public class StateController implements StateControllerSwagger{
 	@Override
 	@GetMapping("/{stateId}")
 	public StateModel find(@PathVariable Long stateId) {
-		Estado state = stateService.fetchOrFail(stateId);
+		State state = stateService.fetchOrFail(stateId);
 		return stateModelAssembler.toModel(state);
 	}
 	
@@ -58,26 +58,26 @@ public class StateController implements StateControllerSwagger{
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public StateModel register(@RequestBody @Valid StateInput stateInput) {
-		Estado state = stateInputDisassembler.toDomainObject(stateInput);
-		return stateModelAssembler.toModel(stateService.salvar(state));
+		State state = stateInputDisassembler.toDomainObject(stateInput);
+		return stateModelAssembler.toModel(stateService.save(state));
 	}
 	
 	@Override
 	@PutMapping("/{stateId}")
 	public StateModel update(@PathVariable Long stateId,
 			@RequestBody @Valid StateInput stateInput) {
-		Estado currentState = stateService.fetchOrFail(stateId);
+		State currentState = stateService.fetchOrFail(stateId);
 		
 		stateInputDisassembler.copyToDomainObject(stateInput, currentState);
 		
-		return stateModelAssembler.toModel(stateService.salvar(currentState));
+		return stateModelAssembler.toModel(stateService.save(currentState));
 	}
 	
 	@Override
 	@DeleteMapping("/{stateId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long stateId) {
-		stateService.excluir(stateId);	
+		stateService.delete(stateId);	
 	}
 	
 }

@@ -9,20 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.PermissionModel;
-import com.github.fa2bio.domain.model.Permissao;
+import com.github.fa2bio.domain.model.Permission;
 
 @Component
 public class PermissionModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public PermissionModel toModel(Permissao permissao) {
-		return modelMapper.map(permissao, PermissionModel.class);
+	public PermissionModel toModel(Permission permission) {
+		return modelMapper.map(permission, PermissionModel.class);
 	}
 	
-	public List<PermissionModel> toCollectionModel(Collection<Permissao> permissoes){
-		return permissoes.stream()
-				.map(permissao -> toModel(permissao))
+	public List<PermissionModel> toCollectionModel(Collection<Permission> permissions){
+		return permissions.stream()
+				.map(permission -> toModel(permission))
 				.collect(Collectors.toList());
 	}
 }

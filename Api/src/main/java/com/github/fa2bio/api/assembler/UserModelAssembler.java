@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.UserModel;
-import com.github.fa2bio.domain.model.Usuario;
+import com.github.fa2bio.domain.model.User;
 
 @Component
 public class UserModelAssembler {
@@ -17,13 +17,13 @@ public class UserModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public UserModel toModel(Usuario usuario) {
-		return modelMapper.map(usuario, UserModel.class);
+	public UserModel toModel(User user) {
+		return modelMapper.map(user, UserModel.class);
 	}
 	
-	public List<UserModel> toCollectionModel(Collection<Usuario> usuarios){
-		return usuarios.stream()
-				.map(usuario -> toModel(usuario))
+	public List<UserModel> toCollectionModel(Collection<User> users){
+		return users.stream()
+				.map(user -> toModel(user))
 				.collect(Collectors.toList());
 	}
 }

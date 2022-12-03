@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.input.RestaurantInput;
-import com.github.fa2bio.domain.model.Cidade;
-import com.github.fa2bio.domain.model.Cozinha;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.City;
+import com.github.fa2bio.domain.model.Kitchen;
+import com.github.fa2bio.domain.model.Restaurant;
 
 @Component
 public class RestaurantInputDisassembler {
@@ -15,19 +15,19 @@ public class RestaurantInputDisassembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Restaurante toDomainObject(RestaurantInput restaurantInput) {
-		return modelMapper.map(restaurantInput, Restaurante.class);
+	public Restaurant toDomainObject(RestaurantInput restaurantInput) {
+		return modelMapper.map(restaurantInput, Restaurant.class);
 	}
 	
-	public void copyToDomainObject(RestaurantInput restaurantInput, Restaurante restaurante) {
-		//Para evitar org.hibernate.HibernateException: identifier of an instance 
+	public void copyToDomainObject(RestaurantInput restaurantInput, Restaurant restaurant) {
+		//To avoid org.hibernate.HibernateException: identifier of an instance
 		//of com.github.fa2bio.domain.model.Cozinha was altered from 1 to 2
-		restaurante.setCozinha(new Cozinha());
+		restaurant.setKitchen(new Kitchen());
 		
-		if(restaurante.getEndereco() != null) {
-			restaurante.getEndereco().setCidade(new Cidade());
+		if(restaurant.getAddress() != null) {
+			restaurant.getAddress().setCity(new City());
 		}
 		
-		modelMapper.map(restaurantInput, restaurante);
+		modelMapper.map(restaurantInput, restaurant);
 	}
 }

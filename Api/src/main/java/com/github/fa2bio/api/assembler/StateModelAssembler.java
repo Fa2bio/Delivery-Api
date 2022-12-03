@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.StateModel;
-import com.github.fa2bio.domain.model.Estado;
+import com.github.fa2bio.domain.model.State;
 
 @Component
 public class StateModelAssembler {
@@ -16,13 +16,13 @@ public class StateModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public StateModel toModel(Estado estado) {
-		return modelMapper.map(estado, StateModel.class);
+	public StateModel toModel(State state) {
+		return modelMapper.map(state, StateModel.class);
 	}
 	
-	public List<StateModel> toCollectionModel(List<Estado> estados){
-		return estados.stream()
-				.map(estado -> toModel(estado))
+	public List<StateModel> toCollectionModel(List<State> states){
+		return states.stream()
+				.map(state -> toModel(state))
 				.collect(Collectors.toList());
 	}
 }

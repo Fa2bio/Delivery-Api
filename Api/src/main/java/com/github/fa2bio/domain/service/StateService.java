@@ -8,39 +8,39 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.StateNotFoundException;
-import com.github.fa2bio.domain.model.Estado;
+import com.github.fa2bio.domain.model.State;
 import com.github.fa2bio.domain.repository.StateRepository;
 
 @Service
 public class StateService {
 
-	private static final String MSG_ESTADO_EM_USO 
-		= "Estado de código %d não pode ser removido, pois está em uso";
+	private static final String MSG_STATE_IN_USE 
+		= "The state with code %d cannot be removed because it is in use";
 	
 	@Autowired
-	private StateRepository estadoRepository;
+	private StateRepository stateRepository;
 	
 	@Transactional
-	public Estado salvar(Estado estado) {
-		return estadoRepository.save(estado);
+	public State save(State state) {
+		return stateRepository.save(state);
 	}
 	
 	@Transactional
-	public void excluir(Long estadoId) {
+	public void delete(Long stateId) {
 		try {
-			estadoRepository.deleteById(estadoId);
-			estadoRepository.flush();
+			stateRepository.deleteById(stateId);
+			stateRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new StateNotFoundException(estadoId);
+			throw new StateNotFoundException(stateId);
 		} catch (DataIntegrityViolationException e) {
 			throw new EntityInUseException(
-				String.format(MSG_ESTADO_EM_USO, estadoId));
+				String.format(MSG_STATE_IN_USE , stateId));
 		}
 	}
 
-	public Estado fetchOrFail(Long estadoId) {
-		return estadoRepository.findById(estadoId)
-			.orElseThrow(() -> new StateNotFoundException(estadoId));
+	public State fetchOrFail(Long stateId) {
+		return stateRepository.findById(stateId)
+			.orElseThrow(() -> new StateNotFoundException(stateId));
 	}
 	
 }

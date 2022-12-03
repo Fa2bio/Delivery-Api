@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.input.CityInput;
-import com.github.fa2bio.domain.model.Cidade;
-import com.github.fa2bio.domain.model.Estado;
+import com.github.fa2bio.domain.model.City;
+import com.github.fa2bio.domain.model.State;
 
 @Component
 public class CityInputDisassembler {
@@ -14,15 +14,15 @@ public class CityInputDisassembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Cidade toDomainObject(CityInput cidadeInput) {
-		return modelMapper.map(cidadeInput, Cidade.class);
+	public City toDomainObject(CityInput cityInput) {
+		return modelMapper.map(cityInput, City.class);
 	}
 	
-	public void copyToDomainObject(CityInput cidadeInput, Cidade cidade) {
-		// Para evitar org.hibernate.HibernateException: identifier of an instance of 
-		// com.github.fa2bio.domain.model.Estado was altered from 1 to 2
+	public void copyToDomainObject(CityInput cityInput, City city) {
 		
-		cidade.setEstado(new Estado());
-		modelMapper.map(cidadeInput, cidade);
+		// To avoid org.hibernate.HibernateException: identifier of an instance of
+		// com.github.fa2bio.domain.model.State was altered from 1 to 2
+		city.setState(new State());
+		modelMapper.map(cityInput, city);
 	}
 }

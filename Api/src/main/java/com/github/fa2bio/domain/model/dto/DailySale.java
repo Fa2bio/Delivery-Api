@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter 
 public class DailySale {
-	private Date data;
-	private Long totalVendas;
-	private BigDecimal totalFaturado;
+	private Date date;
+	private Long totalSales;
+	private BigDecimal totalInvoiced;
 }

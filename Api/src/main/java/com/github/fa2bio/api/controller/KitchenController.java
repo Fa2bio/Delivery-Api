@@ -25,7 +25,7 @@ import com.github.fa2bio.api.assembler.KitchenModelAssembler;
 import com.github.fa2bio.api.model.KitchenModel;
 import com.github.fa2bio.api.model.input.KitchenInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.KitchenControllerSwagger;
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.model.Kitchen;
 import com.github.fa2bio.domain.repository.KitchenRepository;
 import com.github.fa2bio.domain.service.KitchenService;
 
@@ -48,7 +48,7 @@ public class KitchenController implements KitchenControllerSwagger{
 	@Override
 	@GetMapping
 	public Page<KitchenModel> list(@PageableDefault(size = 10) Pageable pegeable) {
-		Page<Cozinha> kitchenPage = kitchenRepository.findAll(pegeable);
+		Page<Kitchen> kitchenPage = kitchenRepository.findAll(pegeable);
 	
 		List<KitchenModel> kitchenModel = kitchenModelAssembler
 				.toCollectionModel(kitchenPage.getContent());
@@ -62,7 +62,7 @@ public class KitchenController implements KitchenControllerSwagger{
 	@Override
 	@GetMapping("/{kitchenId}")
 	public KitchenModel find(@PathVariable Long kitchenId) {
-		Cozinha kitchen = kitchenService.fetchOrFail(kitchenId);
+		Kitchen kitchen = kitchenService.fetchOrFail(kitchenId);
 		return kitchenModelAssembler.toModel(kitchen);
 	}
 	
@@ -70,25 +70,25 @@ public class KitchenController implements KitchenControllerSwagger{
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public KitchenModel register(@RequestBody @Valid KitchenInput kitchenInput) {
-		Cozinha kitchen = kitchenInputDisassembler.toDomainObject(kitchenInput);
-		return kitchenModelAssembler.toModel(kitchenService.salvar(kitchen));
+		Kitchen kitchen = kitchenInputDisassembler.toDomainObject(kitchenInput);
+		return kitchenModelAssembler.toModel(kitchenService.save(kitchen));
 	}
 	
 	@Override
 	@PutMapping("/{kitchenId}")
 	public KitchenModel update(@PathVariable Long kitchenId, @RequestBody @Valid KitchenInput kitchenInput) {
-		Cozinha currentkitchen = kitchenService.fetchOrFail(kitchenId);
+		Kitchen currentkitchen = kitchenService.fetchOrFail(kitchenId);
 		
 		kitchenInputDisassembler.copyToDomainObject(kitchenInput, currentkitchen);
 		
-		return kitchenModelAssembler.toModel(kitchenService.salvar(currentkitchen));
+		return kitchenModelAssembler.toModel(kitchenService.save(currentkitchen));
 	}
 	
 	@Override
 	@DeleteMapping("/{kitchenId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long kitchenId) {
-		kitchenService.excluir(kitchenId);
+		kitchenService.delete(kitchenId);
 	}
 	
 }

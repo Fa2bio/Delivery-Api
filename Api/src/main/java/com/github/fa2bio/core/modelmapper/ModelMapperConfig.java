@@ -4,10 +4,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.fa2bio.api.model.EnderecoModel;
-import com.github.fa2bio.api.model.input.ItemPedidoInput;
-import com.github.fa2bio.domain.model.Endereco;
-import com.github.fa2bio.domain.model.ItemPedido;
+import com.github.fa2bio.api.model.AddressModel;
+import com.github.fa2bio.api.model.input.ItemOrderrInput;
+import com.github.fa2bio.domain.model.Address;
+import com.github.fa2bio.domain.model.ItemOrderr;
 
 @Configuration
 public class ModelMapperConfig {
@@ -16,15 +16,15 @@ public class ModelMapperConfig {
 	public ModelMapper modelMapper() {
 		var modelMapper = new ModelMapper();		 
 		
-		var skipItemPedidoId = modelMapper.createTypeMap(ItemPedidoInput.class, ItemPedido.class);
-		skipItemPedidoId.addMappings(mapper -> mapper.skip(ItemPedido::setId));
+		var skipItemPedidoId = modelMapper.createTypeMap(ItemOrderrInput.class, ItemOrderr.class);
+		skipItemPedidoId.addMappings(mapper -> mapper.skip(ItemOrderr::setId));
 		
-		var enderecoToEnderecoModelTypeMap = modelMapper.createTypeMap(
-				Endereco.class, EnderecoModel.class);
+		var addressToAddressModelTypeMap = modelMapper.createTypeMap(
+				Address.class, AddressModel.class);
 		
-		enderecoToEnderecoModelTypeMap.<String>addMapping(
-				enderecoSrc -> enderecoSrc.getCidade().getEstado().getNome(),
-				(enderecoModelDest, value) -> enderecoModelDest.getCidade().setEstado(value));
+		addressToAddressModelTypeMap.<String>addMapping(
+				addressSrc -> addressSrc.getCity().getState().getName(),
+				(addressModelDest, value) -> addressModelDest.getCity().setState(value));
 		
 		return modelMapper;
 	}

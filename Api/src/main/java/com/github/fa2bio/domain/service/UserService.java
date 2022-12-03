@@ -8,78 +8,79 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.fa2bio.api.model.input.PasswordInput;
+import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.EntityInUseException;
 import com.github.fa2bio.domain.exception.PasswordNotMatchExceptiom;
-import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.UserNotFoundException;
-import com.github.fa2bio.domain.model.Grupo;
-import com.github.fa2bio.domain.model.Usuario;
+import com.github.fa2bio.domain.model.Cluster;
+import com.github.fa2bio.domain.model.User;
 import com.github.fa2bio.domain.repository.UserRepository;
 
 @Service
 public class UserService {
 
-	private static final String MSG_USUARIO_EM_USO 
-	= "Usuario de código %d não pode ser removida, pois está em uso";
+	private static final String MSG_USER_IN_USE  
+	= "The user with code %d cannot be removed because it is in use";
 
 	@Autowired
 	private UserRepository usuarioRepository;
 	
 	@Autowired
-	private GroupService cadastroGrupoService;
+	private ClusterService clusterService;
 	
 	@Transactional
-	public Usuario salvar(Usuario usuario) {
+	public User save(User user) {
 		
-		usuarioRepository.detach(usuario);
+		usuarioRepository.detach(user);
 		
-		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
-		if(usuarioExistente.isPresent() && !usuarioExistente.get().equals(usuario)) {
-			throw new BusinessException(String.format("Já existe um usuário cadastrado com o email %s", usuario.getEmail()));
+		Optional<User> existingUser = usuarioRepository.findByEmail(user.getEmail());
+		if(existingUser.isPresent() && !existingUser.get().equals(user)) {
+			throw new BusinessException(String.format("There is already a registered user with email %s", user.getEmail()));
 		}
 				
-		return usuarioRepository.save(usuario);
+		return usuarioRepository.save(user);
 	}
 	
 	@Transactional
-	public void excluir(Long usuarioId) {
+	public void delete(Long userId) {
 		try {
-			usuarioRepository.deleteById(usuarioId);
+			usuarioRepository.deleteById(userId);
 			usuarioRepository.flush();
 		} catch (EmptyResultDataAccessException e) {
-			throw new UserNotFoundException(usuarioId);
+			throw new UserNotFoundException(userId);
 		} catch (DataIntegrityViolationException e) {
-			throw new EntityInUseException(String.format(MSG_USUARIO_EM_USO, usuarioId));
+			throw new EntityInUseException(String.format(MSG_USER_IN_USE, userId));
 		}
 		
 	}
 	
 	@Transactional
-	public void associate(Long usuarioId, Long grupoId) {
-		Usuario usuario = fetchOrFail(usuarioId);
-		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
-		usuario.adicionarGrupo(grupo);
+	public void associate(Long userId, Long groupId) {
+		User user = fetchOrFail(userId);
+		Cluster cluster = clusterService.fetchOrFail(groupId);
+		user.addGroup(cluster);
 		
 	}
 	
 	@Transactional
-	public void disassociate(Long usuarioId, Long grupoId) {
-		Usuario usuario = fetchOrFail(usuarioId);
-		Grupo grupo = cadastroGrupoService.fetchOrFail(grupoId);
-		usuario.removerGrupo(grupo);
+	public void disassociate(Long userId, Long groupId) {
+		User user = fetchOrFail(userId);
+		Cluster cluster = clusterService.fetchOrFail(groupId);
+		user.removeGroup(cluster);
 		
 	}
 	
-	public Usuario fetchOrFail(Long usuarioId) {
-		return usuarioRepository.findById(usuarioId)
-			.orElseThrow(() -> new UserNotFoundException(usuarioId));
+	public User fetchOrFail(Long userId) {
+		return usuarioRepository.findById(userId)
+			.orElseThrow(() -> new UserNotFoundException(userId));
 	}
 
-	public void updatePassword(Long usuarioId, String senhaAtual, String novaSenha) {
-		Usuario user = fetchOrFail(usuarioId);
-		if(user.getSenha().equals(senhaAtual)) {
-			user.setSenha(novaSenha);
-			salvar(user);
+	public void updatePassword(Long userId, PasswordInput passwordInput) {
+		User user = fetchOrFail(userId);
+		if(user.passwordCoincide(passwordInput.getCurrentPassword())) {
+			user.setPassword(passwordInput.getNewPassword());
+			save(user);
 		}else throw new PasswordNotMatchExceptiom("Could not change password because the password entered is incorrect. Change the field senhaAtual and try again");
 				
 	}

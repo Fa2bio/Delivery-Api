@@ -15,17 +15,17 @@ import lombok.Setter;
 public class RestaurantInput {
 	
 	@NotBlank
-	private String nome;
+	private String name;
 	
 	@NotNull
 	@PositiveOrZero
-	private BigDecimal taxaFrete;
+	private BigDecimal rateShipping;
 	
 	@Valid
 	@NotNull
-	private KitchenIdInput cozinha;
+	private KitchenIdInput kitchen;
 	
 	@Valid
 	@NotNull
-	private EnderecoInput endereco;
+	private AddressInput address;
 }

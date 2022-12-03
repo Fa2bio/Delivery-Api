@@ -6,43 +6,43 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.KitchenNaoEncontradaException;
 import com.github.fa2bio.domain.exception.EntityInUseException;
-import com.github.fa2bio.domain.model.Cozinha;
+import com.github.fa2bio.domain.exception.KitchenNotFoundException;
+import com.github.fa2bio.domain.model.Kitchen;
 import com.github.fa2bio.domain.repository.KitchenRepository;
 
 @Service
 public class KitchenService {
 
-	private static final String MSG_COZINHA_EM_USO 
-		= "Cozinha de código %d não pode ser removida, pois está em uso";
+	private static final String MSG_KITCHEN_IN_USE  
+		= "The kitchen with code %d cannot be removed because it is in use";
 
 	@Autowired
-	private KitchenRepository cozinhaRepository;
+	private KitchenRepository kitchenRepository;
 	
 	@Transactional
-	public Cozinha salvar(Cozinha cozinha) {
-		return cozinhaRepository.save(cozinha);
+	public Kitchen save(Kitchen kitchen) {
+		return kitchenRepository.save(kitchen);
 	}
 	
 	@Transactional
-	public void excluir(Long cozinhaId) {
+	public void delete(Long kitchenId) {
 		try {
-			cozinhaRepository.deleteById(cozinhaId);
-			cozinhaRepository.flush();
+			kitchenRepository.deleteById(kitchenId);
+			kitchenRepository.flush();
 			
 		} catch (EmptyResultDataAccessException e) {
-			throw new KitchenNaoEncontradaException(cozinhaId);
+			throw new KitchenNotFoundException(kitchenId);
 		
 		} catch (DataIntegrityViolationException e) {
 			throw new EntityInUseException(
-				String.format(MSG_COZINHA_EM_USO, cozinhaId));
+				String.format(MSG_KITCHEN_IN_USE, kitchenId));
 		}
 	}
 	
-	public Cozinha fetchOrFail(Long cozinhaId) {
-		return cozinhaRepository.findById(cozinhaId)
-			.orElseThrow(() -> new KitchenNaoEncontradaException(cozinhaId));
+	public Kitchen fetchOrFail(Long kitchenId) {
+		return kitchenRepository.findById(kitchenId)
+			.orElseThrow(() -> new KitchenNotFoundException(kitchenId));
 	}
 	
 }

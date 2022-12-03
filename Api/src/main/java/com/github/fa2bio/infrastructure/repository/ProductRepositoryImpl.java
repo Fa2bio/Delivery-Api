@@ -6,7 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.model.FotoProduto;
+import com.github.fa2bio.domain.model.PhotoProduct;
 import com.github.fa2bio.domain.repository.ProductRepositoryQueries;
 
 @Repository
@@ -17,13 +17,13 @@ public class ProductRepositoryImpl implements ProductRepositoryQueries{
 
 	@Override
 	@Transactional
-	public FotoProduto save(FotoProduto foto) {
-		return manager.merge(foto);
+	public PhotoProduct save(PhotoProduct photo) {
+		return manager.merge(photo);
 	}
 
 	@Override
-	public void delete(FotoProduto foto) {
-		manager.remove(foto);
+	public void delete(PhotoProduct photo) {
+		manager.remove(photo);
 	}
 
 }

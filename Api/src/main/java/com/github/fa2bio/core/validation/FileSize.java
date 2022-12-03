@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = { FileSizeValidator.class })
 public @interface FileSize {
 
-	String message() default "tamanho do arquivo inválido";
+	String message() default "invalid file size";
 
 	Class<?>[] groups() default { };
 

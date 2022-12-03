@@ -23,9 +23,9 @@ import com.github.fa2bio.api.model.input.RestaurantInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantControllerSwagger;
 import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.CityNotFoundException;
-import com.github.fa2bio.domain.exception.KitchenNaoEncontradaException;
+import com.github.fa2bio.domain.exception.KitchenNotFoundException;
 import com.github.fa2bio.domain.exception.RestaurantNotFoundException;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.repository.RestaurantRepository;
 import com.github.fa2bio.domain.service.RestaurantService;
 
@@ -52,7 +52,7 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	}
 	
 	@Override
-	@GetMapping(params="projecao=apenas-nome")
+	@GetMapping(params="projection=name-only")
 	public List<RestaurantModel> listOnlyName() {
 		return list();
 	}
@@ -60,7 +60,7 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	@Override
 	@GetMapping("/{restaurantId}")
 	public RestaurantModel find(@PathVariable Long restaurantId) {
-		Restaurante restaurant = restaurantService.fetchOrFail(restaurantId);
+		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
 		return restaurantModelAssembler.toModel(restaurant);
 	}
 	
@@ -70,9 +70,9 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	public RestaurantModel register(@RequestBody @Valid RestaurantInput restaurantInput) {
 
 		try {
-			Restaurante restaurant = restaurantInputDisassembler.toDomainObject(restaurantInput);
-			return restaurantModelAssembler.toModel(restaurantService.salvar(restaurant));
-		} catch (KitchenNaoEncontradaException e) {
+			Restaurant restaurant = restaurantInputDisassembler.toDomainObject(restaurantInput);
+			return restaurantModelAssembler.toModel(restaurantService.save(restaurant));
+		} catch (KitchenNotFoundException e) {
 			throw new BusinessException(e.getMessage());
 		}
 	}
@@ -83,11 +83,11 @@ public class RestaurantController implements RestaurantControllerSwagger{
 			@RequestBody @Valid RestaurantInput restaurantInput) {
 		try {
 
-			Restaurante restaurantCurrent = restaurantService.fetchOrFail(restaurantId);
+			Restaurant restaurantCurrent = restaurantService.fetchOrFail(restaurantId);
 			
 			restaurantInputDisassembler.copyToDomainObject(restaurantInput, restaurantCurrent);
-			return restaurantModelAssembler.toModel(restaurantService.salvar(restaurantCurrent));
-		} catch (KitchenNaoEncontradaException | CityNotFoundException e) {
+			return restaurantModelAssembler.toModel(restaurantService.save(restaurantCurrent));
+		} catch (KitchenNotFoundException | CityNotFoundException e) {
 			throw new BusinessException(e.getMessage());
 		}
 	}

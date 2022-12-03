@@ -4,18 +4,18 @@ import java.math.BigDecimal;
 
 import org.springframework.data.jpa.domain.Specification;
 
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 
 public class RestaurantSpecs {
 
-	public static Specification<Restaurante> comFreteGratis() {
+	public static Specification<Restaurant> comFreeShipping() {
 		return (root, query, builder) -> 
-			builder.equal(root.get("taxaFrete"), BigDecimal.ZERO);
+			builder.equal(root.get("rateShipping"), BigDecimal.ZERO);
 	}
 	
-	public static Specification<Restaurante> comNomeSemelhante(String nome) {
+	public static Specification<Restaurant> withSimilarName(String name) {
 		return (root, query, builder) ->
-			builder.like(root.get("nome"), "%" + nome + "%");
+			builder.like(root.get("name"), "%" + name + "%");
 	}
 	
 }

@@ -18,11 +18,11 @@ public interface StatisticsControllerSwagger {
 
 	@ApiOperation("Query daily sales statistics")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = "restauranteId", value = "Restaurant Id", 
+		@ApiImplicitParam(name = "restaurantId", value = "Restaurant Id", 
 				example = "1", dataType = "int"),
-		@ApiImplicitParam(name = "dataCriacaoInicio", value = "Order creation start date/time",
+		@ApiImplicitParam(name = "creationDateStart", value = "Order creation start date/time",
 			example = "2019-12-01T00:00:00Z", dataType = "date-time"),
-		@ApiImplicitParam(name = "dataCriacaoFim", value = "Order creation end date/time",
+		@ApiImplicitParam(name = "creationDateFinal", value = "Order creation end date/time",
 			example = "2019-12-02T23:59:59Z", dataType = "date-time")
 	})
 	List<DailySale> queryDailySalesJson(

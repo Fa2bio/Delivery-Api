@@ -18,11 +18,11 @@ import io.swagger.annotations.ApiResponses;
 public interface RestaurantControllerSwagger {
 
 	@ApiOperation("List of restaurants")
-	@JsonView(RestaurantView.Resumo.class)
+	@JsonView(RestaurantView.Summary.class)
 	public List<RestaurantModel> list();
 	
 	@ApiOperation("List of restaurant names")
-	@JsonView(RestaurantView.ApenasNome.class)
+	@JsonView(RestaurantView.NameOnly.class)
 	List<RestaurantModel> listOnlyName();
 	
 	@ApiOperation("Search a restaurant by Id")

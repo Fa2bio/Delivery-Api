@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.CityModel;
-import com.github.fa2bio.domain.model.Cidade;
+import com.github.fa2bio.domain.model.City;
 
 @Component
 public class CityModelAssembler {
@@ -16,13 +16,13 @@ public class CityModelAssembler {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public CityModel toModel(Cidade cidade) {
-		return modelMapper.map(cidade, CityModel.class);
+	public CityModel toModel(City city) {
+		return modelMapper.map(city, CityModel.class);
 	}
 	
-	public List<CityModel> toCollectionModel(List<Cidade> cidades){
-		return cidades.stream()
-				.map(cidade -> toModel(cidade))
+	public List<CityModel> toCollectionModel(List<City> cities){
+		return cities.stream()
+				.map(city -> toModel(city))
 				.collect(Collectors.toList());
 	}
 }

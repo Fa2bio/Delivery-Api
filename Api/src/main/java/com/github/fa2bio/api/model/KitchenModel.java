@@ -10,9 +10,9 @@ import lombok.Setter;
 @Getter
 public class KitchenModel {
 	
-	@JsonView(RestaurantView.Resumo.class)
+	@JsonView(RestaurantView.Summary.class)
 	private Long id;
 	
-	@JsonView(RestaurantView.Resumo.class)
-	private String nome;
+	@JsonView(RestaurantView.Summary.class)
+	private String name;
 }

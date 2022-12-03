@@ -4,7 +4,7 @@ public class PasswordNotMatchExceptiom extends BusinessException{
 
 	private static final long serialVersionUID = 1L;
 	
-	public PasswordNotMatchExceptiom(String mensagem) {
-		super(mensagem);
+	public PasswordNotMatchExceptiom(String message) {
+		super(message);
 	}
 }

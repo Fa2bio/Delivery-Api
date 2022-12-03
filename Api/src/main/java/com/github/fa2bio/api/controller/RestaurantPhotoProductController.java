@@ -25,8 +25,8 @@ import com.github.fa2bio.api.assembler.PhotoProdutoModelAssembler;
 import com.github.fa2bio.api.model.PhotoProductModel;
 import com.github.fa2bio.api.model.input.PhotoProductInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantPhotoProductControllerSwagger;
-import com.github.fa2bio.domain.model.FotoProduto;
-import com.github.fa2bio.domain.model.Produto;
+import com.github.fa2bio.domain.model.PhotoProduct;
+import com.github.fa2bio.domain.model.Product;
 import com.github.fa2bio.domain.service.PhotoProductService;
 import com.github.fa2bio.domain.service.PhotoStorageService;
 import com.github.fa2bio.domain.service.ProductService;
@@ -53,7 +53,7 @@ public class RestaurantPhotoProductController
 	public PhotoProductModel find(@PathVariable Long restaurantId,
 			@PathVariable Long productId) {
 		
-		FotoProduto photoProduct = photoProductService.fetchOrFail(restaurantId, productId);
+		PhotoProduct photoProduct = photoProductService.fetchOrFail(restaurantId, productId);
 		
 		return photoProdutoModelAssembler.toModel(photoProduct);
 	}
@@ -64,12 +64,12 @@ public class RestaurantPhotoProductController
 			@PathVariable Long productId, @RequestHeader(name = "accept") String acceptHeader) throws HttpMediaTypeNotAcceptableException{
 		
 		try {
-			FotoProduto photoProduct = photoProductService.fetchOrFail(restaurantId, productId);
+			PhotoProduct photoProduct = photoProductService.fetchOrFail(restaurantId, productId);
 			MediaType mediaTypePhoto = MediaType.parseMediaType(photoProduct.getContentType());
 			List<MediaType> acceptedMediaTypes = MediaType.parseMediaTypes(acceptHeader);
 			verificarCompatibilidadeMediaType(mediaTypePhoto, acceptedMediaTypes);
 			
-			java.io.InputStream inputStream = photoStorageService.toRecover(photoProduct.getNomeArquivo());
+			java.io.InputStream inputStream = photoStorageService.toRecover(photoProduct.getFileName());
 			
 			return ResponseEntity.ok()
 					.contentType(mediaTypePhoto)
@@ -85,18 +85,18 @@ public class RestaurantPhotoProductController
 	public PhotoProductModel registerPhoto(@PathVariable Long restaurantId,
 			@PathVariable Long productId, @Valid PhotoProductInput photoProductInput) throws IOException{
 		
-		Produto product = productService.fetchOrFail(restaurantId, productId);
+		Product product = productService.fetchOrFail(restaurantId, productId);
 		
-		MultipartFile file = photoProductInput.getArquivo();
+		MultipartFile file = photoProductInput.getFile();
 		
-		FotoProduto photo = new FotoProduto();
-		photo.setProduto(product);
-		photo.setDescricao(photoProductInput.getDescricao());
+		PhotoProduct photo = new PhotoProduct();
+		photo.setProduct(product);
+		photo.setDescription(photoProductInput.getDescription());
 		photo.setContentType(file.getContentType());
-		photo.setTamanho(file.getSize());
-		photo.setNomeArquivo(file.getOriginalFilename());
+		photo.setSize(file.getSize());
+		photo.setFileName(file.getOriginalFilename());
 		
-		FotoProduto photoSaved = photoProductService.salvar(photo, file.getInputStream());
+		PhotoProduct photoSaved = photoProductService.save(photo, file.getInputStream());
 		
 		return photoProdutoModelAssembler.toModel(photoSaved);
 		
@@ -107,7 +107,7 @@ public class RestaurantPhotoProductController
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long restaurantId, 
 			@PathVariable Long productId) {
-		photoProductService.excluir(restaurantId, productId);
+		photoProductService.delete(restaurantId, productId);
 	}
 	
 	private void verificarCompatibilidadeMediaType(MediaType mediaTypeFoto,

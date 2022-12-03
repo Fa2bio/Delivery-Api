@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.PaymentMethodModelAssembler;
 import com.github.fa2bio.api.model.PaymentMethodModel;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantPaymentMethodControllerSwagger;
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.service.RestaurantService;
 
 @RestController
@@ -31,9 +31,9 @@ public class RestaurantPaymentMethodController implements RestaurantPaymentMetho
 	@Override
 	@GetMapping
 	public List<PaymentMethodModel> list(@PathVariable Long restaurantId) {
-		Restaurante restaurante = restaurantService.fetchOrFail(restaurantId);
+		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
 		
-		return paymentMethodModelAssembler.toCollectionModel(restaurante.getFormasPagamento());
+		return paymentMethodModelAssembler.toCollectionModel(restaurant.getPaymentMethods());
 	}
 	
 	@Override

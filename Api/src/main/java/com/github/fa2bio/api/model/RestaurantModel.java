@@ -12,19 +12,19 @@ import lombok.Setter;
 @Getter
 public class RestaurantModel {
 	
-	@JsonView({RestaurantView.Resumo.class, RestaurantView.ApenasNome.class})
+	@JsonView({RestaurantView.Summary.class, RestaurantView.NameOnly.class})
 	private Long id;
 	
-	@JsonView({RestaurantView.Resumo.class, RestaurantView.ApenasNome.class})
-	private String nome;
+	@JsonView({RestaurantView.Summary.class, RestaurantView.NameOnly.class})
+	private String name;
 	
-	@JsonView(RestaurantView.Resumo.class)
-	private BigDecimal taxaFrete;
+	@JsonView(RestaurantView.Summary.class)
+	private BigDecimal rateShipping;
 	
-	@JsonView(RestaurantView.Resumo.class)
-	private KitchenModel cozinha;
+	@JsonView(RestaurantView.Summary.class)
+	private KitchenModel kitchen;
 	 
-	private Boolean ativo;
-	private Boolean aberto;
-	private EnderecoModel endereco;
+	private Boolean active;
+	private Boolean open;
+	private AddressModel address;
 }

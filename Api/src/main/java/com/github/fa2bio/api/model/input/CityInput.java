@@ -12,9 +12,9 @@ import lombok.Setter;
 public class CityInput {
 	
 	@NotBlank
-	private String nome;
+	private String name;
 	
 	@Valid
 	@NotNull
-	private StateIdInput estado;
+	private StateIdInput state;
 }

@@ -4,12 +4,13 @@ public class RestaurantNotFoundException extends EntityNotFoundException {
 
 	private static final long serialVersionUID = 1L;
 
-	public RestaurantNotFoundException(String mensagem) {
-		super(mensagem);
+	public RestaurantNotFoundException(String message) {
+		super(message);
 	}
 	
-	public RestaurantNotFoundException(Long restauranteId) {
-		this(String.format("Não existe um cadastro de restaurante com código %d", restauranteId));
+	public RestaurantNotFoundException(Long restaurantId) {
+		this(String.format("There is no restaurant record with code %d",
+				restaurantId));
 	}
 	
 }

@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class UserModel {
 	private Long id;
-	private String nome;
+	private String name;
 	private String email;
 }

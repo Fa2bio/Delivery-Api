@@ -6,14 +6,14 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-import com.github.fa2bio.domain.model.Pedido;
+import com.github.fa2bio.domain.model.Orderr;
 
-public interface OrderRepository extends CustomJpaRepository<Pedido, Long>,
-		JpaSpecificationExecutor<Pedido>{
+public interface OrderRepository extends CustomJpaRepository<Orderr, Long>,
+		JpaSpecificationExecutor<Orderr>{
 	
-	@Query("from Pedido p join fetch p.cliente join fetch p.restaurante r join fetch r.cozinha")
-	List<Pedido> findAll();
+	@Query("from Orderr p join fetch p.client join fetch p.restaurant r join fetch r.kitchen")
+	List<Orderr> findAll();
 	
-	@Query("from Pedido where codigo = :codigo")	
-	Optional<Pedido> findByCodigo(String codigo);
+	@Query("from Orderr where uui_code = :uui_code")	
+	Optional<Orderr> findByCodigo(String uui_code);
 }

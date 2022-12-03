@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.fa2bio.domain.exception.FotoProdutoNaoEncontradaException;
-import com.github.fa2bio.domain.model.FotoProduto;
+import com.github.fa2bio.domain.exception.PhotoProductNotFoundException;
+import com.github.fa2bio.domain.model.PhotoProduct;
 import com.github.fa2bio.domain.repository.ProductRepository;
 import com.github.fa2bio.domain.service.PhotoStorageService.NewPhoto;
 
@@ -21,47 +21,47 @@ public class PhotoProductService {
 	private PhotoStorageService photoStorageService;
 	
 	@Transactional
-	public FotoProduto salvar(FotoProduto foto, java.io.InputStream dadosArquivo) {
-		Long restauranteId = foto.getRestauranteId();
-		Long produtoId = foto.getProduto().getId();
-		String nomeNovoArquivo = photoStorageService.generateFileName(foto.getNomeArquivo());
-		String nomeArquivoExistente = null;
+	public PhotoProduct save(PhotoProduct photo, java.io.InputStream dataFile) {
+		Long restaurantId = photo.getRestaurantId();
+		Long productId = photo.getProduct().getId();
+		String newFileName = photoStorageService.generateFileName(photo.getFileName());
+		String existingFileName = null;
 		
-		Optional<FotoProduto> fotoExistente = productRepository
-				.findFotoById(restauranteId, produtoId);
+		Optional<PhotoProduct> photoExisting = productRepository
+				.findPhotoById(restaurantId, productId);
 		
-		if (fotoExistente.isPresent()) {
-			nomeArquivoExistente = fotoExistente.get().getNomeArquivo();
-			productRepository.delete(fotoExistente.get());
+		if (photoExisting.isPresent()) {
+			existingFileName = photoExisting.get().getFileName();
+			productRepository.delete(photoExisting.get());
 		}
 		
-		foto.setNomeArquivo(nomeNovoArquivo);
-		foto = productRepository.save(foto);
+		photo.setFileName(newFileName);
+		photo = productRepository.save(photo);
 		productRepository.flush();
 		
 		NewPhoto newPhoto = NewPhoto.builder()
-				.nomeArquivo(foto.getNomeArquivo())
-				.inputStream(dadosArquivo)
+				.fileName(photo.getFileName())
+				.inputStream(dataFile)
 				.build();
 		
-		photoStorageService.toReplace(nomeArquivoExistente, newPhoto);
+		photoStorageService.toReplace(existingFileName, newPhoto);
 		
-		return foto;
+		return photo;
 	}
 	
 	@Transactional
-	public void excluir(Long restauranteId, Long produtoId) {
-		FotoProduto foto = fetchOrFail(restauranteId, produtoId);
+	public void delete(Long restaurantId, Long productId) {
+		PhotoProduct foto = fetchOrFail(restaurantId, productId);
 		
 		productRepository.delete(foto);
 		productRepository.flush();
 
-		photoStorageService.toRemove(foto.getNomeArquivo());
+		photoStorageService.toRemove(foto.getFileName());
 	}
 	
-	public FotoProduto fetchOrFail(Long restauranteId,Long produtoId) {
-		return productRepository.findFotoById(restauranteId, produtoId)
-				.orElseThrow(() -> new FotoProdutoNaoEncontradaException(restauranteId, produtoId));
+	public PhotoProduct fetchOrFail(Long restaurantId,Long productId) {
+		return productRepository.findPhotoById(restaurantId, productId)
+				.orElseThrow(() -> new PhotoProductNotFoundException(restaurantId, productId));
 	}
 	
 }

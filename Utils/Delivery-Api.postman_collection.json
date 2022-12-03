@@ -49,7 +49,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Sobral\",\r\n    \"estado\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Sobral\",\r\n    \"state\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,7 +97,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Ouro Preto\",\r\n    \"estado\": {\r\n        \"id\": 1\r\n    } \r\n}",
+							"raw": "{\r\n    \"name\": \"Ouro Preto\",\r\n    \"state\": {\r\n        \"id\": 1\r\n    } \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -191,7 +191,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Comida Alema\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Comida Alema\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,7 +239,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Alema\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Alema\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -321,7 +321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Parana\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Parana\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -369,7 +369,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Amazonas\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Amazonas\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -465,7 +465,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Ethereum\"\r\n}",
+							"raw": "{\r\n    \"description\": \"Ethereum\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -513,7 +513,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"descricao\": \"Bitcoin\"\r\n}",
+							"raw": "{\r\n    \"description\": \"Bitcoin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -558,7 +558,7 @@
 			]
 		},
 		{
-			"name": "Groups",
+			"name": "Clusters",
 			"item": [
 				{
 					"name": "List",
@@ -573,14 +573,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/groups",
+							"raw": "http://localhost:8080/clusters",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups"
+								"clusters"
 							],
 							"query": [
 								{
@@ -600,7 +600,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Visitante\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Visitante\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -608,14 +608,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/groups",
+							"raw": "http://localhost:8080/clusters",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups"
+								"clusters"
 							]
 						}
 					},
@@ -627,14 +627,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/groups/1",
+							"raw": "http://localhost:8080/clusters/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"1"
 							]
 						}
@@ -648,7 +648,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Estagiário\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Estagiário\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -656,14 +656,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/groups/2",
+							"raw": "http://localhost:8080/clusters/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"2"
 							]
 						}
@@ -676,14 +676,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/groups/5",
+							"raw": "http://localhost:8080/clusters/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"5"
 							]
 						}
@@ -693,7 +693,7 @@
 			]
 		},
 		{
-			"name": "Groups - Permissions",
+			"name": "Clusters - Permissions",
 			"item": [
 				{
 					"name": "List",
@@ -708,14 +708,14 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/groups/1/permissions",
+							"raw": "http://localhost:8080/clusters/1/permissions",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"1",
 								"permissions"
 							],
@@ -736,14 +736,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/groups/1/permissions/1",
+							"raw": "http://localhost:8080/clusters/1/permissions/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"1",
 								"permissions",
 								"1"
@@ -767,14 +767,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/groups/1/permissions/1",
+							"raw": "http://localhost:8080/clusters/1/permissions/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"groups",
+								"clusters",
 								"1",
 								"permissions",
 								"1"
@@ -794,7 +794,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders?clienteId=2&restauranteId=1&dataCriacaoInicio=2019-10-30T21:10:00Z&dataCriacaoFim=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
+							"raw": "http://localhost:8080/orders?clientId=2&restaurant=1&creationDateStart=2019-10-30T21:10:00Z&creationDateFinal=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -805,19 +805,19 @@
 							],
 							"query": [
 								{
-									"key": "clienteId",
+									"key": "clientId",
 									"value": "2"
 								},
 								{
-									"key": "restauranteId",
+									"key": "restaurant",
 									"value": "1"
 								},
 								{
-									"key": "dataCriacaoInicio",
+									"key": "creationDateStart",
 									"value": "2019-10-30T21:10:00Z"
 								},
 								{
-									"key": "dataCriacaoFim",
+									"key": "creationDateFinal",
 									"value": "2022-11-01T18:23:31Z"
 								},
 								{
@@ -864,7 +864,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{   \r\n    \"restaurante\": {\r\n        \"id\": 4\r\n    },\r\n    \"formaPagamento\": {\r\n        \"id\": 2\r\n    },\r\n    \"enderecoEntrega\": {\r\n        \"cep\": \"38400-111\",\r\n        \"logradouro\": \"Rua Acre\",\r\n        \"numero\": \"300\",\r\n        \"complemento\": \"Casa 2\",\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"itens\": [\r\n        {\r\n            \"produtoId\": 6,\r\n            \"quantidade\": 5,\r\n            \"observacao\": \"Ao ponto\"\r\n        },\r\n        {\r\n            \"produtoId\": 7,\r\n            \"quantidade\": 3\r\n        }\r\n    ]\r\n}",
+							"raw": "{   \r\n    \"restaurant\": {\r\n        \"id\": 4\r\n    },\r\n    \"paymentMethod\": {\r\n        \"id\": 2\r\n    },\r\n    \"deliveryAddress\": {\r\n        \"zipCode\": \"38400-111\",\r\n        \"publicPlace\": \"Rua Acre\",\r\n        \"number\": \"300\",\r\n        \"complement\": \"Casa 2\",\r\n        \"district\": \"Centro\",\r\n        \"city\": {\r\n            \"id\": 1\r\n        }\r\n    },\r\n    \"items\": [\r\n        {\r\n            \"productId\": 6,\r\n            \"quantity\": 5,\r\n            \"note\": \"Ao ponto\"\r\n        },\r\n        {\r\n            \"productId\": 7,\r\n            \"quantity\": 3\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -998,7 +998,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Maria Joaquina\",\r\n        \"email\": \"maria.vnd@test.com\",\r\n        \"senha\": \"123\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Maria Joaquina\",\r\n        \"password\": \"123\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1046,7 +1046,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Neymar Junior\",\r\n        \"email\": \"neyJunior.vnd@test.com\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Neymar Junior\",\r\n        \"email\": \"neyJunior.vnd@test.com\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1095,7 +1095,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"senhaAtual\": \"123\",\r\n        \"novaSenha\": \"45678\"\r\n    }",
+							"raw": "    {\r\n        \"currentPassword\": \"123\",\r\n        \"newPassword\": \"45678\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1135,7 +1135,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/users/1/groups",
+							"raw": "http://localhost:8080/users/1/clusters",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1144,7 +1144,7 @@
 							"path": [
 								"users",
 								"1",
-								"groups"
+								"clusters"
 							],
 							"query": [
 								{
@@ -1172,7 +1172,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/users/1/groups/2",
+							"raw": "http://localhost:8080/users/1/clusters/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1181,7 +1181,7 @@
 							"path": [
 								"users",
 								"1",
-								"groups",
+								"clusters",
 								"2"
 							]
 						}
@@ -1194,7 +1194,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/1/groups/2",
+							"raw": "http://localhost:8080/users/1/clusters/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1203,7 +1203,7 @@
 							"path": [
 								"users",
 								"1",
-								"groups",
+								"clusters",
 								"2"
 							]
 						}
@@ -1247,7 +1247,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants?projecao=apenas-nome",
+							"raw": "http://localhost:8080/restaurants?projection=name-only",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1258,8 +1258,8 @@
 							],
 							"query": [
 								{
-									"key": "projecao",
-									"value": "apenas-nome"
+									"key": "projection",
+									"value": "name-only"
 								}
 							]
 						}
@@ -1273,7 +1273,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Comida Mineira\",\r\n    \"taxaFrete\": 10,\r\n    \"cozinha\": {\r\n            \"id\": 1\r\n        },\r\n    \"endereco\": {\r\n        \"cep\": \"27580-888\",\r\n        \"logradouro\": \"Rua de teste azul\",\r\n        \"numero\": \"100\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Centro\",\r\n        \"cidade\": {\r\n            \"id\": 2\r\n        }\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Comida Mineira\",\r\n    \"rateShipping\": 10,\r\n    \"kitchen\": {\r\n            \"id\": 1\r\n        },\r\n    \"address\": {\r\n        \"zipCode\": \"27580-888\",\r\n        \"publicPlace\": \"Rua de teste azul\",\r\n        \"number\": \"100\",\r\n        \"complement\": null,\r\n        \"district\": \"Centro\",\r\n        \"city\": {\r\n            \"id\": 2\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1321,7 +1321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"A Mineira\",\r\n        \"taxaFrete\": 12,\r\n        \"cozinha\": {\r\n            \"id\": 1\r\n        },\r\n        \"endereco\": {\r\n            \"cep\": \"38400-999\",\r\n            \"logradouro\": \"Rua Carlos Martel\",\r\n            \"numero\": \"3000\",\r\n            \"complemento\": null,\r\n            \"bairro\": \"Centro\",\r\n            \"cidade\": {\r\n                \"id\": 1\r\n            }\r\n        }\r\n\r\n    }",
+							"raw": "{\r\n    \"name\": \"A koreana\",\r\n    \"rateShipping\": 8,\r\n    \"kitchen\": {\r\n            \"id\": 2\r\n        },\r\n    \"address\": {\r\n        \"zipCode\": \"35400-000\",\r\n        \"publicPlace\": \"Rua de teste vermelha\",\r\n        \"number\": \"200\",\r\n        \"complement\": null,\r\n        \"district\": \"Centro\",\r\n        \"city\": {\r\n            \"id\": 3\r\n        }\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1598,12 +1598,12 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "arquivo",
+									"key": "file",
 									"type": "file",
 									"src": []
 								},
 								{
-									"key": "descricao",
+									"key": "description",
 									"value": "\"Catalogo_2022\"",
 									"type": "text"
 								}
@@ -1636,12 +1636,12 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "arquivo",
+									"key": "file",
 									"type": "file",
 									"src": []
 								},
 								{
-									"key": "descricao",
+									"key": "description",
 									"value": "\"Catalogo_2022\"",
 									"type": "text"
 								}
@@ -1785,7 +1785,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Stacker Duplo\",\r\n    \"descricao\": \"Delicioso hamburguer com carne bovina e queijo cheddar\",\r\n    \"preco\": 28.90,\r\n    \"ativo\" : true\r\n}",
+							"raw": "{\r\n    \"name\": \"Stacker Duplo\",\r\n    \"description\": \"Delicioso hamburguer com carne bovina e queijo cheddar\",\r\n    \"price\": 28.90,\r\n    \"active\" : true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1837,7 +1837,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Big Tasty\",\r\n    \"descricao\": \"Delicioso hamburguer com carne bovina e molho Tasty\",\r\n    \"preco\": 38.90,\r\n    \"ativo\" : false\r\n}",
+							"raw": "{\r\n    \"name\": \"Big Tasty\",\r\n    \"description\": \"Delicioso hamburguer com carne bovina e molho Tasty\",\r\n    \"price\": 38.90,\r\n    \"active\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1948,7 +1948,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/statistics/daily-sales?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/statistics/daily-sales?restaurantId=1&creationDateStart=2022-10-30T08:30:00Z&creationDateFinal=2022-11-02T23:59:59Z&timeOffset=-03:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1960,15 +1960,15 @@
 							],
 							"query": [
 								{
-									"key": "restauranteId",
+									"key": "restaurantId",
 									"value": "1"
 								},
 								{
-									"key": "dataCriacaoInicio",
+									"key": "creationDateStart",
 									"value": "2022-10-30T08:30:00Z"
 								},
 								{
-									"key": "dataCriacaoFim",
+									"key": "creationDateFinal",
 									"value": "2022-11-02T23:59:59Z"
 								},
 								{
@@ -2025,6 +2025,14 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }

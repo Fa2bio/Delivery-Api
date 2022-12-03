@@ -9,27 +9,27 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.github.fa2bio.domain.model.Restaurante;
+import com.github.fa2bio.domain.model.Restaurant;
 
 @Repository
 public interface RestaurantRepository 
-		extends CustomJpaRepository<Restaurante, Long>, RestauranteRepositoryQueries,
-		JpaSpecificationExecutor<Restaurante> {
+		extends CustomJpaRepository<Restaurant, Long>, RestaurantRepositoryQueries,
+		JpaSpecificationExecutor<Restaurant> {
 
-	@Query("from Restaurante r join fetch r.cozinha")
-	List<Restaurante> findAll();
+	@Query("from Restaurant r join fetch r.kitchen")
+	List<Restaurant> findAll();
 	
-	List<Restaurante> queryByTaxaFreteBetween(BigDecimal taxaInicial, BigDecimal taxaFinal);
+	List<Restaurant> queryByRateShippingBetween(BigDecimal initialRate, BigDecimal finalRate);
 	
-//	@Query("from Restaurante where nome like %:nome% and cozinha.id = :id")
-	List<Restaurante> consultarPorNome(String nome, @Param("id") Long cozinha);
+//	@Query("from Restaurant where name like %:name% and kitchen.id = :id")
+	List<Restaurant> consultByName(String name, @Param("id") Long kitchen);
 	
-//	List<Restaurante> findByNomeContainingAndCozinhaId(String nome, Long cozinha);
+//	List<Restaurante> findByNomeContainingAndCozinhaId(String name, Long kitchen);
 	
-	Optional<Restaurante> findFirstRestauranteByNomeContaining(String nome);
+	Optional<Restaurant> findFirstRestaurantByNameContaining(String name);
 	
-	List<Restaurante> findTop2ByNomeContaining(String nome);
+	List<Restaurant> findTop2ByNameContaining(String name);
 	
-	int countByCozinhaId(Long cozinha);
+	int countByKitchenId(Long kitchen);
 	
 }
