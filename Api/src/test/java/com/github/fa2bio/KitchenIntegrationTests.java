@@ -17,45 +17,45 @@ import com.github.fa2bio.domain.service.KitchenService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CadastroCozinhaIntegrationTests {
+public class KitchenIntegrationTests {
 
 	@Autowired
-	private KitchenService cadastroCozinha;
+	private KitchenService kitchenService;
 	
 	@Test
-	public void testarCadastroCozinhaComSucesso() {
+	public void testKitchenRegistrationSuccessfully() {
 		
-		//cenário
-		Kitchen novaCozinha = new Kitchen();
-		novaCozinha.setName("Chinesa");
+		//scenery
+		Kitchen newKitchen = new Kitchen();
+		newKitchen.setName("Chinesa");
 		
-		//ação
-		novaCozinha = cadastroCozinha.save(novaCozinha);
+		//action
+		newKitchen = kitchenService.save(newKitchen);
 		
-		//validação
-		assertThat(novaCozinha).isNotNull();
-		assertThat(novaCozinha.getId()).isNotNull();
+		//validation
+		assertThat(newKitchen).isNotNull();
+		assertThat(newKitchen.getId()).isNotNull();
 
 	}
 	
 	@Test(expected = ConstraintViolationException.class)
-	public void deveFalharAoCadastrarCozinha_QuandoSemNome() {
-		//cenário
-		Kitchen novaCozinha = new Kitchen();
-		novaCozinha.setName(null);
+	public void shouldFallWhenCadastrarKitchen_WhenWithoutName() {
+		//scenery
+		Kitchen newKitchen = new Kitchen();
+		newKitchen.setName(null);
 		
-		//ação
-		novaCozinha = cadastroCozinha.save(novaCozinha);
+		//action
+		newKitchen = kitchenService.save(newKitchen);
 
 	}
 	
 	@Test(expected = EntityInUseException.class)
-	public void deveFalhar_QuandoExcluirCozinhaEmUso() {
-		cadastroCozinha.delete(1L);
+	public void mustFail_WhenDeleteKitchenInUse() {
+		kitchenService.delete(1L);
 	}
 	
 	@Test(expected = KitchenNotFoundException.class)
-	public void deveFalhar_QuandoExcluirCozinhaInexistente() {
-		cadastroCozinha.delete(100L);
+	public void mustFail_WhenDeleteKitchenNonexistent() {
+		kitchenService.delete(100L);
 	}
 }

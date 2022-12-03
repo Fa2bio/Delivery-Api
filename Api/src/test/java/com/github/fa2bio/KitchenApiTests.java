@@ -24,11 +24,11 @@ import io.restassured.http.ContentType;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("/application-test.properties")
-public class CozinhaApiTests {
+public class KitchenApiTests {
 
-	private static final int cozinhaIdInexistente = 100;
-	private int qtdCozinhasCadastradas;
-	private Kitchen cozinhaAmericana;
+	private static final int kitchenIdNonexistent = 100;
+	private int qtyKitchensRegistered;
+	private Kitchen americanKitchen;
 	private String path;
 	private String json;
 	
@@ -39,23 +39,23 @@ public class CozinhaApiTests {
 	private DatabaseCleaner cleaner;
 	
 	@Autowired
-	private KitchenRepository cozinhaRepository;
+	private KitchenRepository kitchenRepository;
 	
 	@Before
 	public void setUp() {
 		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
 		RestAssured.port = port;
-		RestAssured.basePath = "/cozinhas";
+		RestAssured.basePath = "/kitchens";
 		
 		path = "/json/status201.json";
 		json = ResourceUtils.getContentFromResource(path);
 		
 		cleaner.clearTables();
-		prepararDados();
+		prepareData();
 	}
 	
 	@Test
-	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+	public void shouldReturnStatus200_WhenConsultingKitchens() {
 		RestAssured.given()
 			.accept(ContentType.JSON)
 		.when()
@@ -65,18 +65,18 @@ public class CozinhaApiTests {
 	}
 	
 	@Test
-	public void deveConter2Cozinhas_QuandoConsultarCozinhas() {
+	public void shouldConter2Kitchens_WhenConsultingKitchens() {
 		RestAssured.given()
 			.accept(ContentType.JSON)
 		.when()
 			.get()
 		.then()
-			.body("", Matchers.hasSize(this.qtdCozinhasCadastradas));
-			//.body("nome", Matchers.hasItems("Indiana", "Tailandesa"));
+			.body("", Matchers.hasSize(this.qtyKitchensRegistered));
+			//.body("name", Matchers.hasItems("Indiana", "Tailandesa"));
 	}
 	
 	@Test
-	public void deveRetornarStatus201_QuandoCadastrarCozinha() {
+	public void shouldReturnStatus201_WhenCadastrarKitchen() {
 		json = ResourceUtils.getContentFromResource(path);
 		System.out.println(json);
 		RestAssured.given()
@@ -90,36 +90,36 @@ public class CozinhaApiTests {
 	}
 	
 	@Test
-	public void deveRetornarRespostaEStatusCorretos_QuandoConsultarCozinhaExistente() {
+	public void shouldReturnAnswerIsCorrect_WhenConsultingKitchenExisting() {
 		RestAssured.given()
-			.pathParam("cozinhaId", this.cozinhaAmericana.getId())
+			.pathParam("kitchenId", this.americanKitchen.getId())
 			.accept(ContentType.JSON)
 		.when()
-			.get("/{cozinhaId}")
+			.get("/{kitchenId}")
 		.then()
 			.statusCode(HttpStatus.OK.value())
-			.body("nome", equalTo(this.cozinhaAmericana.getName()));
+			.body("name", equalTo(this.americanKitchen.getName()));
 	}
 	
 	@Test
-	public void deveRetornarRespostaStatus404_QuandoConsultarCozinhaExistente() {
+	public void shouldReturnAnswerStatus404_WhenConsultExistingKitchen() {
 		RestAssured.given()
-			.pathParam("cozinhaId", cozinhaIdInexistente)
+			.pathParam("kitchenId", kitchenIdNonexistent)
 			.accept(ContentType.JSON)
 		.when()
-			.get("/{cozinhaId}")
+			.get("/{kitchenId}")
 		.then()
 			.statusCode(HttpStatus.NOT_FOUND.value());
 	}
-	private void prepararDados() {
-		Kitchen cozinha1 = new Kitchen();
-		cozinha1.setName("Tailandesa");
-		cozinhaRepository.save(cozinha1);
+	private void prepareData() {
+		Kitchen kitchen1 = new Kitchen();
+		kitchen1.setName("Tailandesa");
+		kitchenRepository.save(kitchen1);
 	
-		cozinhaAmericana = new Kitchen();
-		cozinhaAmericana.setName("Americana");
-		cozinhaRepository.save(cozinhaAmericana);
+		americanKitchen = new Kitchen();
+		americanKitchen.setName("Americana");
+		kitchenRepository.save(americanKitchen);
 		
-		qtdCozinhasCadastradas = (int) cozinhaRepository.count();
+		qtyKitchensRegistered = (int) kitchenRepository.count();
 	}
 }
