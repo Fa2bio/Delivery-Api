@@ -52,7 +52,7 @@ spring.datasource.password=
 .
 .
 .
-delivery.storage.local.diretorio-fotos=
+delivery.storage.local.diretorio-photos=
 ```
 ## <a name="run-application"></a>Run Application
 
