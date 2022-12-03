@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d72d5df0-d6f5-4d1b-8205-989cb3486b12",
+		"_postman_id": "aca8e161-d43e-43c3-80c4-4ee7ada8b9bb",
 		"name": "Delivery-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21394771"
@@ -998,7 +998,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"name\": \"Maria Joaquina\",\r\n        \"password\": \"123\"\r\n    }",
+							"raw": "    {\r\n        \"name\": \"Maria Joaquina\",\r\n        \"email\": \"MariaJoaquina@teste.com\",\r\n        \"password\": \"123\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1948,7 +1948,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/statistics/daily-sales?restaurantId=1&creationDateStart=2022-10-30T08:30:00Z&creationDateFinal=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/statistics/daily-sales?restaurantId=1&creationDateStart=2022-10-30T08:30:00Z&creationDateFinal=2022-11-02T23:59:59Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1973,7 +1973,8 @@
 								},
 								{
 									"key": "timeOffset",
-									"value": "-03:00"
+									"value": "-03:00",
+									"disabled": true
 								}
 							]
 						}
@@ -1992,7 +1993,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/statistics/daily-sales?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z&timeOffset=-03:00",
+							"raw": "http://localhost:8080/statistics/daily-sales?restauranteId=1&dataCriacaoInicio=2022-10-30T08:30:00Z&dataCriacaoFim=2022-11-02T23:59:59Z",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -2017,7 +2018,8 @@
 								},
 								{
 									"key": "timeOffset",
-									"value": "-03:00"
+									"value": "-03:00",
+									"disabled": true
 								}
 							]
 						}
@@ -2025,14 +2027,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "New Request",
-			"request": {
-				"method": "GET",
-				"header": []
-			},
-			"response": []
 		}
 	]
 }
