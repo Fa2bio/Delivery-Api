@@ -42,9 +42,16 @@ public class OrderrModelAssembler
 				new TemplateVariable("size", VariableType.REQUEST_PARAM),
 				new TemplateVariable("sort", VariableType.REQUEST_PARAM));
 		
+		TemplateVariables filterVariables = new TemplateVariables(
+				new TemplateVariable("clientId", VariableType.REQUEST_PARAM),
+				new TemplateVariable("restaurantId", VariableType.REQUEST_PARAM),
+				new TemplateVariable("creationDateStart", VariableType.REQUEST_PARAM),
+				new TemplateVariable("creationDateFinal", VariableType.REQUEST_PARAM));
+		
 		String ordersUrl = linkTo(OrderController.class).toUri().toString();
 		
-		orderModel.add(new Link(UriTemplate.of(ordersUrl, pageVariables), "orders"));
+		orderModel.add(new Link(UriTemplate.of(ordersUrl, 
+				pageVariables.concat(filterVariables)), "orders"));
 		
 		orderModel.getClient().add(linkTo(methodOn(UserController.class)
 				.find(orderr.getClient().getId())).withSelfRel());
