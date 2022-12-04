@@ -1,8 +1,9 @@
 package com.github.fa2bio.api.controller;
 
-import java.util.List;
-
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +31,12 @@ public class RestaurantResponsibleUserController implements RestaurantResponsibl
 	
 	@Override
 	@GetMapping("/responsible")
-	public List<UserModel> list(@PathVariable Long restaurantId){
+	public CollectionModel<UserModel> list(@PathVariable Long restaurantId){
 		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
-		return userModelAssembler.toCollectionModel(restaurant.getResponsibles());
+		return userModelAssembler.toCollectionModel(restaurant.getResponsibles())
+				.removeLinks()
+				.add(linkTo(methodOn(RestaurantResponsibleUserController.class)
+						.list(restaurantId)).withSelfRel());
 	}
 	
 	@Override

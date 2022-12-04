@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.UserModel;
@@ -18,7 +18,7 @@ public interface RestaurantResponsibleUserControllerSwagger {
 	@ApiResponses({
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	List<UserModel> list(
+	CollectionModel<UserModel> list(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId);
 	

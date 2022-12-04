@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.UserModel;
@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiResponses;
 public interface UserControllerSwagger {
 
 	@ApiOperation("List of users")
-	List<UserModel> list();
+	CollectionModel<UserModel> list();
 	
 	@ApiOperation("Search a user by Id")
 	@ApiResponses({
