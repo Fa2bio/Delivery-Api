@@ -1,4 +1,4 @@
-package com.github.fa2bio.core.swagger;
+package com.github.fa2bio.core.springfox;
 
 import java.io.File;
 import java.io.InputStream;
