@@ -3,8 +3,14 @@ package com.github.fa2bio.api.assembler;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.TemplateVariable;
+import org.springframework.hateoas.TemplateVariable.VariableType;
+import org.springframework.hateoas.TemplateVariables;
+import org.springframework.hateoas.UriTemplate;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +37,14 @@ public class OrderrModelAssembler
 		OrderrModel orderModel = createModelWithId(orderr.getUuiCode(), orderr);
 		modelMapper.map(orderr, orderModel);
 		
-		orderModel.add(linkTo(OrderController.class).withRel("orders"));
+		TemplateVariables pageVariables = new TemplateVariables(
+				new TemplateVariable("page", VariableType.REQUEST_PARAM),
+				new TemplateVariable("size", VariableType.REQUEST_PARAM),
+				new TemplateVariable("sort", VariableType.REQUEST_PARAM));
+		
+		String ordersUrl = linkTo(OrderController.class).toUri().toString();
+		
+		orderModel.add(new Link(UriTemplate.of(ordersUrl, pageVariables), "orders"));
 		
 		orderModel.getClient().add(linkTo(methodOn(UserController.class)
 				.find(orderr.getClient().getId())).withSelfRel());

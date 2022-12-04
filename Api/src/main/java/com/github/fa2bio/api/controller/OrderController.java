@@ -99,7 +99,7 @@ public class OrderController implements OrderControllerSwagger{
 				"subtotal", "subtotal",
 				"rateShipping", "rateShipping",
 				"totalAmount", "totalAmount",
-				"namerestaurant", "namerestaurant",
+				"restaurant.name", "restaurant.name",
 				"restaurant.id", "restaurant.id",
 				"client.id", "client.id",
 				"client.name", "client.name"
