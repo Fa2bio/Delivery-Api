@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.StateModel;
@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiResponses;
 public interface StateControllerSwagger {
 
 	@ApiOperation("List of states")
-	List<StateModel> list();
+	CollectionModel<StateModel> list();
 	
 	@ApiOperation("Search a state by Id")
 	@ApiResponses({
