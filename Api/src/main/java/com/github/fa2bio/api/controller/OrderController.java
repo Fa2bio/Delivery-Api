@@ -1,15 +1,15 @@
 package com.github.fa2bio.api.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +26,7 @@ import com.github.fa2bio.api.model.OrderrAbstractModel;
 import com.github.fa2bio.api.model.OrderrModel;
 import com.github.fa2bio.api.model.input.OrrderInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.OrderControllerSwagger;
+import com.github.fa2bio.core.data.PageWrapper;
 import com.github.fa2bio.core.data.PageableTranslator;
 import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.EntityNotFoundException;
@@ -55,22 +56,17 @@ public class OrderController implements OrderControllerSwagger{
 	@Autowired
 	private OrderrInputDisassembler orderrInputDisassembler;
 	
+	@Autowired
+	private PagedResourcesAssembler<Orderr> pagedResourcesAssembler;
+	
 	@Override
 	@GetMapping
-	public Page<OrderrAbstractModel> findWithPageable(@PageableDefault(size = 10) Pageable pageable, OrderFilter filter) {
+	public PagedModel<OrderrAbstractModel> findWithPageable(@PageableDefault(size = 10) Pageable pageable, OrderFilter filter) {
 		
-		pageable = mappingPageable(pageable);
-	
-		Page<Orderr> ordersPage = orderRepository.findAll(OrderSpecs.
-				usingFilter(filter),pageable);
-		
-		List<OrderrAbstractModel> ordersAbstractModel = orderrAbstractModelAssembler.
-				toCollectionModel(ordersPage.getContent());
-		
-		Page<OrderrAbstractModel> orderAbstractModelPage = new PageImpl<>(ordersAbstractModel, pageable,
-				ordersPage.getTotalElements());
-		
-		return orderAbstractModelPage;
+		Pageable pageableMapping = mappingPageable(pageable);
+		Page<Orderr> ordersPage = orderRepository.findAll(OrderSpecs.usingFilter(filter), pageableMapping);
+		ordersPage = new PageWrapper<>(ordersPage, pageable);
+		return pagedResourcesAssembler.toModel(ordersPage, orderrAbstractModelAssembler);
 	}
 
 	@Override
@@ -103,7 +99,7 @@ public class OrderController implements OrderControllerSwagger{
 				"subtotal", "subtotal",
 				"rateShipping", "rateShipping",
 				"totalAmount", "totalAmount",
-				"restaurant.name", "restaurant.name",
+				"namerestaurant", "namerestaurant",
 				"restaurant.id", "restaurant.id",
 				"client.id", "client.id",
 				"client.name", "client.name"

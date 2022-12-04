@@ -1,7 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.PagedModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.OrderrAbstractModel;
@@ -25,7 +25,7 @@ public interface OrderControllerSwagger {
 		@ApiImplicitParam(value = "Names of properties to filter on the response, separated by a comma",
 				name = "fields", paramType = "query", type = "string")
 	})
-	Page<OrderrAbstractModel> findWithPageable(Pageable pageable, OrderFilter filter);
+	PagedModel<OrderrAbstractModel> findWithPageable(Pageable pageable, OrderFilter filter);
 	
 	@ApiOperation("Search a order by UUID")
 	@ApiResponses({
