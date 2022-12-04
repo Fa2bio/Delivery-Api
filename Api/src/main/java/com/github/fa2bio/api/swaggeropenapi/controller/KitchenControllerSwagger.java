@@ -1,7 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.PagedModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.KitchenModel;
@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiResponses;
 public interface KitchenControllerSwagger {
 
 	@ApiOperation("List of kitchens with pegeable")
-	Page<KitchenModel> list(Pageable pegeable);
+	PagedModel<KitchenModel> list(Pageable pegeable);
 	
 	@ApiOperation("Search a kitchen by Id")
 	@ApiResponses({

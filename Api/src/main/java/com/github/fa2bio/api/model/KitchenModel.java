@@ -1,5 +1,8 @@
 package com.github.fa2bio.api.model;
 
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
+
 import com.fasterxml.jackson.annotation.JsonView;
 import com.github.fa2bio.api.model.view.RestaurantView;
 
@@ -9,7 +12,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class KitchenModel {
+@Relation(collectionRelation = "kitchens")
+public class KitchenModel extends RepresentationModel<KitchenModel>{
 	
 	@ApiModelProperty(example = "1")
 	@JsonView(RestaurantView.Summary.class)
