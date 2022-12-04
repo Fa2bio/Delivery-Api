@@ -26,7 +26,7 @@
 ## <a name="technologies"></a>Technologies Used
 
 - Java
-- Spring Boot (version 2.1.7.RELEASE)
+- Spring Boot (version 2.2.2.RELEASE)
 - MySQL
 - Lombok
 - Flyway
@@ -69,7 +69,7 @@ delivery.storage.local.diretorio-photos=
 
 ## <a name="uml"></a> Diagrams
 ### Class Diagram
-![Delivery-Api](https://user-images.githubusercontent.com/41877566/202730057-0e6a3cce-c6ee-43e3-9a06-0ba6ef6c2b07.jpg)
+![Delivery-api](https://user-images.githubusercontent.com/41877566/205469569-5ac83019-a64b-43e4-9fca-1c285d19fc31.jpeg)
 
 ### SQL Diagram
 ![Delivery_SQL_Diagram](https://user-images.githubusercontent.com/41877566/204697548-9133f597-6735-4c42-a3c8-cd66d325e1f9.png)
