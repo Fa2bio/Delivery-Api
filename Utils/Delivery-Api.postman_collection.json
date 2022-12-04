@@ -794,7 +794,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders?clientId=2&restaurant=1&creationDateStart=2019-10-30T21:10:00Z&creationDateFinal=2022-11-01T18:23:31Z&size=2&page=0&sort=nomeCliente",
+							"raw": "http://localhost:8080/orders?clientId=1&restaurantId=1&creationDateStart=2019-10-30T21:10:00Z&creationDateFinal=2022-11-01T00:00:00Z&size=2&page=0&sort=nomeCliente",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -806,10 +806,10 @@
 							"query": [
 								{
 									"key": "clientId",
-									"value": "2"
+									"value": "1"
 								},
 								{
-									"key": "restaurant",
+									"key": "restaurantId",
 									"value": "1"
 								},
 								{
@@ -818,7 +818,7 @@
 								},
 								{
 									"key": "creationDateFinal",
-									"value": "2022-11-01T18:23:31Z"
+									"value": "2022-11-01T00:00:00Z"
 								},
 								{
 									"key": "size",
@@ -1120,7 +1120,7 @@
 			]
 		},
 		{
-			"name": "Users - Groups",
+			"name": "Users - Clusters",
 			"item": [
 				{
 					"name": "List",
