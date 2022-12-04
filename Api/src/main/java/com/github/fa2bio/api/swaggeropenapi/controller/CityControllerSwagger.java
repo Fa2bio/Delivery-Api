@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.CityModel;
@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiResponses;
 public interface CityControllerSwagger {
 
 	@ApiOperation("List of cities")
-	List<CityModel> list();
+	CollectionModel<CityModel> list();
 	
 	@ApiOperation("Search a city by Id")
 	@ApiResponses({

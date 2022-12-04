@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import com.github.fa2bio.api.assembler.CityModelAssembler;
 import com.github.fa2bio.api.model.CityModel;
 import com.github.fa2bio.api.model.input.CityInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.CityControllerSwagger;
+import com.github.fa2bio.core.hypermedia.ResourceUriHelper;
 import com.github.fa2bio.domain.exception.BusinessException;
 import com.github.fa2bio.domain.exception.StateNotFoundException;
 import com.github.fa2bio.domain.model.City;
@@ -45,9 +47,9 @@ public class CityController implements CityControllerSwagger{
 	
 	@Override
 	@GetMapping
-	public List<CityModel> list() {
-		return cityModelAssembler.toCollectionModel(cityRepository.findAll());
-
+	public CollectionModel<CityModel> list() {
+		List<City> allCities = cityRepository.findAll();
+		return cityModelAssembler.toCollectionModel(allCities);
 	}
 	
 	@Override
@@ -56,14 +58,19 @@ public class CityController implements CityControllerSwagger{
 		City city = cityService.fetchOrFail(cityId);
 		return cityModelAssembler.toModel(city);
 	}
-	
+
+
 	@Override
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public CityModel register(@RequestBody @Valid CityInput cityInput) {
 		try {
 			City city = cityInputDisassembler.toDomainObject(cityInput);
-			return cityModelAssembler.toModel(cityService.save(city));
+			city = cityService.save(city);
+			CityModel cityModel = cityModelAssembler.toModel(city);
+			
+			ResourceUriHelper.addUriInResponseHeader(cityModel.getId());
+			return cityModel;
 		} catch (StateNotFoundException e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
