@@ -1,7 +1,5 @@
 package com.github.fa2bio.api.controller;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.fa2bio.api.assembler.UserModelAssembler;
 import com.github.fa2bio.api.model.UserModel;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantResponsibleUserControllerSwagger;
+import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.service.RestaurantService;
 
@@ -29,14 +28,16 @@ public class RestaurantResponsibleUserController implements RestaurantResponsibl
 	@Autowired
 	private UserModelAssembler userModelAssembler;
 	
+	@Autowired
+	private DeliveryLinks deliveryLinks;
+	
 	@Override
 	@GetMapping("/responsible")
 	public CollectionModel<UserModel> list(@PathVariable Long restaurantId){
 		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
 		return userModelAssembler.toCollectionModel(restaurant.getResponsibles())
 				.removeLinks()
-				.add(linkTo(methodOn(RestaurantResponsibleUserController.class)
-						.list(restaurantId)).withSelfRel());
+				.add(deliveryLinks.linkToRestaurantsResponsible(restaurantId));
 	}
 	
 	@Override

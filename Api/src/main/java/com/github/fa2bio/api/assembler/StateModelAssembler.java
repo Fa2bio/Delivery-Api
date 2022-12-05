@@ -1,8 +1,5 @@
 package com.github.fa2bio.api.assembler;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.controller.StateController;
 import com.github.fa2bio.api.model.StateModel;
+import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.State;
 
 @Component
@@ -19,6 +17,9 @@ public class StateModelAssembler
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private DeliveryLinks deliveryLinks;
 	
 	public StateModelAssembler() {
 		super(StateController.class, StateModel.class);
@@ -29,8 +30,7 @@ public class StateModelAssembler
 		StateModel stateModel = createModelWithId(state.getId(), state);
 		modelMapper.map(state, stateModel);
 		
-		stateModel.add(linkTo(methodOn(StateController.class)
-				.list()).withRel("states"));
+		stateModel.add(deliveryLinks.linkToStates("states"));
 
 		return stateModel;
 	}
@@ -38,6 +38,6 @@ public class StateModelAssembler
 	@Override
 	public CollectionModel<StateModel> toCollectionModel(Iterable<? extends State> entities){
 		return super.toCollectionModel(entities)
-				.add(linkTo(StateController.class).withSelfRel());
+				.add(deliveryLinks.linkToStates());
 	}
 }

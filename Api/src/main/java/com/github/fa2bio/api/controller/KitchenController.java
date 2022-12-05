@@ -54,8 +54,7 @@ public class KitchenController implements KitchenControllerSwagger{
 	
 		PagedModel<KitchenModel> kitchenPagedModel = pagedResourcesAssembler
 				.toModel(kitchenPage, kitchenModelAssembler);
-		
-		
+				
 		return kitchenPagedModel;
 	}
 	

@@ -1,19 +1,11 @@
 package com.github.fa2bio.api.assembler;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.controller.CityController;
 import com.github.fa2bio.api.controller.OrderController;
-import com.github.fa2bio.api.controller.PaymentMethodsController;
-import com.github.fa2bio.api.controller.RestaurantController;
-import com.github.fa2bio.api.controller.RestaurantProductsController;
-import com.github.fa2bio.api.controller.UserController;
 import com.github.fa2bio.api.model.OrderrModel;
 import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.Orderr;
@@ -38,22 +30,21 @@ public class OrderrModelAssembler
 		
 		orderModel.add(deliveryLinks.linkToOrders());
 		
-		orderModel.getRestaurant().add(linkTo(methodOn(RestaurantController.class)
-				.find(orderr.getRestaurant().getId())).withSelfRel());
+		orderModel.getRestaurant().add(deliveryLinks
+				.linkToRestaurants(orderr.getRestaurant().getId()));
 		
-		orderModel.getClient().add(linkTo(methodOn(UserController.class)
-				.find(orderr.getClient().getId())).withSelfRel());
+		orderModel.getClient().add(deliveryLinks
+				.linkToClients(orderr.getClient().getId()));
 		
-		orderModel.getPaymentMethod().add(linkTo(methodOn(PaymentMethodsController.class)
-				.find(orderr.getPaymentMethod().getId())).withSelfRel());
+		orderModel.getPaymentMethod().add(deliveryLinks
+				.linkToPaymentMethods(orderr.getPaymentMethod().getId()));
 		
-		orderModel.getDeliveryAddress().getCity().add(linkTo(methodOn(CityController.class)
-				.find(orderr.getDeliveryAddress().getCity().getId())).withSelfRel());
-		
+		orderModel.getDeliveryAddress().getCity().add(deliveryLinks
+				.linkToCities(orderr.getDeliveryAddress().getCity().getId()));
+				
 		orderModel.getItems().forEach(item -> {
-			item.add(linkTo(methodOn(RestaurantProductsController.class)
-					.find(orderModel.getRestaurant().getId(), item.getProductId()))
-					.withRel("product"));
+			item.add(deliveryLinks
+					.linkToItems(orderModel.getRestaurant().getId(),  item.getProductId(), "product"));
 		});
 		
 		return orderModel;

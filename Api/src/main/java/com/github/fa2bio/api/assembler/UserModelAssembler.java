@@ -1,17 +1,14 @@
 package com.github.fa2bio.api.assembler;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSupport;
 import org.springframework.stereotype.Component;
 
-import com.github.fa2bio.api.controller.UserClusterController;
 import com.github.fa2bio.api.controller.UserController;
 import com.github.fa2bio.api.model.UserModel;
+import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.User;
 
 @Component
@@ -20,6 +17,9 @@ public class UserModelAssembler
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private DeliveryLinks deliveryLinks;
 	
 	public UserModelAssembler() {
 		super(UserController.class, UserModel.class);
@@ -30,10 +30,9 @@ public class UserModelAssembler
 		UserModel userModel = createModelWithId(user.getId(), user);
 		modelMapper.map(user, userModel);
 		
-		userModel.add(linkTo(UserController.class).withRel("users"));
+		userModel.add(deliveryLinks.linkToUsers("users"));
 		
-		userModel.add(linkTo(methodOn(UserClusterController.class)
-				.list(user.getId())).withRel("clusters-users"));
+		userModel.add(deliveryLinks.linkToClustersUsers(user.getId(), "clusters-users"));
 		
 		return userModel;
 	}
@@ -41,6 +40,6 @@ public class UserModelAssembler
 	@Override
 	public CollectionModel<UserModel> toCollectionModel(Iterable<? extends User> entities){
 		return super.toCollectionModel(entities)
-				.add(linkTo(UserController.class).withSelfRel());
+				.add(deliveryLinks.linkToUsers());
 	}
 }
