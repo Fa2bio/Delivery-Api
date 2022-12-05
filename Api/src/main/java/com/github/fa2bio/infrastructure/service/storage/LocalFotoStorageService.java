@@ -13,7 +13,7 @@ import com.github.fa2bio.domain.service.PhotoStorageService;
 @Service
 public class LocalFotoStorageService implements PhotoStorageService{
 
-	@Value("${delivery.storage.local.diretorio-photos}")
+	@Value("${delivery.storage.location.directory-photos}")
 	private Path directoryPhotos;
 	
 	@Override
