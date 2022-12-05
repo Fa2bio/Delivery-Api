@@ -95,6 +95,19 @@ public class Orderr {
 		setCancellationDate(OffsetDateTime.now());
 	}
 	
+	
+	public boolean canBeConfirmed() {
+		return getStatus().canChangeTo(OrderStatus.CONFIRMED);
+	}
+	
+	public boolean canBeDeliver() {
+		return getStatus().canChangeTo(OrderStatus.DELIVERED);
+	}
+	
+	public boolean canBeCancel() {
+		return getStatus().canChangeTo(OrderStatus.CANCELED);
+	}
+	
 	private void setStatus(OrderStatus newStatus) {
 		if(getStatus().cannotChangeTo(newStatus)) {
 			throw new BusinessException(String.format("Order status %s cannot be changed from %s to %s",

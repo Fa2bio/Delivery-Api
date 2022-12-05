@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.github.fa2bio.api.controller.CityController;
 import com.github.fa2bio.api.controller.KitchenController;
 import com.github.fa2bio.api.controller.OrderController;
+import com.github.fa2bio.api.controller.OrderStatusController;
 import com.github.fa2bio.api.controller.PaymentMethodsController;
 import com.github.fa2bio.api.controller.RestaurantController;
 import com.github.fa2bio.api.controller.RestaurantProductsController;
@@ -113,5 +114,21 @@ public class DeliveryLinks {
 				.withRel(rel);
 	}
 	
+	public Link linkToConfirmedOrder(String orderCode, String rel) {
+		return linkTo(methodOn(OrderStatusController.class)
+				.confirm(orderCode))
+				.withRel(rel);
+	}
 	
+	public Link linkToCancellationOrder(String orderCode, String rel) {
+		return linkTo(methodOn(OrderStatusController.class)
+				.cancellation(orderCode))
+				.withRel(rel);
+	}
+	
+	public Link linkToDeliveredOrder(String orderCode, String rel) {
+		return linkTo(methodOn(OrderStatusController.class)
+				.delivered(orderCode))
+				.withRel(rel);
+	}
 }

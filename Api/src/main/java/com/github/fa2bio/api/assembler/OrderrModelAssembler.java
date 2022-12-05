@@ -47,6 +47,21 @@ public class OrderrModelAssembler
 					.linkToItems(orderModel.getRestaurant().getId(),  item.getProductId(), "product"));
 		});
 		
+		if(orderr.canBeConfirmed()) {
+			orderModel.add(deliveryLinks
+					.linkToConfirmedOrder(orderr.getUuiCode(), "confirm"));
+		}
+
+		if(orderr.canBeCancel()) {
+			orderModel.add(deliveryLinks
+					.linkToCancellationOrder(orderr.getUuiCode(), "cancel"));
+		}
+		
+		if(orderr.canBeDeliver()) {
+			orderModel.add(deliveryLinks
+					.linkToDeliveredOrder(orderr.getUuiCode(), "deliver"));
+		}
+	
 		return orderModel;
 	}
 	

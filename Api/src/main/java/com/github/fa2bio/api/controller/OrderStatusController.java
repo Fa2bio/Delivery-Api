@@ -2,6 +2,7 @@ package com.github.fa2bio.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,21 +22,24 @@ public class OrderStatusController implements OrderStatusControllerSwagger{
 	@Override
 	@PutMapping("/confirm")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void confirm(@PathVariable String orderCode) {
+	public ResponseEntity<Void> confirm(@PathVariable String orderCode) {
 		orderStatusService.confirm(orderCode);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@PutMapping("/cancellation")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void cancellation(@PathVariable String orderCode) {
+	public ResponseEntity<Void> cancellation(@PathVariable String orderCode) {
 		orderStatusService.cancel(orderCode);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@PutMapping("/delivered")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delivered(@PathVariable String orderCode) {
+	public ResponseEntity<Void> delivered(@PathVariable String orderCode) {
 		orderStatusService.deliver(orderCode);
+		return ResponseEntity.noContent().build();
 	}
 }
