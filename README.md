@@ -36,6 +36,7 @@
 - Clean Architecture
 - Data Transfer Object (DTO)
 - Swagger
+- Hateoas
 
 ## <a name="installation"></a>Installation
 
