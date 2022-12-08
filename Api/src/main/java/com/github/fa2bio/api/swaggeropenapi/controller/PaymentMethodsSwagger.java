@@ -1,6 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.PaymentMethodModel;
@@ -16,7 +17,7 @@ import io.swagger.annotations.ApiResponses;
 public interface PaymentMethodsSwagger {
 
 	@ApiOperation("List of payment method")
-	List<PaymentMethodModel> list();
+	CollectionModel<PaymentMethodModel> list();
 	
 	@ApiOperation("Search a payment method by Id")
 	@ApiResponses({
@@ -51,7 +52,7 @@ public interface PaymentMethodsSwagger {
 		@ApiResponse(code = 204, message = "Payment method deleted"),
 		@ApiResponse(code = 404, message = "Payment method not found", response = Problem.class)
 	})
-	void delete(
+	ResponseEntity<Void> delete(
 			@ApiParam(value = "Payment method Id", example = "1", required = true)
 			Long paymentMethodId);
 }

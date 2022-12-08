@@ -28,7 +28,7 @@ public class OrderrModelAssembler
 		OrderrModel orderModel = createModelWithId(orderr.getUuiCode(), orderr);
 		modelMapper.map(orderr, orderModel);
 		
-		orderModel.add(deliveryLinks.linkToOrders());
+		orderModel.add(deliveryLinks.linkToOrders("orders"));
 		
 		orderModel.getRestaurant().add(deliveryLinks
 				.linkToRestaurants(orderr.getRestaurant().getId()));
@@ -37,7 +37,7 @@ public class OrderrModelAssembler
 				.linkToClients(orderr.getClient().getId()));
 		
 		orderModel.getPaymentMethod().add(deliveryLinks
-				.linkToPaymentMethods(orderr.getPaymentMethod().getId()));
+				.linkToFindPaymentMethods(orderr.getPaymentMethod().getId()));
 		
 		orderModel.getDeliveryAddress().getCity().add(deliveryLinks
 				.linkToCities(orderr.getDeliveryAddress().getCity().getId()));

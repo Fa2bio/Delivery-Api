@@ -42,6 +42,22 @@ public class RestaurantModelAssembler
 		
 		restaurantModel.add(deliveryLinks.linkToRestaurantsResponsible(restaurant.getId(), "responsible"));
 		
+		if(restaurant.openAllowed()) {
+			restaurantModel.add(deliveryLinks.linkToRestaurantsOpen(restaurant.getId(), "open"));
+		}
+		
+		if(restaurant.closeAllowed()) {
+			restaurantModel.add(deliveryLinks.linkToRestaurantsClose(restaurant.getId(), "close"));
+		}
+		
+		if(restaurant.activateAllowed()) {
+			restaurantModel.add(deliveryLinks.linkToRestaurantsActivate(restaurant.getId(), "activate"));
+		}
+		
+		if(restaurant.inactivateAllowed()) {
+			restaurantModel.add(deliveryLinks.linkToRestaurantsInactivate(restaurant.getId(), "inactivate"));
+		}
+		
 		return restaurantModel;
 	}
 	

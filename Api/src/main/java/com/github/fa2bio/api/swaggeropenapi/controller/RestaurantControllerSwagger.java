@@ -21,7 +21,6 @@ import io.swagger.annotations.ApiResponses;
 public interface RestaurantControllerSwagger {
 
 	@ApiOperation("List of restaurants")
-	//@JsonView(RestaurantView.Summary.class)
 	CollectionModel<RestaurantBasicModel> list();
 	
 	@ApiOperation("List of restaurant names")

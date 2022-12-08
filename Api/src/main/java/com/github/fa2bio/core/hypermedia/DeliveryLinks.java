@@ -33,7 +33,10 @@ public class DeliveryLinks {
 			new TemplateVariable("sort", VariableType.REQUEST_PARAM)
 	);
 	
-	public Link linkToOrders() {
+	public static final TemplateVariables PROJECTION_VARIABLES = new TemplateVariables(
+			new TemplateVariable("projection", VariableType.REQUEST_PARAM));
+		
+	public Link linkToOrders(String rel) {
 		TemplateVariables filterVariables = new TemplateVariables(
 				new TemplateVariable("clientId", VariableType.REQUEST_PARAM),
 				new TemplateVariable("restaurantId", VariableType.REQUEST_PARAM),
@@ -43,7 +46,7 @@ public class DeliveryLinks {
 		String ordersUrl = linkTo(OrderController.class).toUri().toString();
 		
 		return new Link(UriTemplate.of(ordersUrl,
-				PAGE_VARIABLES.concat(filterVariables)), "orders");
+				PAGE_VARIABLES.concat(filterVariables)), rel);
 	}
 	
 	public Link linkToOrder(String rel) {
@@ -90,6 +93,9 @@ public class DeliveryLinks {
 		return linkToKitchens(kitchenId, IanaLinkRelations.SELF.value());
 	}
 	
+	public Link linkToRestaurants() {
+		return linkToRestaurants(IanaLinkRelations.SELF.value());
+	}
 	
 	public Link linkToRestaurants(Long restaurantId) {
 		return linkTo(methodOn(RestaurantController.class)
@@ -98,15 +104,37 @@ public class DeliveryLinks {
 	
 	public Link linkToRestaurants(String rel){
 		return linkTo(RestaurantController.class).withRel(rel);
+//		String restaurantUrl = linkTo(RestaurantController.class).toUri().toString();
+//		return new Link(UriTemplate.of(restaurantUrl, PAGE_VARIABLES), rel);
 	}
 	
-	public Link linkToRestaurants() {
-		return linkToRestaurants(IanaLinkRelations.SELF.value());
+	public Link linkToRestaurantsOpen(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantController.class)
+				.open(restaurantId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantsClose(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantController.class)
+				.close(restaurantId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantsActivate(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantController.class)
+				.activate(restaurantId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantsInactivate(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantController.class)
+				.inactivate(restaurantId)).withRel(rel);
 	}
 	
 	public Link linkToRestaurantPaymentMethods(Long restaurantId, String rel) {
 		return linkTo(methodOn(RestaurantPaymentMethodController.class)
 				.list(restaurantId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantPaymentMethods(Long restaurantId) {
+		return linkToRestaurantPaymentMethods(restaurantId, IanaLinkRelations.SELF.value());
 	}
 		
 	public Link linkToRestaurantsResponsible(Long restaurantId) {
@@ -145,9 +173,22 @@ public class DeliveryLinks {
 				.list(userId)).withRel(rel);
 	}
 	
-	public Link linkToPaymentMethods(Long paymentId) {
+	public Link linkToPaymentMethods() {
+		return linkToPaymentMethods(IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToFindPaymentMethods(Long paymentId) {
 		return linkTo(methodOn(PaymentMethodsController.class)
 				.find(paymentId)).withSelfRel();
+	}
+	
+	public Link linkToDeletePaymentMethods(Long paymentId) {
+		return linkTo(methodOn(PaymentMethodsController.class)
+				.delete(paymentId)).withSelfRel();
+	}
+	
+	public Link linkToPaymentMethods(String rel) {
+		return linkTo(PaymentMethodsController.class).withRel(rel);
 	}
 	
 	public Link linkToItems(Long restaurantId, Long productId, String rel) {

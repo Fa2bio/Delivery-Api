@@ -75,22 +75,6 @@ public class Restaurant {
 	@OneToMany(mappedBy = "restaurant")
 	private List<Product> products = new ArrayList<>();
 	
-	public void activate() {
-		setActive(true);
-	}
-	
-	public void inactivate() {
-		setActive(false);
-	}
-	
-	public void open() {
-		setOpen(true);
-	}
-	
-	public void close() {
-		setOpen(false);
-	}
-	
 	public boolean addPaymentMethod(PaymentMethod paymentMethod) {
 		return getPaymentMethods().add(paymentMethod);
 	}
@@ -113,5 +97,53 @@ public class Restaurant {
 	
 	public boolean deleteResponsible(User user) {
 		return getResponsibles().remove(user);
+	}
+	
+	public void open() {
+		setOpen(true);
+	}
+	
+	public void close() {
+		setOpen(false);
+	}
+	
+	public void activate() {
+		setActive(true);
+	}
+	
+	public void inactivate() {
+		setActive(false);
+	}
+	
+	public boolean isOpen() {
+		return this.open;
+	}
+	
+	public boolean isClose() {
+		return !isOpen();
+	}
+	
+	public boolean isActivate() {
+		return this.active;
+	}
+	
+	public boolean isInactivate() {
+		return !isActivate();
+	}
+	
+	public boolean openAllowed() {
+		return isActivate() && isClose();
+	}
+	
+	public boolean closeAllowed() {
+		return isOpen();
+	}
+	
+	public boolean activateAllowed() {
+		return isInactivate();
+	}
+	
+	public boolean inactivateAllowed() {
+		return isActivate();
 	}
 }

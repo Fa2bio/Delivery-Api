@@ -1,11 +1,11 @@
 package com.github.fa2bio.api.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +43,7 @@ public class PaymentMethodsController implements PaymentMethodsSwagger{
 	
 	@Override
 	@GetMapping
-	public List<PaymentMethodModel> list(){
+	public CollectionModel<PaymentMethodModel> list(){
 		return paymentMethodModelAssembler.toCollectionModel(paymentMethodsRepository.findAll());
 	}
 	
@@ -72,7 +72,8 @@ public class PaymentMethodsController implements PaymentMethodsSwagger{
 	@Override
 	@DeleteMapping("/{paymentMethodId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long paymentMethodId) {
+	public ResponseEntity<Void> delete(@PathVariable Long paymentMethodId) {
 		paymentMethodsService.delete(paymentMethodId);
+		return ResponseEntity.noContent().build();
 	}
 }

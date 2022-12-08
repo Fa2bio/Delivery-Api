@@ -13,10 +13,8 @@ import lombok.Setter;
 public class KitchenModel extends RepresentationModel<KitchenModel>{
 	
 	@ApiModelProperty(example = "1")
-	//@JsonView(RestaurantView.Summary.class)
 	private Long id;
 	
 	@ApiModelProperty(example = "Carioca")
-	//@JsonView(RestaurantView.Summary.class)
 	private String name;
 }
