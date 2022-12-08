@@ -128,6 +128,10 @@ public class DeliveryLinks {
 				.inactivate(restaurantId)).withRel(rel);
 	}
 	
+	public Link linkToRestaurantPaymentMethods(Long restaurantId) {
+		return linkToRestaurantPaymentMethods(restaurantId, IanaLinkRelations.SELF.value());
+	}
+	
 	public Link linkToRestaurantPaymentMethods(Long restaurantId, String rel) {
 		return linkTo(methodOn(RestaurantPaymentMethodController.class)
 				.list(restaurantId)).withRel(rel);
@@ -143,10 +147,6 @@ public class DeliveryLinks {
 				.disassociate(restaurantId, paymentMethodId)).withRel(rel);
 	}
 	
-	public Link linkToRestaurantPaymentMethods(Long restaurantId) {
-		return linkToRestaurantPaymentMethods(restaurantId, IanaLinkRelations.SELF.value());
-	}
-		
 	public Link linkToRestaurantsResponsible(Long restaurantId) {
 		return linkToRestaurantsResponsible(restaurantId, IanaLinkRelations.SELF.value());
 	}
@@ -154,6 +154,16 @@ public class DeliveryLinks {
 	public Link linkToRestaurantsResponsible(Long restaurantId, String rel) {
 		return linkTo(methodOn(RestaurantResponsibleUserController.class)
 				.list(restaurantId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantsResponsibleAssociate(Long restaurantId, Long userId, String rel) {
+		return linkTo(methodOn(RestaurantResponsibleUserController.class)
+				.associate(restaurantId, userId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantsResponsibleDisassociate(Long restaurantId, Long userId, String rel) {
+		return linkTo(methodOn(RestaurantResponsibleUserController.class)
+				.disassociate(restaurantId, userId)).withRel(rel);
 	}
 	
 	public Link linkToClients(Long clientId) {

@@ -1,6 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.UserModel;
@@ -27,7 +28,7 @@ public interface RestaurantResponsibleUserControllerSwagger {
 		@ApiResponse(code = 200, message = "Association performed successfully"),
 		@ApiResponse(code = 404, message = "Restaurant or user not found", response = Problem.class)
 	})
-	void associate(
+	ResponseEntity<Void> associate(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId, 
 			@ApiParam(value = "User Id", example = "1", required = true)
@@ -38,7 +39,7 @@ public interface RestaurantResponsibleUserControllerSwagger {
 		@ApiResponse(code = 200, message = "Disassociation performed successfully"),
 		@ApiResponse(code = 404, message = "Restaurant or user not found", response = Problem.class)
 	})
-	void disassociate(
+	ResponseEntity<Void> disassociate(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId, 
 			@ApiParam(value = "User Id", example = "1", required = true)
