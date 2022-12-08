@@ -33,6 +33,7 @@ public class PaymentMethodModelAssembler
 		
 		paymentModel.add(deliveryLinks.linkToPaymentMethods("payment-methods"));
 		
+		paymentModel.add(deliveryLinks.linkToDeletePaymentMethods(paymentMethod.getId(), "delete"));
 		return paymentModel;
 	}
 	

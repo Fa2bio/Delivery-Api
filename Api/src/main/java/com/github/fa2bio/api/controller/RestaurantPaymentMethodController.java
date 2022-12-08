@@ -3,6 +3,7 @@ package com.github.fa2bio.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,23 +37,37 @@ public class RestaurantPaymentMethodController implements RestaurantPaymentMetho
 	public CollectionModel<PaymentMethodModel> list(@PathVariable Long restaurantId) {
 		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
 		
-		return paymentMethodModelAssembler
+		CollectionModel<PaymentMethodModel> paymentMethodsModel = paymentMethodModelAssembler
 				.toCollectionModel(restaurant.getPaymentMethods())
 				.removeLinks()
 				.add(deliveryLinks.linkToRestaurantPaymentMethods(restaurantId));
+		
+		paymentMethodsModel.getContent().forEach(paymentMethodModel -> {
+			paymentMethodModel.add(deliveryLinks.linkToRestaurantPaymentMethodsAssociate(
+					restaurantId, paymentMethodModel.getId(), "associate"));
+		});
+		
+		paymentMethodsModel.getContent().forEach(paymentMethodModel -> {
+			paymentMethodModel.add(deliveryLinks.linkToRestaurantPaymentMethodsDisassociate(
+					restaurantId, paymentMethodModel.getId(), "disassociate"));
+		});
+		
+		return paymentMethodsModel;
 	}
 	
 	@Override
 	@PutMapping("/{paymentMethodId}")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void associate(@PathVariable Long restaurantId, @PathVariable Long paymentMethodId) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<Void> associate(@PathVariable Long restaurantId, @PathVariable Long paymentMethodId) {
 		restaurantService.associatePaymentMethod(restaurantId, paymentMethodId);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@DeleteMapping("/{paymentMethodId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void disassociate(@PathVariable Long restaurantId, @PathVariable Long paymentMethodId) {
+	public ResponseEntity<Void>disassociate(@PathVariable Long restaurantId, @PathVariable Long paymentMethodId) {
 		restaurantService.disassociatePaymentMethod(restaurantId, paymentMethodId);
+		return ResponseEntity.noContent().build();
 	}
 }

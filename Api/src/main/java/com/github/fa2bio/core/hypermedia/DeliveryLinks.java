@@ -131,6 +131,16 @@ public class DeliveryLinks {
 	public Link linkToRestaurantPaymentMethods(Long restaurantId, String rel) {
 		return linkTo(methodOn(RestaurantPaymentMethodController.class)
 				.list(restaurantId)).withRel(rel);
+	}	
+	
+	public Link linkToRestaurantPaymentMethodsAssociate(Long restaurantId, Long paymentMethodId, String rel) {
+		return linkTo(methodOn(RestaurantPaymentMethodController.class)
+				.associate(restaurantId, paymentMethodId)).withRel(rel);
+	}
+	
+	public Link linkToRestaurantPaymentMethodsDisassociate(Long restaurantId, Long paymentMethodId, String rel) {
+		return linkTo(methodOn(RestaurantPaymentMethodController.class)
+				.disassociate(restaurantId, paymentMethodId)).withRel(rel);
 	}
 	
 	public Link linkToRestaurantPaymentMethods(Long restaurantId) {
@@ -182,9 +192,9 @@ public class DeliveryLinks {
 				.find(paymentId)).withSelfRel();
 	}
 	
-	public Link linkToDeletePaymentMethods(Long paymentId) {
+	public Link linkToDeletePaymentMethods(Long paymentId, String rel) {
 		return linkTo(methodOn(PaymentMethodsController.class)
-				.delete(paymentId)).withSelfRel();
+				.delete(paymentId)).withRel(rel);
 	}
 	
 	public Link linkToPaymentMethods(String rel) {
