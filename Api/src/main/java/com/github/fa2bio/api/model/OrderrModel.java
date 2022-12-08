@@ -44,7 +44,7 @@ public class OrderrModel extends RepresentationModel<OrderrModel>{
 	private OffsetDateTime deliveryDate; 
 	
 	
-	private RestaurantAbstractModel restaurant; 
+	private RestaurantNameOnlyModel restaurant; 
 	private UserModel client; 
 	private PaymentMethodModel paymentMethod; 
 	private AddressModel deliveryAddress; 

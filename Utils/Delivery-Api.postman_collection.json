@@ -843,7 +843,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+							"raw": "http://localhost:8080/orders/bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -851,7 +851,7 @@
 							"port": "8080",
 							"path": [
 								"orders",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4"
+								"bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58"
 							]
 						}
 					},
@@ -896,7 +896,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/cancellation",
+							"raw": "http://localhost:8080/orders/bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58/cancellation",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -904,7 +904,7 @@
 							"port": "8080",
 							"path": [
 								"orders",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+								"bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58",
 								"cancellation"
 							]
 						}
@@ -917,7 +917,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/confirm",
+							"raw": "http://localhost:8080/orders/bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58/confirm",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -925,7 +925,7 @@
 							"port": "8080",
 							"path": [
 								"orders",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+								"bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58",
 								"confirm"
 							]
 						}
@@ -938,7 +938,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/orders/5a76ddc6-fc45-468d-8b8d-bc8bef3462b4/delivered",
+							"raw": "http://localhost:8080/orders/bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58/delivered",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -946,7 +946,7 @@
 							"port": "8080",
 							"path": [
 								"orders",
-								"5a76ddc6-fc45-468d-8b8d-bc8bef3462b4",
+								"bfd4c484-fb0f-4c2d-ad1c-2b42e9cccd58",
 								"delivered"
 							]
 						}
@@ -1232,8 +1232,8 @@
 							],
 							"query": [
 								{
-									"key": "projecao",
-									"value": "apenas-nome",
+									"key": "",
+									"value": "",
 									"disabled": true
 								}
 							]

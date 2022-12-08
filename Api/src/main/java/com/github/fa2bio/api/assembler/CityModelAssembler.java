@@ -1,7 +1,5 @@
 package com.github.fa2bio.api.assembler;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
@@ -43,6 +41,7 @@ public class CityModelAssembler
 	
 	@Override
 	public CollectionModel<CityModel> toCollectionModel(Iterable<? extends City> entities){
-		return super.toCollectionModel(entities).add(linkTo(CityController.class).withSelfRel());
+		return super.toCollectionModel(entities)
+				.add(deliveryLinks.linkToCities());
 	}
 }

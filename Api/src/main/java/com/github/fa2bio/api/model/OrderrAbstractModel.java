@@ -32,6 +32,6 @@ public class OrderrAbstractModel extends RepresentationModel<OrderrAbstractModel
 	
 	@ApiModelProperty(example = "2022-12-01T20:34:04Z")
 	private OffsetDateTime creationDate; 
-	private RestaurantAbstractModel restaurant; 
+	private RestaurantNameOnlyModel restaurant; 
 	private UserModel Client;
 }

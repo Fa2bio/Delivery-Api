@@ -9,27 +9,21 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Relation(collectionRelation = "restaurants")
-public class RestaurantModel extends RepresentationModel<RestaurantModel>{
-	
+public class RestaurantBasicModel extends RepresentationModel<RestaurantBasicModel>{
+
 	@ApiModelProperty(example = "1")
-	//@JsonView({RestaurantView.Summary.class, RestaurantView.NameOnly.class})
 	private Long id;
 	
-	@ApiModelProperty(example = "Thai Gourmet")
-	//@JsonView({RestaurantView.Summary.class, RestaurantView.NameOnly.class})
+	@ApiModelProperty(example = "Burguer King")
 	private String name;
 	
+	
 	@ApiModelProperty(example = "12.00")
-	//@JsonView(RestaurantView.Summary.class)
 	private BigDecimal rateShipping;
 	
-	//@JsonView(RestaurantView.Summary.class)
 	private KitchenModel kitchen;
-	 
-	private Boolean active;
-	private Boolean open;
-	private AddressModel address;
+	
 }

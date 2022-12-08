@@ -5,7 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,9 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.fa2bio.api.assembler.RestaurantBasicModelAssembler;
 import com.github.fa2bio.api.assembler.RestaurantInputDisassembler;
 import com.github.fa2bio.api.assembler.RestaurantModelAssembler;
+import com.github.fa2bio.api.assembler.RestaurantNameOnlyAssembler;
+import com.github.fa2bio.api.model.RestaurantBasicModel;
 import com.github.fa2bio.api.model.RestaurantModel;
+import com.github.fa2bio.api.model.RestaurantNameOnlyModel;
 import com.github.fa2bio.api.model.input.RestaurantInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantControllerSwagger;
 import com.github.fa2bio.domain.exception.BusinessException;
@@ -43,18 +49,24 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	private RestaurantModelAssembler restaurantModelAssembler;
 	
 	@Autowired
+	private RestaurantBasicModelAssembler restaurantBasicModelAssembler;
+	
+	@Autowired
+	private RestaurantNameOnlyAssembler restaurantNameOnlyAssembler;
+	
+	@Autowired
 	private RestaurantInputDisassembler restaurantInputDisassembler;
 
 	@Override
 	@GetMapping
-	public List<RestaurantModel> list() {
-		return restaurantModelAssembler.toCollectionModel(restaurantRepository.findAll());
+	public CollectionModel<RestaurantBasicModel> list() {
+		return restaurantBasicModelAssembler.toCollectionModel(restaurantRepository.findAll());
 	}
 	
 	@Override
 	@GetMapping(params="projection=name-only")
-	public List<RestaurantModel> listOnlyName() {
-		return list();
+	public CollectionModel<RestaurantNameOnlyModel> listOnlyName() {
+		return restaurantNameOnlyAssembler.toCollectionModel(restaurantRepository.findAll());
 	}
 	
 	@Override
@@ -94,17 +106,19 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	
 	@Override
 	@PutMapping("/{restaurantId}/active")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void activate(@PathVariable Long restaurantId) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<Void> activate(@PathVariable Long restaurantId) {
 		restaurantService.activate(restaurantId);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@PutMapping("/activations")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void activateMultiples(@RequestBody List<Long> restaurantIds) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public ResponseEntity<Void> activateMultiples(@RequestBody List<Long> restaurantIds) {
 		try {
 			restaurantService.activateMultiples(restaurantIds);
+			return ResponseEntity.noContent().build();
 		} catch (RestaurantNotFoundException e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
@@ -113,16 +127,18 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	@Override
 	@DeleteMapping("/{restaurantId}/inactivate")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void inactivate(@PathVariable Long restaurantId) {
+	public ResponseEntity<Void> inactivate(@PathVariable Long restaurantId) {
 		restaurantService.inactivate(restaurantId);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@DeleteMapping("/inactivations")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void inactivateMultiples(@RequestBody List<Long> restaurantIds) {
+	public ResponseEntity<Void> inactivateMultiples(@RequestBody List<Long> restaurantIds) {
 		try {
 			restaurantService.inactivateMultiples(restaurantIds);
+			return ResponseEntity.noContent().build();
 		} catch (RestaurantNotFoundException e) {
 			throw new BusinessException(e.getMessage(), e);
 		}
@@ -131,15 +147,17 @@ public class RestaurantController implements RestaurantControllerSwagger{
 	@Override
 	@PutMapping("/{restaurantId}/open")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void open(@PathVariable Long restaurantId) {
+	public ResponseEntity<Void> open(@PathVariable Long restaurantId) {
 		restaurantService.open(restaurantId);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@Override
 	@PutMapping("/{restaurantId}/close")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void close(@PathVariable Long restaurantId) {
+	public ResponseEntity<Void> close(@PathVariable Long restaurantId) {
 		restaurantService.close(restaurantId);
+		return ResponseEntity.noContent().build();
 	}
 
 }

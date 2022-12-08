@@ -2,11 +2,14 @@ package com.github.fa2bio.api.swaggeropenapi.controller;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
+
 import com.github.fa2bio.api.exceptionhandler.Problem;
+import com.github.fa2bio.api.model.RestaurantBasicModel;
 import com.github.fa2bio.api.model.RestaurantModel;
+import com.github.fa2bio.api.model.RestaurantNameOnlyModel;
 import com.github.fa2bio.api.model.input.RestaurantInput;
-import com.github.fa2bio.api.model.view.RestaurantView;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,12 +21,11 @@ import io.swagger.annotations.ApiResponses;
 public interface RestaurantControllerSwagger {
 
 	@ApiOperation("List of restaurants")
-	@JsonView(RestaurantView.Summary.class)
-	public List<RestaurantModel> list();
+	//@JsonView(RestaurantView.Summary.class)
+	CollectionModel<RestaurantBasicModel> list();
 	
 	@ApiOperation("List of restaurant names")
-	@JsonView(RestaurantView.NameOnly.class)
-	List<RestaurantModel> listOnlyName();
+	CollectionModel<RestaurantNameOnlyModel> listOnlyName();
 	
 	@ApiOperation("Search a restaurant by Id")
 	@ApiResponses({
@@ -58,7 +60,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Restaurant activated"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void activate(
+	ResponseEntity<Void> activate(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true) 
 			Long restaurantId);
 	
@@ -67,7 +69,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Restaurants activated"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void activateMultiples(
+	ResponseEntity<Void> activateMultiples(
 			@ApiParam(name = "Body", value = "Restaurant Ids", required = true)
 			List<Long> restaurantIds);
 		
@@ -76,7 +78,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Restaurant inactivate"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void inactivate(
+	ResponseEntity<Void> inactivate(
 			@ApiParam(value = "Restaurant Ids", example = "1", required = true) 
 			Long restaurantId);
 	
@@ -85,7 +87,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Restaurants inactivate"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void inactivateMultiples(
+	ResponseEntity<Void> inactivateMultiples(
 			@ApiParam(name = "Body", value = "Restaurant Ids", required = true)
 			List<Long> restaurantIds);
 	
@@ -94,7 +96,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Successfully opened restaurant"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void open(
+	ResponseEntity<Void> open(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId);
 	
@@ -103,7 +105,7 @@ public interface RestaurantControllerSwagger {
 		@ApiResponse(code = 204, message = "Successfully closed restaurant"),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	void close(
+	ResponseEntity<Void> close(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId);
 	

@@ -3,6 +3,7 @@ package com.github.fa2bio.core.hypermedia;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+import org.springframework.hateoas.IanaLinkRelations;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.TemplateVariable;
 import org.springframework.hateoas.TemplateVariable.VariableType;
@@ -16,6 +17,7 @@ import com.github.fa2bio.api.controller.OrderController;
 import com.github.fa2bio.api.controller.OrderStatusController;
 import com.github.fa2bio.api.controller.PaymentMethodsController;
 import com.github.fa2bio.api.controller.RestaurantController;
+import com.github.fa2bio.api.controller.RestaurantPaymentMethodController;
 import com.github.fa2bio.api.controller.RestaurantProductsController;
 import com.github.fa2bio.api.controller.RestaurantResponsibleUserController;
 import com.github.fa2bio.api.controller.StateController;
@@ -48,6 +50,10 @@ public class DeliveryLinks {
 		return linkTo(OrderController.class).withRel(rel);
 	}
 	
+	public Link linkToCities() {
+		return linkToCities(IanaLinkRelations.SELF.value());
+	}
+	
 	public Link linkToCities(String rel) {
 		return linkTo(methodOn(CityController.class)
 				.list()).withRel(rel);
@@ -58,6 +64,10 @@ public class DeliveryLinks {
 				.find(cityId)).withSelfRel();
 	}
 	
+	public Link linkToStates() {
+		return linkToStates(IanaLinkRelations.SELF.value());
+	}
+	
 	public Link linkToStates(Long stateId) {
 		return linkTo(methodOn(StateController.class)
 				.find(stateId)).withSelfRel();
@@ -66,23 +76,46 @@ public class DeliveryLinks {
 	public Link linkToStates(String rel) {
 		return linkTo(StateController.class).withRel(rel);
 	}
-	
-	public Link linkToStates() {
-		return linkTo(StateController.class).withSelfRel();
-	}
-	
+
 	public Link linkToKitchens(String rel) {
 		return linkTo(KitchenController.class).withRel(rel);
 	}
+	
+	public Link linkToKitchens(Long kitchenId, String rel) {
+		return linkTo(methodOn(KitchenController.class)
+				.find(kitchenId)).withRel(rel);
+	}
+	
+	public Link linkToKitchens(Long kitchenId) {
+		return linkToKitchens(kitchenId, IanaLinkRelations.SELF.value());
+	}
+	
 	
 	public Link linkToRestaurants(Long restaurantId) {
 		return linkTo(methodOn(RestaurantController.class)
 				.find(restaurantId)).withSelfRel();
 	}
 	
+	public Link linkToRestaurants(String rel){
+		return linkTo(RestaurantController.class).withRel(rel);
+	}
+	
+	public Link linkToRestaurants() {
+		return linkToRestaurants(IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToRestaurantPaymentMethods(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantPaymentMethodController.class)
+				.list(restaurantId)).withRel(rel);
+	}
+		
 	public Link linkToRestaurantsResponsible(Long restaurantId) {
+		return linkToRestaurantsResponsible(restaurantId, IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToRestaurantsResponsible(Long restaurantId, String rel) {
 		return linkTo(methodOn(RestaurantResponsibleUserController.class)
-				.list(restaurantId)).withSelfRel();
+				.list(restaurantId)).withRel(rel);
 	}
 	
 	public Link linkToClients(Long clientId) {
@@ -90,12 +123,21 @@ public class DeliveryLinks {
 				.find(clientId)).withSelfRel();
 	}
 	
+	public Link linkToUsers() {
+		return linkToUsers(IanaLinkRelations.SELF.value());
+	}
+	
 	public Link linkToUsers(String rel) {
 		return linkTo(UserController.class).withRel(rel);
 	}
+
+	public Link linkToUsers(Long userId, String rel) {
+		return linkTo(methodOn(UserController.class)
+				.find(userId)).withRel(rel);
+	}
 	
-	public Link linkToUsers() {
-		return linkTo(UserController.class).withSelfRel();
+	public Link linkToUsers(Long userId) {
+		return linkToUsers(userId, IanaLinkRelations.SELF.value());
 	}
 	
 	public Link linkToClustersUsers(Long userId, String rel) {
