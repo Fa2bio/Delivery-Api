@@ -1572,7 +1572,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1580,9 +1580,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}
@@ -1600,7 +1600,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/fabio/Documents/bib.jpg"
 								},
 								{
 									"key": "description",
@@ -1610,7 +1610,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1618,9 +1618,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}
@@ -1648,7 +1648,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1656,9 +1656,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}
@@ -1671,7 +1671,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1679,9 +1679,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}
@@ -1700,7 +1700,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1708,9 +1708,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}
@@ -1729,7 +1729,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8080/restaurants/1/products/1/photo",
+							"raw": "http://localhost:8080/restaurants/4/products/6/photo",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1737,9 +1737,9 @@
 							"port": "8080",
 							"path": [
 								"restaurants",
-								"1",
+								"4",
 								"products",
-								"1",
+								"6",
 								"photo"
 							]
 						}

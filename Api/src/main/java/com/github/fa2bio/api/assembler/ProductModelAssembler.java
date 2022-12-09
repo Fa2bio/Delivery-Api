@@ -28,6 +28,7 @@ public class ProductModelAssembler extends RepresentationModelAssemblerSupport<P
 		ProductModel productModel = createModelWithId(product.getId(),product, product.getRestaurant().getId());
 		modelMapper.map(product, productModel);
 		productModel.add(deliveryLinks.linkToProducts(product.getId(), "products"));
+		productModel.add(deliveryLinks.linkToPhotoProduct(product.getRestaurant().getId(), product.getId(), "photo"));
 		return productModel;
 	}
 }

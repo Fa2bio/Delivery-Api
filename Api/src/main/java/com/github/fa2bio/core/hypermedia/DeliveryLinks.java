@@ -18,6 +18,7 @@ import com.github.fa2bio.api.controller.OrderStatusController;
 import com.github.fa2bio.api.controller.PaymentMethodsController;
 import com.github.fa2bio.api.controller.RestaurantController;
 import com.github.fa2bio.api.controller.RestaurantPaymentMethodController;
+import com.github.fa2bio.api.controller.RestaurantPhotoProductController;
 import com.github.fa2bio.api.controller.RestaurantProductsController;
 import com.github.fa2bio.api.controller.RestaurantResponsibleUserController;
 import com.github.fa2bio.api.controller.StateController;
@@ -224,6 +225,15 @@ public class DeliveryLinks {
 	
 	public Link linkToProducts(Long restaurantId) {
 		return linkToProducts(restaurantId, IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToPhotoProduct(Long restaurantId, Long productId, String rel) {
+		return linkTo(methodOn(RestaurantPhotoProductController.class)
+				.find(restaurantId, productId)).withRel(rel);
+	}
+	
+	public Link linkToPhotoProduct(Long restaurantId, Long productId) {
+		return linkToPhotoProduct(restaurantId, productId, IanaLinkRelations.SELF.value());
 	}
 	
 	public Link linkToConfirmedOrder(String orderCode, String rel) {
