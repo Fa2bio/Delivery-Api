@@ -8,6 +8,7 @@ public enum ProblemType {
 	INVALID_DATA("/invalid-data", "Invalid data"),
 	SYSTEM_ERROR("/system-error", "System error"),
 	INVALID_PARAMETER("/invalid-parameter", "Invalid parameter"),
+	INVALID_DIRECTORY("/invalid-directory", "Invalid directory"),
 	MESSAGE_INCOMPREENSIBLE("/message-incompreesible", "Message incompreesible"),
 	RESOURCE_NOT_FUND("/resource-not-found", "Resource not found"),
 	ENTITY_IN_USE("/entity-in-use", "Entity in use"),
