@@ -1,6 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.ClusterModel;
@@ -28,7 +29,7 @@ public interface UserGroupControllerSwagger {
 		@ApiResponse(code = 200, message = "Association performed successfully"),
 		@ApiResponse(code = 404, message = "User or group not found", response = Problem.class)
 	})
-	void associate(
+	ResponseEntity<Void> associate(
 			@ApiParam(value = "User Id", example = "1", required = true)
 			Long userId, 
 			@ApiParam(value = "Group Id", example = "1", required = true) 
@@ -39,7 +40,7 @@ public interface UserGroupControllerSwagger {
 		@ApiResponse(code = 200, message = "Disassociation performed successfully"),
 		@ApiResponse(code = 404, message = "User or group not found", response = Problem.class)
 	})
-	void disassociate(
+	ResponseEntity<Void>disassociate(
 			@ApiParam(value = "User Id", example = "1", required = true)
 			Long userId, 
 			@ApiParam(value = "Group Id", example = "1", required = true) 

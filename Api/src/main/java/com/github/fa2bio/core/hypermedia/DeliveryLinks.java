@@ -195,6 +195,16 @@ public class DeliveryLinks {
 				.list(userId)).withRel(rel);
 	}
 	
+	public Link linkToClustersUsersAssociate(Long userId, String rel) {
+		return linkTo(methodOn(UserClusterController.class)
+				.associate(userId, null)).withRel(rel);
+	}
+	
+	public Link linkToClustersUsersDisassociate(Long userId, Long clusterId, String rel) {
+		return linkTo(methodOn(UserClusterController.class)
+				.disassociate(userId, clusterId)).withRel(rel);
+	}
+	
 	public Link linkToPaymentMethods() {
 		return linkToPaymentMethods(IanaLinkRelations.SELF.value());
 	}
