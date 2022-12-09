@@ -73,13 +73,13 @@ public class SpringFoxConfig {
 				.tags(new Tag("Cities", "Manage the cities"),
 						new Tag("Groups", "Manage user groups"),
 						new Tag("Kitchens", "Manage the Kitchens"),
-						new Tag("Payment methods", "Manage the payment methods"),
+						new Tag("Payment Methods", "Manage the payment methods"),
 						new Tag("Orders", "Manage the orders"),
 						new Tag("Restaurants", "Manage the restaurants"),
 						new Tag("States", "Manage the states"),
 						new Tag("Products", "Manage the products"),
 						new Tag("Users", "Manage the users"),
-						new Tag("Permission", "Manage the Permissions"),
+						new Tag("Permissions", "Manage the Permissions"),
 						new Tag("Statistics", "Statistics of Delivery-API"));
 						
 	}
