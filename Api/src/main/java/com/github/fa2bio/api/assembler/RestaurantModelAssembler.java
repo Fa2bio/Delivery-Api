@@ -34,11 +34,9 @@ public class RestaurantModelAssembler
 		
 		restaurantModel.getKitchen().add(
 				deliveryLinks.linkToKitchens(restaurant.getKitchen().getId()));
-
-		if(restaurantModel.getAddress() != null 
-				&& restaurantModel.getAddress().getCity() != null) {
-			restaurantModel.getAddress().getCity().add(deliveryLinks.linkToCities(restaurant.getAddress().getCity().getId()));
-		}
+		
+		restaurantModel.getAddress().getCity().add(
+				deliveryLinks.linkToCities(restaurant.getAddress().getCity().getId()));
 		
 		restaurantModel.add(deliveryLinks.linkToRestaurantPaymentMethods(restaurant.getId(), "payment-methods"));
 		
@@ -59,8 +57,6 @@ public class RestaurantModelAssembler
 		if(restaurant.inactivateAllowed()) {
 			restaurantModel.add(deliveryLinks.linkToRestaurantsInactivate(restaurant.getId(), "inactivate"));
 		}
-		
-		restaurantModel.add(deliveryLinks.linkToProducts(restaurant.getId(), "products"));
 		
 		return restaurantModel;
 	}

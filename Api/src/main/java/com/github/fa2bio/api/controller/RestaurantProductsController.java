@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import com.github.fa2bio.api.assembler.ProductModelAssembler;
 import com.github.fa2bio.api.model.ProductModel;
 import com.github.fa2bio.api.model.input.ProductInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantProductsControllerSwagger;
-import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.Product;
 import com.github.fa2bio.domain.model.Restaurant;
 import com.github.fa2bio.domain.repository.ProductRepository;
@@ -48,22 +46,18 @@ public class RestaurantProductsController
 	
 	@Autowired
 	private ProductInputDisassembler productInputDisassembler;
-	
-	@Autowired
-	private DeliveryLinks deliveryLinks;
 
 	@Override
 	@GetMapping
-	public CollectionModel<ProductModel> list(@PathVariable Long restaurantId, 
-			@RequestParam(required = false, defaultValue = "false") Boolean includeInactive) {
+	public List<ProductModel> list(@PathVariable Long restaurantId, 
+			@RequestParam(required = false) boolean includeInactive) {
 		Restaurant restaurant = restaurantService.fetchOrFail(restaurantId);
 		List<Product> allProducts = null;
 		
 		if(includeInactive) allProducts = productRepository.findAllByRestaurant(restaurant);
 		else allProducts = productRepository.findActivesByRestaurant(restaurant);
 		
-		return productModelAssembler.toCollectionModel(allProducts)
-				.add(deliveryLinks.linkToProducts(restaurantId));
+		return productModelAssembler.toCollectionModel(allProducts);
 	}
 	
 	@Override

@@ -2,17 +2,13 @@ package com.github.fa2bio.api.model;
 
 import java.math.BigDecimal;
 
-import org.springframework.hateoas.RepresentationModel;
-import org.springframework.hateoas.server.core.Relation;
-
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-@Relation(collectionRelation = "products")
-public class ProductModel extends RepresentationModel<ProductModel>{
+public class ProductModel {
 	
 	@ApiModelProperty(example = "1")
 	private Long id;
