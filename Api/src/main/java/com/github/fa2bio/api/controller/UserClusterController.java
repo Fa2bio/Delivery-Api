@@ -1,8 +1,7 @@
 package com.github.fa2bio.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +29,9 @@ public class UserClusterController implements UserGroupControllerSwagger{
 	
 	@Override
 	@GetMapping("/clusters")
-	public List<ClusterModel> list(@PathVariable Long userId){
+	public CollectionModel<ClusterModel> list(@PathVariable Long userId){
 		User user = userService.fetchOrFail(userId);
-		return clusterModelAssembler.toCollectionModel(user.getClusters());
+		return clusterModelAssembler.toCollectionModel(user.getClusters()).removeLinks();
 	}
 	
 	@Override

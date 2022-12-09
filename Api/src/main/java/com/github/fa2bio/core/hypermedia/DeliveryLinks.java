@@ -12,6 +12,8 @@ import org.springframework.hateoas.UriTemplate;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.controller.CityController;
+import com.github.fa2bio.api.controller.ClusterController;
+import com.github.fa2bio.api.controller.ClusterPermissionsController;
 import com.github.fa2bio.api.controller.KitchenController;
 import com.github.fa2bio.api.controller.OrderController;
 import com.github.fa2bio.api.controller.OrderStatusController;
@@ -253,4 +255,18 @@ public class DeliveryLinks {
 				.delivered(orderCode))
 				.withRel(rel);
 	}
+	
+	public Link linkToClusters() {
+		return linkToClusters(IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToClusters(String rel) {
+		return linkTo(ClusterController.class).withRel(rel);
+	}
+	
+	public Link linkToClustersPermissions(Long clusterId, String rel) {
+		return linkTo(methodOn(ClusterPermissionsController.class)
+				.list(clusterId)).withRel(rel);
+	}
+	
 }

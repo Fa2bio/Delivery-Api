@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.ClusterModel;
@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiResponses;
 public interface ClusterControllerSwagger {
 
 	@ApiOperation("List of clusters")
-	List<ClusterModel> list();
+	CollectionModel<ClusterModel> list();
 	
 	@ApiOperation("Search a cluster by Id")
 	@ApiResponses({

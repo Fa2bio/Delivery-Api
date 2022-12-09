@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.ClusterModel;
@@ -19,7 +19,7 @@ public interface UserGroupControllerSwagger {
 		@ApiResponse(code = 400, message = "Invalid user Id", response = Problem.class),
 		@ApiResponse(code = 404, message = "User not found", response = Problem.class)
 	})
-	List<ClusterModel> list(
+	CollectionModel<ClusterModel> list(
 			@ApiParam(value = "User Id", example = "1", required = true)
 			Long userId);
 	
