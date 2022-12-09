@@ -79,7 +79,9 @@ public class SpringFoxConfig {
 						new Tag("States", "Manage the states"),
 						new Tag("Products", "Manage the products"),
 						new Tag("Users", "Manage the users"),
+						new Tag("Permission", "Manage the Permissions"),
 						new Tag("Statistics", "Statistics of Delivery-API"));
+						
 	}
 	
 	private List<Response> globalGetResponseMessages(){

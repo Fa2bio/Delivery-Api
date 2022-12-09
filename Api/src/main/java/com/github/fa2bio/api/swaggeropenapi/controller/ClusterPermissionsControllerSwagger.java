@@ -1,6 +1,7 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.ResponseEntity;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.PermissionModel;
@@ -19,7 +20,7 @@ public interface ClusterPermissionsControllerSwagger {
 		@ApiResponse(code = 400, message = "Invalid cluster Id", response = Problem.class),
 		@ApiResponse(code = 404, message = "Cluster not found", response = Problem.class)
 	})
-	List<PermissionModel> list(
+	CollectionModel<PermissionModel> list(
 			@ApiParam(value = "Cluster Id", example = "1", required = true)
 			Long groupId);
 	
@@ -28,7 +29,7 @@ public interface ClusterPermissionsControllerSwagger {
 		@ApiResponse(code = 200, message = "Association performed successfully"),
 		@ApiResponse(code = 404, message = "Cluster or permission not found", response = Problem.class)
 	})
-	void associate(
+	ResponseEntity<Void> associate(
 			@ApiParam(value = "Cluster Id", example = "1", required = true) 
 			Long groupId, 
 			@ApiParam(value = "Permission Id", example = "1", required = true) 
@@ -39,7 +40,7 @@ public interface ClusterPermissionsControllerSwagger {
 		@ApiResponse(code = 200, message = "Disassociation performed successfully"),
 		@ApiResponse(code = 404, message = "Cluster or permission not found", response = Problem.class)
 	})
-	void disassociate(
+	ResponseEntity<Void> disassociate(
 			@ApiParam(value = "Cluster Id", example = "1", required = true) 
 			Long groupId, 
 			@ApiParam(value = "Permission Id", example = "1", required = true) 

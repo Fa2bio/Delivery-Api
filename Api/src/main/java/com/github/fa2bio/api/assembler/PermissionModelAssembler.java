@@ -1,28 +1,34 @@
 package com.github.fa2bio.api.assembler;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import com.github.fa2bio.api.model.PermissionModel;
+import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.model.Permission;
 
 @Component
-public class PermissionModelAssembler {
+public class PermissionModelAssembler 
+	implements RepresentationModelAssembler<Permission, PermissionModel>{
+	
 	@Autowired
 	private ModelMapper modelMapper;
 	
+	@Autowired
+	private DeliveryLinks deliveryLinks;
+	
+	@Override
 	public PermissionModel toModel(Permission permission) {
-		return modelMapper.map(permission, PermissionModel.class);
+		PermissionModel permissionModel = modelMapper.map(permission, PermissionModel.class);
+		return permissionModel;
 	}
 	
-	public List<PermissionModel> toCollectionModel(Collection<Permission> permissions){
-		return permissions.stream()
-				.map(permission -> toModel(permission))
-				.collect(Collectors.toList());
+	@Override
+	public CollectionModel<PermissionModel> toCollectionModel(Iterable<? extends Permission> entities){
+		return RepresentationModelAssembler.super.toCollectionModel(entities)
+				.add(deliveryLinks.linkToPermissions());
 	}
 }

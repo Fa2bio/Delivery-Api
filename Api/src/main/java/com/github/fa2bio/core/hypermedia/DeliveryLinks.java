@@ -18,6 +18,7 @@ import com.github.fa2bio.api.controller.KitchenController;
 import com.github.fa2bio.api.controller.OrderController;
 import com.github.fa2bio.api.controller.OrderStatusController;
 import com.github.fa2bio.api.controller.PaymentMethodsController;
+import com.github.fa2bio.api.controller.PermissionController;
 import com.github.fa2bio.api.controller.RestaurantController;
 import com.github.fa2bio.api.controller.RestaurantPaymentMethodController;
 import com.github.fa2bio.api.controller.RestaurantPhotoProductController;
@@ -107,8 +108,6 @@ public class DeliveryLinks {
 	
 	public Link linkToRestaurants(String rel){
 		return linkTo(RestaurantController.class).withRel(rel);
-//		String restaurantUrl = linkTo(RestaurantController.class).toUri().toString();
-//		return new Link(UriTemplate.of(restaurantUrl, PAGE_VARIABLES), rel);
 	}
 	
 	public Link linkToRestaurantsOpen(Long restaurantId, String rel) {
@@ -267,6 +266,30 @@ public class DeliveryLinks {
 	public Link linkToClustersPermissions(Long clusterId, String rel) {
 		return linkTo(methodOn(ClusterPermissionsController.class)
 				.list(clusterId)).withRel(rel);
+	}
+	
+	public Link linkToClustersPermissions(Long clusterId) {
+		return linkToClustersPermissions(clusterId, IanaLinkRelations.SELF.value());
+	}
+	
+	public Link linkToClustersPermissionsAssociate(Long clusterId, String rel) {
+		return linkTo(methodOn(ClusterPermissionsController.class)
+				.associate(clusterId, null))
+				.withRel(rel);
+	}
+	
+	public Link linkToClustersPermissionsDisassociate(Long clusterId, Long permissionId, String rel) {
+		return linkTo(methodOn(ClusterPermissionsController.class)
+				.disassociate(clusterId, permissionId))
+				.withRel(rel);
+	}
+	
+	public Link linkToPermissions(String rel) {
+		return linkTo(PermissionController.class).withRel(rel);
+	}
+	
+	public Link linkToPermissions() {
+		return linkToPermissions(IanaLinkRelations.SELF.value());
 	}
 	
 }
