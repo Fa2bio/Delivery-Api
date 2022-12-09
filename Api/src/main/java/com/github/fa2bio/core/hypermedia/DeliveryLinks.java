@@ -217,6 +217,15 @@ public class DeliveryLinks {
 				.withRel(rel);
 	}
 	
+	public Link linkToProducts(Long restaurantId, String rel) {
+		return linkTo(methodOn(RestaurantProductsController.class)
+				.list(restaurantId, null)).withRel(rel);
+	}
+	
+	public Link linkToProducts(Long restaurantId) {
+		return linkToProducts(restaurantId, IanaLinkRelations.SELF.value());
+	}
+	
 	public Link linkToConfirmedOrder(String orderCode, String rel) {
 		return linkTo(methodOn(OrderStatusController.class)
 				.confirm(orderCode))

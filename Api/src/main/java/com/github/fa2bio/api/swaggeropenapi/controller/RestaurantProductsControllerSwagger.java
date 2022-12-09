@@ -1,6 +1,6 @@
 package com.github.fa2bio.api.swaggeropenapi.controller;
 
-import java.util.List;
+import org.springframework.hateoas.CollectionModel;
 
 import com.github.fa2bio.api.exceptionhandler.Problem;
 import com.github.fa2bio.api.model.ProductModel;
@@ -20,12 +20,12 @@ public interface RestaurantProductsControllerSwagger {
 		@ApiResponse(code = 400, message = "Invalid restaurant Id", response = Problem.class),
 		@ApiResponse(code = 404, message = "Restaurant not found", response = Problem.class)
 	})
-	List<ProductModel> list(
+	CollectionModel<ProductModel> list(
 			@ApiParam(value = "Restaurant Id", example = "1", required = true)
 			Long restaurantId, 
 			@ApiParam(value = "Indica se deve ou não incluir produtos inativos no resultado da listagem", 
 			example = "false", defaultValue = "false")
-			boolean includeInactive);
+			Boolean includeInactive);
 	
 	@ApiOperation("Search for a product from a restaurant")
 	@ApiResponses({
