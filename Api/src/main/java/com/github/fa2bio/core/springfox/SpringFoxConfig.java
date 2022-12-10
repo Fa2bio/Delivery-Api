@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Links;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -24,6 +25,7 @@ import com.github.fa2bio.api.model.KitchenModel;
 import com.github.fa2bio.api.model.OrderrAbstractModel;
 import com.github.fa2bio.api.swaggeropenapi.controller.KitchenControllerSwagger;
 import com.github.fa2bio.api.swaggeropenapi.controller.OrderControllerSwagger;
+import com.github.fa2bio.api.swaggeropenapi.model.LinksModelSwagger;
 import com.github.fa2bio.api.swaggeropenapi.model.PageableModelSwagger;
 
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -63,6 +65,7 @@ public class SpringFoxConfig {
 						URL.class, URI.class, URLStreamHandler.class, Resource.class,
 						File.class, InputStream.class)
 				.directModelSubstitute(Pageable.class, PageableModelSwagger.class)
+				.directModelSubstitute(Links.class, LinksModelSwagger.class)
 				.alternateTypeRules(AlternateTypeRules.newRule(
 						typeResolver.resolve(Page.class, KitchenModel.class),
 						KitchenControllerSwagger.class))
