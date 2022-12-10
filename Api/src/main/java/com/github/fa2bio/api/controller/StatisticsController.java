@@ -3,6 +3,7 @@ package com.github.fa2bio.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.fa2bio.api.swaggeropenapi.controller.StatisticsControllerSwagger;
+import com.github.fa2bio.core.hypermedia.DeliveryLinks;
 import com.github.fa2bio.domain.filter.DailySaleFilter;
 import com.github.fa2bio.domain.model.dto.DailySale;
 import com.github.fa2bio.domain.service.SaleQueryService;
@@ -26,6 +28,17 @@ public class StatisticsController implements StatisticsControllerSwagger{
 	
 	@Autowired
 	private SaleReportService saleReportService;
+	
+	@Autowired
+	private DeliveryLinks deliveryLinks;
+	
+	@Override
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public StatisticsModel statistics() {
+		var statisticsModel = new StatisticsModel();
+		statisticsModel.add(deliveryLinks.linkToStatisticsDailySales("daily-sales"));
+		return statisticsModel;
+	}
 	
 	@Override
 	@GetMapping(path = "/daily-sales", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
@@ -47,5 +60,8 @@ public class StatisticsController implements StatisticsControllerSwagger{
 				.contentType(MediaType.APPLICATION_PDF)
 				.headers(headers)
 				.body(bytesPdf);
+	}
+	
+	public static class StatisticsModel extends RepresentationModel<StatisticsModel> {
 	}
 }

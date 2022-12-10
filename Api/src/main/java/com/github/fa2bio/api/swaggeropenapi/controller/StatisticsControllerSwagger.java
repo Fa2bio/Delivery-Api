@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
+import com.github.fa2bio.api.controller.StatisticsController.StatisticsModel;
 import com.github.fa2bio.domain.filter.DailySaleFilter;
 import com.github.fa2bio.domain.model.dto.DailySale;
 
@@ -15,6 +16,9 @@ import io.swagger.annotations.ApiParam;
 
 @Api(tags = "Statistics")
 public interface StatisticsControllerSwagger {
+	
+	@ApiOperation(value = "Statistics", hidden = true)
+	StatisticsModel statistics();
 
 	@ApiOperation("Query daily sales statistics")
 	@ApiImplicitParams({

@@ -30,6 +30,7 @@ public class RootEntryPointController {
 		rootEntryPointModel.add(deliveryLinks.linkToPermissions("permissions"));
 		rootEntryPointModel.add(deliveryLinks.linkToRestaurants("restaurants"));
 		rootEntryPointModel.add(deliveryLinks.linkToStates("states"));
+		rootEntryPointModel.add(deliveryLinks.linkToStatistics("statistics"));
 		rootEntryPointModel.add(deliveryLinks.linkToUsers("users"));
 		return rootEntryPointModel;
 	}

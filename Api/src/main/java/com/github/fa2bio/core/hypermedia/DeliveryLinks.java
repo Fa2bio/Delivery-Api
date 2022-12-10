@@ -25,6 +25,7 @@ import com.github.fa2bio.api.controller.RestaurantPhotoProductController;
 import com.github.fa2bio.api.controller.RestaurantProductsController;
 import com.github.fa2bio.api.controller.RestaurantResponsibleUserController;
 import com.github.fa2bio.api.controller.StateController;
+import com.github.fa2bio.api.controller.StatisticsController;
 import com.github.fa2bio.api.controller.UserClusterController;
 import com.github.fa2bio.api.controller.UserController;
 
@@ -41,6 +42,7 @@ public class DeliveryLinks {
 			new TemplateVariable("projection", VariableType.REQUEST_PARAM));
 		
 	public Link linkToOrders(String rel) {
+		
 		TemplateVariables filterVariables = new TemplateVariables(
 				new TemplateVariable("clientId", VariableType.REQUEST_PARAM),
 				new TemplateVariable("restaurantId", VariableType.REQUEST_PARAM),
@@ -51,6 +53,21 @@ public class DeliveryLinks {
 		
 		return new Link(UriTemplate.of(ordersUrl,
 				PAGE_VARIABLES.concat(filterVariables)), rel);
+	}
+	
+	public Link linkToStatisticsDailySales(String rel) {
+		
+		TemplateVariables filterVariables = new TemplateVariables(
+				new TemplateVariable("restaurantId", VariableType.REQUEST_PARAM),
+				new TemplateVariable("creationDateStart", VariableType.REQUEST_PARAM),
+				new TemplateVariable("creationDateFinal", VariableType.REQUEST_PARAM),
+				new TemplateVariable("timeOffset", VariableType.REQUEST_PARAM));
+		
+		String ordersUrl = linkTo(methodOn(StatisticsController.class)
+				.queryDailySalesJson(null, null))
+				.toUri().toString();
+		
+		return new Link(UriTemplate.of(ordersUrl, filterVariables), rel);
 	}
 	
 	public Link linkToOrder(String rel) {
@@ -302,4 +319,7 @@ public class DeliveryLinks {
 		return linkToPermissions(IanaLinkRelations.SELF.value());
 	}
 	
+	public Link linkToStatistics(String rel) {
+		return linkTo(StatisticsController.class).withRel(rel);
+	}
 }
