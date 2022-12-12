@@ -27,6 +27,7 @@
 
 - Java
 - Spring Boot (version 2.2.2.RELEASE)
+- Spring Data JPA
 - Spring Hateoas
 - Spring Security
 - MySQL
