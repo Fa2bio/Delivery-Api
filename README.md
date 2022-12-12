@@ -27,6 +27,8 @@
 
 - Java
 - Spring Boot (version 2.2.2.RELEASE)
+- Spring Hateoas
+- Spring Security
 - MySQL
 - Lombok
 - Flyway
@@ -36,7 +38,6 @@
 - Clean Architecture
 - Data Transfer Object (DTO)
 - Swagger
-- Hateoas
 
 ## <a name="installation"></a>Installation
 
@@ -59,7 +60,13 @@ delivery.storage.location.directory-photos=
 ## <a name="run-application"></a>Run Application
 
 - After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java;
-- This application contains Spring hateoas. After launching the api, access http://localhost:8080 to access the entry point.
+- This application contains Spring Hateoas. After launching the api, access http://localhost:8080 to access the entry point.
+- This application contains Spring Security. To authenticate, type
+
+```xml
+user= admin
+password= admin
+```
 
 ## <a name="general-usage"></a>General Use
 
