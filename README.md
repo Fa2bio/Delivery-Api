@@ -62,12 +62,7 @@ delivery.storage.location.directory-photos=
 
 - After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java;
 - This application contains Spring Hateoas. After launching the api, access http://localhost:8080 to access the entry point.
-- This application contains Spring Security. To authenticate, type
-
-```xml
-user= admin
-password= admin
-```
+- This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:8080/oauth/token. This request is already prepared in the file that must be imported into the postman. After generating the access token, just add it as a 'Bearer Token' in your requests.
 
 ## <a name="general-usage"></a>General Use
 
