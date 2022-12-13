@@ -21,11 +21,13 @@ public class ValueZeroIncludesDescriptionValidator implements ConstraintValidato
 		this.descriptionMandatory = constraint.descriptionMandatory();
 	}
 	
+	@SuppressWarnings("null")
 	@Override
 	public boolean isValid(Object objectValidation, ConstraintValidatorContext context) {
 		boolean valid = true;
 		
 		try {
+			@SuppressWarnings("null")
 			BigDecimal value = (BigDecimal) BeanUtils.getPropertyDescriptor(objectValidation.getClass(), valueField)
 					.getReadMethod().invoke(objectValidation);
 			
