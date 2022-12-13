@@ -27,6 +27,7 @@
   <swagger.version>3.0.0</swagger.version>
   <springfox.version>3.0.0</springfox.version>
   <logback-ext-loggly.version>0.1.5</logback-ext-loggly.version>
+  <aws-java-sdk-s3.version>1.11.671</aws-java-sdk-s3.version>
    
   </properties>
 
@@ -184,6 +185,12 @@
 	<groupId>org.springframework.security.oauth.boot</groupId>
 	<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 	<version>2.6.8</version>
+	</dependency>
+	
+	<dependency>
+	<groupId>com.amazonaws</groupId>
+	<artifactId>aws-java-sdk-s3</artifactId>
+	<version>${aws-java-sdk-s3.version}</version>
 	</dependency>
     
  </dependencies>
