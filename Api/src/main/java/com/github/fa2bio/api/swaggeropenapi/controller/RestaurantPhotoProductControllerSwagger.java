@@ -2,7 +2,6 @@ package com.github.fa2bio.api.swaggeropenapi.controller;
 
 import java.io.IOException;
 
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 
@@ -32,7 +31,7 @@ public interface RestaurantPhotoProductControllerSwagger {
 			Long productId);
 	
 	@ApiOperation(value = "Search for a product photo of a restaurant", hidden = true)
-	ResponseEntity<InputStreamResource> recoverPhoto(Long restaurantId, Long productId, String acceptHeader) throws HttpMediaTypeNotAcceptableException;
+	ResponseEntity<?> recoverPhoto(Long restaurantId, Long productId, String acceptHeader) throws HttpMediaTypeNotAcceptableException;
 	
 	@ApiOperation("Register and update a restaurant's product photo")
 	@ApiResponses({

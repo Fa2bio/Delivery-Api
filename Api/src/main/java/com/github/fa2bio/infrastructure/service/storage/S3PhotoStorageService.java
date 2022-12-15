@@ -1,9 +1,8 @@
 package com.github.fa2bio.infrastructure.service.storage;
 
-import java.io.InputStream;
+import java.net.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -14,7 +13,7 @@ import com.github.fa2bio.core.storage.StorageProperties;
 import com.github.fa2bio.domain.service.PhotoStorageService;
 
 //@Service
-public class S3FotoStorageService implements PhotoStorageService{
+public class S3PhotoStorageService implements PhotoStorageService{
 	
 	@Autowired
 	private AmazonS3 amazonS3;
@@ -23,9 +22,13 @@ public class S3FotoStorageService implements PhotoStorageService{
 	private StorageProperties storageProperties;
 
 	@Override
-	public InputStream toRecover(String fileName) {
-		// TODO Auto-generated method stub
-		return null;
+	public PhotoRecover toRecover(String fileName) {
+		String filePath = getFilePath(fileName);
+		
+		URL url = amazonS3.getUrl(storageProperties.getS3().getBucket(), filePath);
+		
+		return PhotoRecover.builder()
+				.url(url.toString()).build();
 	}
 
 	@Override

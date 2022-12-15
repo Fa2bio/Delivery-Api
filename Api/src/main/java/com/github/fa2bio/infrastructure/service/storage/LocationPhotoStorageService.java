@@ -1,6 +1,5 @@
 package com.github.fa2bio.infrastructure.service.storage;
 
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -42,10 +41,13 @@ public class LocationPhotoStorageService implements PhotoStorageService{
 	}
 	
 	@Override
-	public InputStream toRecover(String fileName) {
+	public PhotoRecover toRecover(String fileName) {
 		try {
 			Path filePath = getArquivoPath(fileName);
-			return Files.newInputStream(filePath);
+			PhotoRecover photoRecovered = PhotoRecover.builder()
+					.inputStream(Files.newInputStream(filePath))
+					.build();
+			return photoRecovered;
 		} catch (Exception e) {
 			throw new StorageException("Unable to retrieve file.", e);
 		}		
