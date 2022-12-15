@@ -9,7 +9,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
-@Configuration
+//@Configuration
 public class AmazonS3Config {
 
 	@Autowired
