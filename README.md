@@ -10,7 +10,7 @@
 * [Installation](#installation)
 * [Run Application](#run-application)
 * [General Usage](#general-usage)
-* [Spring Security](#spring)
+* [Spring Security Example](#spring)
 * [Diagrams](#uml)
 
 ## <a name="what-is-it"></a>What is it?
@@ -65,7 +65,7 @@ delivery.storage.location.directory-photos=
 - This application contains Spring Hateoas. After launching the api, access http://localhost:8080 to access the entry point.
 - This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:8080/oauth/token. This request is already prepared in the file that must be imported into the postman. 
 - After generating the access token, just add it as a 'Bearer Token' in your requests.
-- To view an authentication example, visit [Spring Security](#spring)
+- To view an authentication example, visit [Spring Security Example](#spring)
 
 ## <a name="general-usage"></a>General Use
 
@@ -76,7 +76,7 @@ delivery.storage.location.directory-photos=
 ### JasperReports
 * In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports.
 
-## <a name="spring"></a> Spring Security
+## <a name="spring"></a> Spring Security Example
 ### Acess Token
 ![2](https://user-images.githubusercontent.com/41877566/207920797-93d8f7e5-86a0-42a5-89c7-929a6df281bc.png)
 ### Bearer Token
