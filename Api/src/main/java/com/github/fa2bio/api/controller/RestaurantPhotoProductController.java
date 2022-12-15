@@ -6,7 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,15 +25,11 @@ import com.github.fa2bio.api.assembler.PhotoProdutoModelAssembler;
 import com.github.fa2bio.api.model.PhotoProductModel;
 import com.github.fa2bio.api.model.input.PhotoProductInput;
 import com.github.fa2bio.api.swaggeropenapi.controller.RestaurantPhotoProductControllerSwagger;
-import com.github.fa2bio.domain.exception.EntityNotFoundException;
 import com.github.fa2bio.domain.model.PhotoProduct;
 import com.github.fa2bio.domain.model.Product;
 import com.github.fa2bio.domain.service.PhotoProductService;
 import com.github.fa2bio.domain.service.PhotoStorageService;
-import com.github.fa2bio.domain.service.PhotoStorageService.PhotoRecover;
 import com.github.fa2bio.domain.service.ProductService;
-
-import net.sf.jasperreports.repo.InputStreamResource;
 
 @RestController
 @RequestMapping("/restaurants/{restaurantId}/products/{productId}/photo")
@@ -64,7 +60,7 @@ public class RestaurantPhotoProductController
 	
 	@Override
 	@GetMapping
-	public ResponseEntity<?> recoverPhoto(@PathVariable Long restaurantId,
+	public ResponseEntity<InputStreamResource> recoverPhoto(@PathVariable Long restaurantId,
 			@PathVariable Long productId, @RequestHeader(name = "accept") String acceptHeader) throws HttpMediaTypeNotAcceptableException{
 		
 		try {
@@ -73,26 +69,13 @@ public class RestaurantPhotoProductController
 			List<MediaType> acceptedMediaTypes = MediaType.parseMediaTypes(acceptHeader);
 			verificarCompatibilidadeMediaType(mediaTypePhoto, acceptedMediaTypes);
 			
-//			java.io.InputStream inputStream = photoStorageService.toRecover(photoProduct.getFileName());
-			PhotoRecover photoRecovered = photoStorageService.toRecover(photoProduct.getFileName());
+			java.io.InputStream inputStream = photoStorageService.toRecover(photoProduct.getFileName());
 			
-//			return ResponseEntity.ok()
-//					.contentType(mediaTypePhoto)
-//					.body(new InputStreamResource(inputStream));
+			return ResponseEntity.ok()
+					.contentType(mediaTypePhoto)
+					.body(new InputStreamResource(inputStream));
 			
-			if(photoRecovered.withUrl()) {
-				return ResponseEntity
-						.status(HttpStatus.FOUND)
-						.header(HttpHeaders.LOCATION, photoRecovered.getUrl())
-						.build();
-			}else {
-				java.io.InputStream inputStream = photoRecovered.getInputStream();
-				return ResponseEntity.ok()
-						.contentType(mediaTypePhoto)
-						.body(new InputStreamResource());
-			}
-			
-		} catch (EntityNotFoundException e) {
+		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
