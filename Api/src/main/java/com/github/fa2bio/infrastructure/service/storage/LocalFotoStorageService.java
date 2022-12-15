@@ -4,21 +4,17 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 
-import com.github.fa2bio.core.storage.StorageProperties;
 import com.github.fa2bio.domain.service.PhotoStorageService;
 
 @Service
-public class LocationPhotoStorageService implements PhotoStorageService{
+public class LocalFotoStorageService implements PhotoStorageService{
 
-//	@Value("${delivery.storage.location.directory-photos}")
-//	private Path directoryPhotos;
-	
-	@Autowired
-	private StorageProperties storageProperties;
+	@Value("${delivery.storage.location.directory-photos}")
+	private Path directoryPhotos;
 	
 	@Override
 	public void store(NewPhoto newPhoto) {
@@ -52,9 +48,7 @@ public class LocationPhotoStorageService implements PhotoStorageService{
 	}
 	
 	private Path getArquivoPath(String fileName) {
-//		return directoryPhotos.resolve(Path.of(fileName));
-		return storageProperties.getLocation().getDirectoryPhotos()
-				.resolve(Path.of(fileName));
+		return directoryPhotos.resolve(Path.of(fileName));
 	}
 
 }
