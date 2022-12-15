@@ -11,7 +11,7 @@ import org.springframework.util.FileCopyUtils;
 import com.github.fa2bio.domain.service.PhotoStorageService;
 
 @Service
-public class LocalFotoStorageService implements PhotoStorageService{
+public class LocationPhotoStorageService implements PhotoStorageService{
 
 	@Value("${delivery.storage.location.directory-photos}")
 	private Path directoryPhotos;

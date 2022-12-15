@@ -1,6 +1,6 @@
 <h1>Delivery-API</h1>
 
-> Status: Developing ⚠️
+> Status: Finished ✔️
 
 ### Contents
   
@@ -10,6 +10,7 @@
 * [Installation](#installation)
 * [Run Application](#run-application)
 * [General Usage](#general-usage)
+* [Spring Security](#spring)
 * [Diagrams](#uml)
 
 ## <a name="what-is-it"></a>What is it?
@@ -62,7 +63,9 @@ delivery.storage.location.directory-photos=
 
 - After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java;
 - This application contains Spring Hateoas. After launching the api, access http://localhost:8080 to access the entry point.
-- This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:8080/oauth/token. This request is already prepared in the file that must be imported into the postman. After generating the access token, just add it as a 'Bearer Token' in your requests.
+- This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:8080/oauth/token. This request is already prepared in the file that must be imported into the postman. 
+- After generating the access token, just add it as a 'Bearer Token' in your requests.
+- To view an authentication example, visit [Spring Security](#spring)
 
 ## <a name="general-usage"></a>General Use
 
@@ -72,6 +75,12 @@ delivery.storage.location.directory-photos=
 
 ### JasperReports
 * In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports.
+
+## <a name="spring"></a> Spring Security
+### Acess Token
+![2](https://user-images.githubusercontent.com/41877566/207920797-93d8f7e5-86a0-42a5-89c7-929a6df281bc.png)
+### Bearer Token
+![1](https://user-images.githubusercontent.com/41877566/207922519-1b9d42ff-9f63-45a3-9b54-de54b4d1b5c3.png)
 
 ## <a name="uml"></a> Diagrams
 ### Class Diagram
