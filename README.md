@@ -77,7 +77,7 @@ delivery.storage.location.directory-photos=
 * In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports.
 
 ## <a name="spring"></a> Spring Security Example
-### Acess Token
+### Access Token
 ![2](https://user-images.githubusercontent.com/41877566/207920797-93d8f7e5-86a0-42a5-89c7-929a6df281bc.png)
 ### Bearer Token
 ![1](https://user-images.githubusercontent.com/41877566/207922519-1b9d42ff-9f63-45a3-9b54-de54b4d1b5c3.png)
