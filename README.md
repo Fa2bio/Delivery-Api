@@ -78,9 +78,9 @@ delivery.storage.location.directory-photos=
 
 ## <a name="spring"></a> Spring Security Example
 ### Access Token
-![1](https://user-images.githubusercontent.com/41877566/208467860-6f276d1c-b9d1-4325-b190-817a7530c869.png)
+![1](https://user-images.githubusercontent.com/41877566/208469507-889fc9fd-8f49-448b-ada8-71a89794245a.png)
 ### Bearer Token
-![2](https://user-images.githubusercontent.com/41877566/208467906-607c13c8-e408-4eeb-a4d4-fdeb8dc1b802.png)
+![2](https://user-images.githubusercontent.com/41877566/208469558-b17f6936-880c-4e3c-a20e-ea37875c4b93.png)
 
 ## <a name="uml"></a> Diagrams
 ### Class Diagram
