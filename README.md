@@ -47,7 +47,7 @@
 - Import it as a MAVEN project in your IDE;
 - In your Postman client, import the requests from the Delivery-Api.postman_collection.json file in the Utils folder;
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database;
-- To use the Restaurante Produto Foto service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
+- To use the Restaurant Photo Product Service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
 - By default, this application runs on the port 8080.
 
 ### Application.properties
@@ -78,9 +78,9 @@ delivery.storage.location.directory-photos=
 
 ## <a name="spring"></a> Spring Security Example
 ### Access Token
-![2](https://user-images.githubusercontent.com/41877566/207920797-93d8f7e5-86a0-42a5-89c7-929a6df281bc.png)
+![1](https://user-images.githubusercontent.com/41877566/208467860-6f276d1c-b9d1-4325-b190-817a7530c869.png)
 ### Bearer Token
-![1](https://user-images.githubusercontent.com/41877566/207922519-1b9d42ff-9f63-45a3-9b54-de54b4d1b5c3.png)
+![2](https://user-images.githubusercontent.com/41877566/208467906-607c13c8-e408-4eeb-a4d4-fdeb8dc1b802.png)
 
 ## <a name="uml"></a> Diagrams
 ### Class Diagram
