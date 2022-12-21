@@ -62,6 +62,7 @@ delivery.storage.location.directory-photos=
 ## <a name="run-application"></a>Run Application
 
 - After meeting the requirements and installation, run the main method as a spring boot project in DeliveryApi.java;
+- To access the documentation of supported resources, access the swagger available at: http://localhost:8080/swagger-ui/#/;
 - This application contains Spring Hateoas. After launching the api, access http://localhost:8080 to access the entry point.
 - This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:8080/oauth/token. This request is already prepared in the file that must be imported into the postman;
 - After generating the access token, just add it as a 'Bearer Token' in your requests;
@@ -71,7 +72,7 @@ delivery.storage.location.directory-photos=
 
 ### CRUD
 
-* After adding the requests to your Postman client and run application, you will have access to the API resources. To access the documentation of supported resources, access the swagger available at: http://localhost:8080/swagger-ui/#/
+* After adding the requests to your Postman client and run application, you will have access to the API resources.
 
 ### JasperReports
 * In addition to CRUD, it is possible to generate a json/pdf sales report generated with Jasper Reports.
