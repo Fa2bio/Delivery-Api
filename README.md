@@ -37,7 +37,6 @@
 - Model Mapper
 - Squiggly Filter For Jackson
 - JasperReports
-- Clean Architecture
 - Data Transfer Object (DTO)
 - Swagger
 
