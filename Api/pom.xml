@@ -27,6 +27,7 @@
   <swagger.version>3.0.0</swagger.version>
   <springfox.version>3.0.0</springfox.version>
   <logback-ext-loggly.version>0.1.5</logback-ext-loggly.version>
+  <lombok.version>1.18.18</lombok.version>
    
   </properties>
 
@@ -68,6 +69,7 @@
     <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
+    <version>${lombok.version}</version>
     </dependency>
     
     <dependency>
