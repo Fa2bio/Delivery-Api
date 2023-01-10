@@ -49,7 +49,7 @@
 
 ## <a name="uml"></a> Diagrams
 
-- To access a copy of the database, import in your MySQL Workbenchthe Delivery_SQL_Diagram.mwb file available at [Delivery_SQL_Diagram.zip](https://github.com/Fa2bio/Delivery-Api/files/10378633/Delivery_SQL_Diagram.zip)
+- To access a copy of the database, import in your MySQL Workbench the Delivery_SQL_Diagram.mwb file available at [Delivery_SQL_Diagram.zip](https://github.com/Fa2bio/Delivery-Api/files/10378633/Delivery_SQL_Diagram.zip)
 
 ### Class Diagram
 ![Delivery-api (1)](https://user-images.githubusercontent.com/41877566/205646090-2deecb69-cdea-4300-b486-b72f0c93c9c5.jpeg)
