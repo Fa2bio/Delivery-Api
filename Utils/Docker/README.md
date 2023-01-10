@@ -61,7 +61,7 @@ password
 
 ### Terminal
 ```xml
-docker docker container inspect dbname
+docker container inspect dbname
 ```
 - After starting the docker inspection, look for the generated IPAddress and copy it;
 - Check if the spring-net network is present;
