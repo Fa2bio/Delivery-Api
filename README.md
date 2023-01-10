@@ -41,11 +41,11 @@
 
 <h3> Git Clone </h3>
 
-- To install the api by Git clone, follow the instructions at https://github.com/Fa2bio/Delivery-Api/tree/main/Utils/Local;
+- To install the api by Git clone, follow the instructions available at https://github.com/Fa2bio/Delivery-Api/tree/main/Utils/Local;
 
 <h3> Docker </h3>
 
-- To install the api by Docker, follow the instructions at https://github.com/Fa2bio/Delivery-Api/tree/main/Utils/Docker;
+- To install the api by Docker, follow the instructions available  at https://github.com/Fa2bio/Delivery-Api/tree/main/Utils/Docker;
 
 ## <a name="uml"></a> Diagrams
 
