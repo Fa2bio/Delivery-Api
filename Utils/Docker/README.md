@@ -81,9 +81,9 @@ docker docker container inspect dbname
 
 ### Terminal
 ```xml
-docker run -p 9090:8080 --name delivery_api --net spring-net -e MYSQL_HOST=dbname -e MYSQL_USER=root -e MYSQL_PASSWORD=password -e MYSQL_PORT=3306 fabioscp/delivery_api:1.0
+docker run -p 9090:8080 --name delivery_api --net spring-net -e MYSQL_HOST=dbname -e MYSQL_USER=root -e MYSQL_PASSWORD=password -e MYSQL_PORT=3306 -d fabioscp/delivery_api:1.0
 ```
-
+- After that, wait 30-45 seconds to make your requests;
 - To access the documentation of supported resources, access the swagger available at: http://localhost:9090/swagger-ui/#/;
 - This application contains Spring Hateoas. After launching the api, access http://localhost:9090 to access the entry point.
 - This application contains Spring Security. To authenticate you'll need to make a post request at http://localhost:9090/oauth/token. This request is already prepared in the file that must be imported into the postman;
