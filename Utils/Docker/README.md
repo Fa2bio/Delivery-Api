@@ -44,9 +44,8 @@ docker docker container inspect dbname
 - Open your MySQL Workbench and start a new localhost connection with the generated IPAddress, port 3307 and root user;
 - In your Postman client, import the requests from the Delivery-Api-Docker.postman_collection.json file available at [Delivery-Api-Docker.postman_collection.zip](https://github.com/Fa2bio/Delivery-Api/files/10377682/Delivery-Api-Docker.postman_collection.zip);
 - To use the Restaurant Photo Product Service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
-- This version doesn't contain the mass of data inserted with aftermigrate into the database. To test the endpoints, you will need to manually
+- This version does not contain the mass of data inserted with aftermigrate into the database. To test endpoints, you will need to enter data manually;
 - By default, this application runs on the port 9090.
-
 
 ## <a name="run-application"></a>Run Application
 
