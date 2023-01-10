@@ -32,7 +32,8 @@ docker network create spring-net
 docker network connect spring-net dbname
 ```
 
-### Open your MySQL Workbench and start a new connection
+<h3> Now, let's prepare the MySQL Workbench </h3>
+- Open your MySQL Workbench, delete your localhost connection and restart. After that, start a new connection.
 
 ### Manage Server Connections - Connection Name 
 ```xml
