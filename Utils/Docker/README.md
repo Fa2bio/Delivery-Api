@@ -1,6 +1,6 @@
 <h1>Delivery-API - Docker Installation</h1>
 
-### Contents
+## Contents
   
 * [Installation](#installation)
 * [Run Application](#run-application)
