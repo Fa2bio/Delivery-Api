@@ -9,12 +9,12 @@
 
 ## <a name="installation"></a>Installation
 
+- This version contains the mass of data inserted with aftermigrate into to database;
 - Clone the repository for your device;
 - Import it as a MAVEN project in your IDE;
 - In your Postman client, import the requests from the Delivery-Api.postman_collection.json file available at [Delivery-Api.postman_collection.zip](https://github.com/Fa2bio/Delivery-Api/files/10377469/Delivery-Api.postman_collection.zip);
 - In the application.properties file, edit the USER and PASSWORD of your MySQL database;
 - To use the Restaurant Photo Product Service in CRUD, edit the field delivery.storage in the application.properties file. In this field insert a folder directory like this "/Users/user/Directory/folder". With this folder, the service will be able to locally store a JPEG or PNG file injected from a postman request;
-- This version contains the mass of data inserted with aftermigrate into the database;
 - By default, this application runs on the port 8080.
 
 ### Application.properties
