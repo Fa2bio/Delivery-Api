@@ -10,7 +10,7 @@
 ## <a name="installation"></a>Installation
 - This version doesn't contain the mass of data inserted with aftermigrate into to database. To test endpoints, you'll need to enter the test data manually;
 
-<h3> Let's start by preparing the Docker Images. Open a terminal and type </h3>
+<h3> Let's start preparing the Docker Images. Open a terminal and type </h3>
 
 ### Terminal
 ```xml
