@@ -28,14 +28,15 @@
 - Spring Data JPA
 - Spring Hateoas
 - Spring Security
+- Spring Swagger
 - MySQL
-- Lombok
 - Flyway
+- Docker
+- Lombok
 - Model Mapper
-- Squiggly Filter For Jackson
+- Squiggly Filter
 - JasperReports
 - Data Transfer Object (DTO)
-- Swagger
 
 ## <a name="installation"></a>Installation
 
