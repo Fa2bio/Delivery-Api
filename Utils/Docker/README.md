@@ -42,11 +42,11 @@ localhost
 ```
 ### Hostname
 ```xml
-127.17.0.2
+localhost
 ```
 ### Port
 ```xml
-3307 
+3307
 ```
 ### Username
 ```xml
